@@ -37,6 +37,8 @@ import GruenderstrukturCheck from "./components/GruenderstrukturCheck";
 
 import contractIntelligenceImage from "./assets/images/contractintelligence2.png"
 import contractIntelligenceImageEng from "./assets/images/contractintelligence2eng.png"
+import execDe from "./assets/images/execde.png"
+import execEng from "./assets/images/execeng.png"
 
 import munichImage from "./assets/images/vardalegal_munich.png"
 
@@ -877,6 +879,7 @@ export default function App() {
   const [heroSlide, setHeroSlide] = useState(0);
   const [activeLegalModal, setActiveLegalModal] = useState<"impressum" | "datenschutz" | null>(null);
   const [showShortProfile, setShowShortProfile] = useState(false);
+  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
 
   // Simulated ProRes Living Video state
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
@@ -1500,7 +1503,7 @@ export default function App() {
                       { 
                         label: lang === "DE" ? "Start" : "Start", 
                         target: "#home", 
-                        subtitle: lang === "DE" ? "00 / Kanzlei-Kuppel" : "00 / Firm Cupola",
+                        subtitle: lang === "DE" ? "00 / Kanzlei" : "00 / the firm",
                         sec: "00",
                         desc: lang === "DE" ? "Initialer Einblick & Kanzleiphilosophie" : "Initial perspective & philosophy"
                       },
@@ -1521,7 +1524,7 @@ export default function App() {
                       { 
                         label: lang === "DE" ? "Form follows function" : "Form follows function", 
                         target: "#fff", 
-                        subtitle: lang === "DE" ? "03 / Kanzlei-Erbauung" : "03 / Firm Building",
+                        subtitle: lang === "DE" ? "03 / Produkte" : "03 / products",
                         sec: "03",
                         desc: lang === "DE" ? "Ergebnisorientierter Pragmatismus" : "Aesthetic of radical outcome focus"
                       },
@@ -1700,53 +1703,113 @@ export default function App() {
             {/* Left 8 Columns: Editorial Copy focusing on outcomes & reality */}
             <div className="lg:col-span-8 space-y-16">
               
-              {/* Subsection 1: Contract Intelligence & Executive Clarity */}
-              <div className="space-y-6">
-                <h3 className="font-serif text-xl sm:text-2xl font-semibold text-charcoal tracking-tight">
-                  {lang === "DE" ? "Contract Intelligence & Executive Clarity" : "Contract Intelligence & Executive Clarity"}
-                </h3>
-
-                <div className="space-y-4 font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl">
-                  {lang === "DE" ? (
-                    <>
-                      <p>Ein Vertrag ist kein Selbstzweck. Er soll Vereinbarungen fixieren und Risiken regeln. Doch in der Praxis sind Entwürfe oft schwer lesbar, überbucht mit juristischen Details und intransparent für die letztendliche Entscheidungsebene.</p>
-                      <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">Varda analysiert Vertragsentwürfe  – und übersetzt diese in Entscheidungen.</p>
-                      <p>Eine verständliche Vertragsanalyse überführt Herausforderungen in logische, intuitiv verständliche Handlungsdiagramme. Das Ergebnis ist unmittelbare <strong>Executive Clarity</strong> – die Klarheit darüber, welche kaufmännischen Verpflichtungen eingegangen werden, welche Risiken versicherbar sind und welche strategische <strong>Handlung</strong> als Nächstes erfolgen muss.</p>
-                    </>
-                  ) : (
-                    <>
-                      <p>A contract is not an end in itself. Its purpose is to record agreements and govern risks. But in practice, drafts are often complex to read, overloaded with legal jargon, and opaque for executive decision-makers.</p>
-                      <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">Varda does not merely analyze contracts – Varda translates contracts into decisions.</p>
-                      <p>Through our <strong>Contract Intelligence</strong> methodology, we transform raw <strong>contract drafts</strong> into a clean, logical decision outline. The result is immediate <strong>Executive Clarity</strong> – absolute certainty regarding the commercial obligations undertaken, which risks are insurable, and what strategic <strong>action</strong> must be taken next.</p>
-                    </>
-                  )}
+              {/* Subsection 1: Redesigned Executive Clarity Example */}
+              <div className="space-y-8">
+                {/* Eyebrow */}
+                <div className="space-y-1">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#C0823E] font-bold block">
+                    {lang === "DE" ? "BEISPIELPRODUKT / EXECUTIVE CLARITY" : "EXAMPLE PRODUCT / EXECUTIVE CLARITY"}
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-semibold text-charcoal tracking-tight leading-tight">
+                    {lang === "DE" ? "So sieht Entscheidungsklarheit aus." : "This is what decision clarity looks like."}
+                  </h3>
                 </div>
 
-                {/* Outcome Contrasts Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-charcoal/10 font-mono text-xs uppercase tracking-wider">
-                  <div className="space-y-1">
-                    <span className="text-charcoal/40 block">{lang === "DE" ? "Methode /" : "Method /"}</span>
-                    <span className="text-brand-red font-bold block">Contract Intelligence</span>
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-charcoal/50 block">{lang === "DE" ? "Fokus /" : "Focus /"}</span>
-                    <span className="text-[#C0823E] font-bold block">Executive Clarity</span>
-                  </div>
-                  <div className="space-y-1">
-                    <span className="text-charcoal/40 block">{lang === "DE" ? "Ziel /" : "Destination /"}</span>
-                    <span className="text-charcoal font-bold block">{lang === "DE" ? "Handlungsfähigkeit" : "Strategic Action"}</span>
+                {/* Subheadline & Short Intro Copy */}
+                <div className="space-y-4">
+                  <p className="font-serif text-lg sm:text-xl text-charcoal font-medium leading-relaxed">
+                    {lang === "DE"
+                      ? "Ein fiktiver Gründerfall. Eine konkrete Einschätzung. Ein Dokument, mit dem die nächsten Schritte klar werden."
+                      : "A fictional founder case. A concrete assessment. A document that makes the next steps clear."}
+                  </p>
+                  <p className="font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl">
+                    {lang === "DE"
+                      ? "Viele Kanzleien erklären, was rechtlich möglich ist. Varda zeigt, welche Entscheidung ansteht, welche Risiken relevant sind und welche Struktur sinnvoll ist."
+                      : "Many firms explain what is legally possible. Varda shows which decision needs to be made, which risks matter, and which structure is suitable."}
+                  </p>
+                </div>
+
+                {/* Large visually dominant image/mockup block */}
+                <div className="my-10 select-none group/mockup relative border border-charcoal/15 bg-white p-3 sm:p-4 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer" onClick={() => setIsImageModalOpen(true)}>
+                  <div className="relative aspect-[16/11] w-full overflow-hidden bg-stone-50 border border-charcoal/10">
+                    <img 
+                      src={lang === "DE" ? execDe : execEng}
+                      alt={lang === "DE" 
+                        ? "Varda Legal Executive Clarity Beispiel zur Gründerstruktur: Drei Gründer, eine GmbH, Musterprotokoll und Gesellschaftervereinbarung."
+                        : "Varda Legal Executive Clarity example for founder structure: three founders, one GmbH, official template and shareholders’ agreement."}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-contain block transition-transform duration-500 group-hover/mockup:scale-[1.01]"
+                    />
+                    
+                    {/* View Example Overlay label positioned elegantly */}
+                    <div className="absolute bottom-4 right-4 bg-charcoal/90 hover:bg-charcoal text-white font-mono text-[10px] uppercase tracking-wider py-2 px-3 flex items-center gap-1.5 shadow transition-all">
+                      <Plus className="h-3 w-3" />
+                      <span>{lang === "DE" ? "Beispiel vergrößern" : "View example"}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Display of new strategic editorial asset "contractintelligence2.png" with generous whitespace, full content width */}
-              <div className="py-8 w-full select-all bg-transparent">
-                <img 
-                  src={lang === "DE" ? contractIntelligenceImage : contractIntelligenceImageEng}
-                  alt="Varda Executive Clarity Blueprint"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-auto object-contain block"
-                />
+                {/* Three proof points grid with thin dividing lines */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-charcoal/10">
+                  <div className="space-y-2">
+                    <span className="font-mono text-[10px] text-[#C0823E]/80 font-bold block">01 / {lang === "DE" ? "ANALYSE" : "ANALYSIS"}</span>
+                    <h4 className="font-serif text-base font-semibold text-charcoal">
+                      {lang === "DE" ? "Klare Einschätzung" : "Clear assessment"}
+                    </h4>
+                    <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
+                      {lang === "DE"
+                        ? "Das Musterprotokoll gründet die GmbH. Es organisiert aber nicht die Zusammenarbeit von drei aktiven Gründern."
+                        : "The official template forms the GmbH. It does not structure the collaboration between three active founders."}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 md:border-l md:border-charcoal/10 md:pl-6">
+                    <span className="font-mono text-[10px] text-[#C0823E]/80 font-bold block">02 / {lang === "DE" ? "ARCHITEKTUR" : "ARCHITECTURE"}</span>
+                    <h4 className="font-serif text-base font-semibold text-charcoal">
+                      {lang === "DE" ? "Konkrete Struktur" : "Concrete structure"}
+                    </h4>
+                    <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
+                      {lang === "DE"
+                        ? "Satzung und Gesellschaftervereinbarung werden getrennt: Was gehört in die gesellschaftsrechtliche Grundordnung — und was muss zwischen den Gründern geregelt werden?"
+                        : "Articles of association and shareholders’ agreement are separated: what belongs in the corporate-law foundation — and what must be agreed between the founders."}
+                    </p>
+                  </div>
+
+                  <div className="space-y-2 md:border-l md:border-charcoal/10 md:pl-6">
+                    <span className="font-mono text-[10px] text-[#C0823E]/80 font-bold block">03 / {lang === "DE" ? "FAHRPLAN" : "ROADMAP"}</span>
+                    <h4 className="font-serif text-base font-semibold text-charcoal">
+                      {lang === "DE" ? "Nächste Schritte" : "Next steps"}
+                    </h4>
+                    <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
+                      {lang === "DE"
+                        ? "Regelungsprofil, Entwurfsphase, Finalisierung, Notartermin. Nicht als Maximalprogramm, sondern als belastbare Grundordnung."
+                        : "Term sheet, drafting phase, finalization, notary appointment. Not a maximum program, but a clear basic framework."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Closing sentence & CTAs / Action Area */}
+                <div className="pt-8 border-t border-charcoal/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-charcoal/10">
+                  <div className="font-serif italic text-base text-charcoal font-medium">
+                    {lang === "DE" ? "Das Ergebnis ist kein Memo. Es ist eine Entscheidungsunterlage." : "The result is not a memo. It is a decision document."}
+                  </div>
+                  
+                  {/* Premium, restrained Buttons */}
+                  <div className="flex flex-wrap gap-3">
+                    <button
+                      onClick={() => handleNavigateToConsult(lang === "DE" ? "Besprechung des Beispiels zur Gründerstruktur" : "Discussion of the founder structure example")}
+                      className="px-5 py-2.5 bg-[#FAF8F4] hover:bg-[#eae6db]/40 text-charcoal text-xs font-mono uppercase tracking-wider font-semibold border border-charcoal/15 transition-all text-center cursor-pointer"
+                    >
+                      {lang === "DE" ? "Beispiel besprechen" : "Discuss this example"}
+                    </button>
+                    <button
+                      onClick={() => handleNavigateToConsult(lang === "DE" ? "Anfrage Executive Clarity" : "Request Executive Clarity")}
+                      className="px-5 py-2.5 bg-brand-red text-white hover:bg-[#72201d] text-xs font-mono uppercase tracking-wider font-semibold transition-all text-center cursor-pointer"
+                    >
+                      {lang === "DE" ? "Executive Clarity anfragen" : "Request Executive Clarity"}
+                    </button>
+                  </div>
+                </div>
               </div>
 
               {/* Subsection 2: Entrepreneurs make decisions */}
@@ -3716,6 +3779,62 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Lightbox Modal for Executive Clarity Image */}
+      <AnimatePresence>
+        {isImageModalOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-charcoal/90 backdrop-blur-md cursor-pointer"
+            onClick={() => setIsImageModalOpen(false)}
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.4 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white border border-charcoal/15 shadow-2xl flex flex-col p-2 sm:p-4 rounded-none cursor-default"
+            >
+              {/* Image Frame with Close Button */}
+              <div className="absolute top-4 right-4 z-10">
+                <button 
+                  onClick={() => setIsImageModalOpen(false)}
+                  className="p-1.5 bg-charcoal text-white hover:bg-brand-red rounded-full transition-colors flex items-center justify-center cursor-pointer shadow-md border-none"
+                  aria-label="Close lightbox"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <div className="flex-1 overflow-auto flex items-center justify-center bg-stone-50 border border-charcoal/5">
+                <img 
+                  src={lang === "DE" ? execDe : execEng}
+                  alt={lang === "DE" 
+                    ? "Varda Legal Executive Clarity Beispiel zur Gründerstruktur: Drei Gründer, eine GmbH, Musterprotokoll und Gesellschaftervereinbarung."
+                    : "Varda Legal Executive Clarity example for founder structure: three founders, one GmbH, official template and shareholders’ agreement."}
+                  referrerPolicy="no-referrer"
+                  className="max-w-full max-h-[82vh] object-contain block mx-auto"
+                />
+              </div>
+
+              {/* Caption or label at the bottom of the lightbox */}
+              <div className="pt-3 px-2 flex justify-between items-center text-xs font-sans text-charcoal/60">
+                <span className="font-serif italic font-medium">
+                  {lang === "DE" 
+                    ? "Varda Legal — Executive Clarity Beispiel" 
+                    : "Varda Legal — Executive Clarity Example"}
+                </span>
+                <span className="font-mono text-[9px] uppercase tracking-wider">
+                  {lang === "DE" ? "Klicken Sie außerhalb zum Schließen" : "Click outside to close"}
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Elegant, high-fashion legal notices modal */}
       <AnimatePresence>
