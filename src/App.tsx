@@ -1589,18 +1589,18 @@ export default function App() {
                         desc: lang === "DE" ? "Strikte Preistransparenz & Flatrates" : "Predictable transaction fee modules"
                       },
                       { 
-                        label: "Navigator", 
-                        target: lang === "DE" ? "#navigator" : "#en/navigator", 
-                        subtitle: lang === "DE" ? "07 / Varda Legal Navigator" : "07 / Varda Legal Navigator",
-                        sec: "07",
-                        desc: lang === "DE" ? "Executive Checks für Corporate- & Handelsrecht" : "Executive Checks for corporate & commercial issues"
-                      },
-                      { 
                         label: lang === "DE" ? "Kontakt" : "Contact", 
                         target: "#letsgo", 
                         subtitle: lang === "DE" ? "06 / Online-Reservierung" : "06 / Online Reservation",
                         sec: "06",
                         desc: lang === "DE" ? "Direkter digitaler Beratungstermin" : "Immediate secure booking scheduler"
+                      },
+                      { 
+                        label: "Navigator", 
+                        target: lang === "DE" ? "#navigator" : "#en/navigator", 
+                        subtitle: lang === "DE" ? "07 / Varda Legal Navigator" : "07 / Varda Legal Navigator",
+                        sec: "07",
+                        desc: lang === "DE" ? "Executive Checks für Corporate- & Handelsrecht" : "Executive Checks for corporate & commercial issues"
                       }
                     ].map((menuItem, idx) => (
                       <motion.div 
@@ -3862,6 +3862,7 @@ export default function App() {
                 <li><a href="#denkwerk" className="hover:text-brand-red transition-all">04 / {d.nav.denkwerk}</a></li>
                 <li><a href="#verguetung" className="hover:text-brand-red transition-all">05 / {d.nav.verguetung}</a></li>
                 <li><a href="#letsgo" className="hover:text-brand-red transition-all">06 / {d.nav.letsgo}</a></li>
+                <li><a href={lang === "DE" ? "#navigator" : "#en/navigator"} className="hover:text-brand-red transition-all">07 / Navigator</a></li>
               </ul>
             </div>
 
