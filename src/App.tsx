@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { content, Language, Article } from "./types";
 import GruenderstrukturCheck from "./components/GruenderstrukturCheck";
+import VardaNavigator from "./components/VardaNavigator";
 
 import contractIntelligenceImage from "./assets/images/contractintelligence2.png"
 import contractIntelligenceImageEng from "./assets/images/contractintelligence2eng.png"
@@ -838,6 +839,7 @@ function MnaDecisionArchitecture({ lang }: { lang: Language }) {
 
 export default function App() {
   const [lang, setLang] = useState<Language>("EN");
+  const [currentView, setCurrentView] = useState<"website" | "navigator">("website");
   const [activeSection, setActiveSection] = useState("home");
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [isKompendiumOpen, setIsKompendiumOpen] = useState(false);
@@ -980,31 +982,49 @@ export default function App() {
     return () => clearInterval(carouselTimer);
   }, []);
 
-  // Standalone linkability and language sync routing for "Gründerstruktur Check"
+  // Standalone linkability and language sync routing for "Gründerstruktur Check" and Varda Legal Navigator
   useEffect(() => {
     const handleRouting = () => {
       const hash = window.location.hash;
       const path = window.location.pathname;
 
-      if (hash === "#founder-structure-check" || path.includes("/en")) {
-        setLang("EN");
-      } else if (hash === "#gruenderstruktur-check") {
+      if (hash === "#navigator") {
+        setCurrentView("navigator");
         setLang("DE");
-      }
-
-      const targetId = hash === "#founder-structure-check" 
-        ? "founder-structure-check" 
-        : hash === "#gruenderstruktur-check" 
-          ? "gruenderstruktur-check" 
-          : null;
-
-      if (targetId) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (hash === "#en/navigator" || hash === "#navigator/en" || hash === "#en-navigator") {
+        setCurrentView("navigator");
+        setLang("EN");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (hash === "#founder-structure-check" || path.includes("/en")) {
+        setLang("EN");
+        setCurrentView("website");
         setTimeout(() => {
-          const element = document.getElementById(targetId);
+          const element = document.getElementById("founder-structure-check");
           if (element) {
             element.scrollIntoView({ behavior: "smooth" });
           }
         }, 150);
+      } else if (hash === "#gruenderstruktur-check") {
+        setLang("DE");
+        setCurrentView("website");
+        setTimeout(() => {
+          const element = document.getElementById("gruenderstruktur-check");
+          if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 150);
+      } else {
+        const anchors = ["#home", "#wir", "#fokus", "#fff", "#denkwerk", "#verguetung", "#letsgo"];
+        if (anchors.includes(hash)) {
+          setCurrentView("website");
+          setTimeout(() => {
+            const element = document.getElementById(hash.slice(1));
+            if (element) {
+              element.scrollIntoView({ behavior: "smooth" });
+            }
+          }, 150);
+        }
       }
     };
 
@@ -1352,13 +1372,34 @@ export default function App() {
       <header className="sticky top-0 z-40 w-full border-b border-charcoal/10 bg-paper-light/95 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 md:px-8">
           {/* Logo Stacked in Premium Sans-Serif */}
-          <a href="#home" className="flex flex-col select-none leading-none group shrink-0">
+          <a 
+            href="#home" 
+            onClick={() => {
+              setCurrentView("website");
+              window.location.hash = "#home";
+            }}
+            className="flex flex-col select-none leading-none group shrink-0"
+          >
             <span className="font-display text-lg font-bold tracking-[0.22em] text-charcoal leading-none">VARDA</span>
             <span className="font-sans text-[10px] font-semibold tracking-[0.42em] text-charcoal/70 leading-none mt-1">LEGAL</span>
           </a>
 
           {/* Top Right Controls (DE, EN and the custom circular MENU button) */}
           <div className="flex items-center space-x-6">
+            <button
+              id="header-navigator-btn"
+              onClick={() => {
+                setCurrentView("navigator");
+                window.location.hash = lang === "DE" ? "#navigator" : "#en/navigator";
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className={`font-mono text-[10px] uppercase tracking-widest transition-all font-bold cursor-pointer border-none bg-transparent p-0 ${
+                currentView === "navigator" ? "text-brand-red" : "text-charcoal/70 hover:text-charcoal"
+              }`}
+            >
+              Navigator
+            </button>
+
             {/* Language Switch */}
             <div className="flex items-center border border-charcoal/10 px-2.5 py-1 font-mono text-[10px] tracking-wider bg-white/40">
               <button
@@ -1543,6 +1584,13 @@ export default function App() {
                         desc: lang === "DE" ? "Strikte Preistransparenz & Flatrates" : "Predictable transaction fee modules"
                       },
                       { 
+                        label: "Navigator", 
+                        target: lang === "DE" ? "#navigator" : "#en/navigator", 
+                        subtitle: lang === "DE" ? "07 / Varda Legal Navigator" : "07 / Varda Legal Navigator",
+                        sec: "07",
+                        desc: lang === "DE" ? "Executive Checks für Corporate- & Handelsrecht" : "Executive Checks for corporate & commercial issues"
+                      },
+                      { 
                         label: lang === "DE" ? "Kontakt" : "Contact", 
                         target: "#letsgo", 
                         subtitle: lang === "DE" ? "06 / Online-Reservierung" : "06 / Online Reservation",
@@ -1557,7 +1605,15 @@ export default function App() {
                       >
                         <a
                           href={menuItem.target}
-                          onClick={() => setIsMenuOpen(false)}
+                          onClick={() => {
+                            setIsMenuOpen(false);
+                            if (menuItem.target.includes("navigator")) {
+                              setCurrentView("navigator");
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                            } else {
+                              setCurrentView("website");
+                            }
+                          }}
                           className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between py-1"
                         >
                           <div className="flex items-center space-x-3.5">
@@ -1612,8 +1668,28 @@ export default function App() {
       {/* MAIN CONTENT AREA */}
       <main className="relative z-10 mx-auto max-w-7xl px-4 md:px-8">
         
-        {/* SECTION 1: HOMEPAGE (HERO - ALIGNED TO VARDA REFERENCE IMAGE) */}
-        <section id="home" className="py-12 md:py-24 border-b border-charcoal/10 relative">
+        {currentView === "navigator" ? (
+          <VardaNavigator 
+            lang={lang} 
+            onNavigateToConsult={(data) => {
+              // Smooth scroll to the scheduler section #letsgo
+              setCurrentView("website");
+              const el = document.getElementById("letsgo");
+              if (el) {
+                setTimeout(() => {
+                  el.scrollIntoView({ behavior: "smooth" });
+                }, 100);
+              }
+            }} 
+            onGoBack={() => {
+              setCurrentView("website");
+              window.location.hash = "#home";
+            }}
+          />
+        ) : (
+          <>
+            {/* SECTION 1: HOMEPAGE (HERO - ALIGNED TO VARDA REFERENCE IMAGE) */}
+            <section id="home" className="py-12 md:py-24 border-b border-charcoal/10 relative">
           
           {/* Top Tier: Split Headline & Direct Advisory Statement */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start pb-16">
@@ -2075,6 +2151,42 @@ export default function App() {
 
           {/* Interactive Gründerstruktur / Founder Structure Check App */}
           <GruenderstrukturCheck lang={lang} onNavigateToConsult={handleNavigateToConsult} />
+
+          {/* Varda Legal Navigator Launch Banner - Gorgeous, Boardroom Aesthetic */}
+          <div className="mt-12 border border-charcoal/15 bg-white p-8 md:p-12 relative flex flex-col md:flex-row items-start md:items-center justify-between gap-8 group hover:border-[#C0823E]/50 transition-all duration-300">
+            {/* Visual focus decorative border element */}
+            <div className="absolute top-0 left-0 bottom-0 w-[4px] bg-[#C0823E]" />
+            
+            <div className="space-y-4 max-w-2xl pl-2">
+              <div className="inline-flex items-center gap-1.5 font-mono text-[9px] tracking-[0.25em] text-[#C0823E] uppercase font-bold">
+                <span className="w-1.5 h-1.5 bg-[#C0823E]" />
+                <span>{lang === "DE" ? "Exklusiver Online-Service" : "Exclusive Digital counsel"}</span>
+              </div>
+              <h3 className="font-serif text-2xl md:text-3xl font-medium tracking-tight text-charcoal">
+                {lang === "DE" ? "Der Varda Legal Navigator" : "The Varda Legal Navigator"}
+              </h3>
+              <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed font-normal">
+                {lang === "DE" 
+                  ? "Unser integriertes interaktives Prüfungs-Toolkit bietet unmittelbare Kanzlei-Präzision direkt in Ihrem Browser. Analysieren Sie Gesellschaftsstrukturen, M&A-Transaktionsbereitschaft und Commercial-Risk-Faktoren strukturiert und unkompliziert."
+                  : "Our integrated digital assessment toolkit brings top-tier legal precision directly to your browser. Structured checkups for share structures, corporate compliance risk, and transaction preparation."}
+              </p>
+            </div>
+
+            <div className="shrink-0 pl-2">
+              <button
+                id="cta-launch-navigator-btn"
+                onClick={() => {
+                  setCurrentView("navigator");
+                  window.location.hash = lang === "DE" ? "#navigator" : "#en/navigator";
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+                className="inline-flex items-center space-x-3 bg-charcoal text-paper-light hover:bg-[#C0823E] transition-all duration-300 font-mono text-[10px] uppercase font-bold tracking-widest px-6 py-4 border border-transparent shadow shadow-charcoal/15 group-hover:scale-[1.02]"
+              >
+                <span>{lang === "DE" ? "Navigator Starten" : "Launch Navigator Suite"}</span>
+                <span className="font-sans font-normal">→</span>
+              </button>
+            </div>
+          </div>
         </section>
 
         {/* SECTION 3: "FOKUS" (SPECIALITIES) */}
@@ -3696,7 +3808,7 @@ export default function App() {
 
           </div>
         </section>
-
+        
         {/* Relocated Noble Navigation Visual Showcase to the bottom of main */}
         <div className="mt-16 sm:mt-24 mb-16 border border-charcoal/15 bg-[#faf8f4] p-4 md:p-6 shadow-sm">
           {/* The Static Navigation Image in full size, uncropped, clean display */}
@@ -3714,6 +3826,9 @@ export default function App() {
             </span>
           </div>
         </div>
+        
+        </>
+        )}
 
       </main>
 
