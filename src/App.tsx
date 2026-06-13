@@ -1036,6 +1036,11 @@ export default function App() {
     return () => window.removeEventListener("hashchange", handleRouting);
   }, []);
 
+  // Enforce correct HTML browser title
+  useEffect(() => {
+    document.title = "Varda Legal";
+  }, []);
+
   // Structural dynamic schema injection for LLMs / GEO Search indexing
   useEffect(() => {
     const existingScript = document.getElementById("ld-json-schema");
