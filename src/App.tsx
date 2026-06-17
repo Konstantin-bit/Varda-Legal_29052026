@@ -1036,25 +1036,76 @@ export default function App() {
     return () => window.removeEventListener("hashchange", handleRouting);
   }, []);
 
-  // Enforce correct HTML browser title
+  // Enforce correct HTML browser title & Meta / Open Graph / Canonical & JSON-LD schema injection dynamically for GEO/AEO optimization
   useEffect(() => {
-    document.title = "Varda Legal";
-  }, []);
+    // 1. Determine active page content parameters
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://varda.law";
+    const canonicalUrl = typeof window !== "undefined"
+      ? (window.location.origin + window.location.pathname + (window.location.hash ? window.location.hash : ""))
+      : "https://varda.law";
 
-  // Structural dynamic schema injection for LLMs / GEO Search indexing
-  useEffect(() => {
-    const existingScript = document.getElementById("ld-json-schema");
-    if (existingScript) {
-      existingScript.remove();
+    let pageTitle = "Varda Legal";
+    let pageDescription = "Varda Legal — Legal clarity for founders, investors and companies.";
+    let pageImage = `${origin}/execde.png`;
+    let pageType = "website";
+
+    if (currentView === "navigator") {
+      pageTitle = lang === "DE" ? "Varda Legal Navigator | Executive Checks" : "Varda Legal Navigator | Executive Checks";
+      pageDescription = lang === "DE"
+        ? "Unser interaktives Kanzlei-Prüfungs-Toolkit bietet unmittelbare Orientierung für Corporate- und Handelsrecht. Executive Checks für Gesellschaftsstrukturen und Commercial-Risk-Faktoren."
+        : "Our interactive legal assessment toolkit brings immediate governance precision to your browser. Checks for share structures, corporate compliance and commercial contracts.";
+      pageImage = lang === "DE" ? `${origin}/execde.png` : `${origin}/execeng.png`;
+    } else if (selectedArticle) {
+      pageTitle = `${selectedArticle.title} | Varda Legal`;
+      pageDescription = selectedArticle.abstract || selectedArticle.excerpt || pageDescription;
+      pageType = "article";
     }
 
-    const schemaData = {
+    // 2. Set title isomorphically
+    document.title = pageTitle;
+
+    // 3. Dynamic Canonical Link injection
+    let canonicalLink = document.querySelector("link[rel='canonical']");
+    if (!canonicalLink) {
+      canonicalLink = document.createElement("link");
+      canonicalLink.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute("href", canonicalUrl);
+
+    // 4. Set Standard and Open Graph meta-tags
+    const updateMetaTag = (attrName: "name" | "property", attrVal: string, contentVal: string) => {
+      let tag = document.querySelector(`meta[${attrName}='${attrVal}']`);
+      if (!tag) {
+        tag = document.createElement("meta");
+        tag.setAttribute(attrName, attrVal);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute("content", contentVal);
+    };
+
+    updateMetaTag("name", "title", pageTitle);
+    updateMetaTag("name", "description", pageDescription);
+    updateMetaTag("property", "og:title", pageTitle);
+    updateMetaTag("property", "og:description", pageDescription);
+    updateMetaTag("property", "og:image", pageImage);
+    updateMetaTag("property", "og:url", canonicalUrl);
+    updateMetaTag("property", "og:type", pageType);
+
+    // 5. Build structured JSON-LD data
+    const schemas: any[] = [];
+
+    // Always inject the core LegalService & Organization schemas on the website
+    // (with Munich locations, founder Dr. Konstantin Filbinger, and major competencies: Corporate, Vertragsprüfung, Contract Intelligence, AI Governance)
+    schemas.push({
       "@context": "https://schema.org",
       "@type": "LegalService",
       "name": "Varda Legal",
-      "description": "Corporate/Commercial/M&A/Tech",
-      "url": "https://vardalegal.com",
-      "email": "info[at]vardalegal.com",
+      "description": "Varda Legal — Legal clarity for founders, investors and companies.",
+      "url": "https://varda.law",
+      "logo": `${origin}/favicon.ico`,
+      "image": `${origin}/execde.png`,
+      "email": "info@varda.law",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Auenstraße 21",
@@ -1062,62 +1113,163 @@ export default function App() {
         "postalCode": "80469",
         "addressCountry": "DE"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "48.1257",
+        "longitude": "11.5714"
+      },
       "founder": {
         "@type": "Person",
         "name": "Dr. Konstantin Filbinger",
-        "jobTitle": "Rechtsanwalt & Partner"
+        "jobTitle": "Rechtsanwalt",
+        "url": "https://varda.law"
       },
       "knowsAbout": [
         "Corporate Law",
         "Venture Capital",
         "M&A",
-        "Tech Contracts",
-        "Compliance"
+        "Vertragsprüfung",
+        "Contract Intelligence",
+        "AI Governance",
+        "Commercial Law",
+        "Gesellschaftsrecht"
       ],
-      "hasPart": [
+      "areaServed": "DE"
+    });
+
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Varda Legal",
+      "url": "https://varda.law",
+      "description": "Varda Legal — Legal clarity for founders, investors and companies.",
+      "founders": [
         {
-          "@type": "Blog",
-          "name": "Denkwerk",
-          "blogPost": [
-            {
-              "@type": "BlogPosting",
-              "headline": "Die Series A-Runde in Deutschland: Anatomie des Term Sheets",
-              "datePublished": "2026-05-14",
-              "abstract": "Liquidationspräferenzen, Vesting-Klauseln und Anti-Dilution: Ein pragmatischer Navigator durch die wichtigsten Deal-Terms deutscher VCs im Jahr 2026.",
-              "author": {
-                "@type": "Person",
-                "name": "Dr. Konstantin Filbinger"
-              }
-            },
-            {
-              "@type": "BlogPosting",
-              "headline": "VSOP vs. ESOP: Was bringt Schlüsselmitarbeiter wirklich zum Bleiben?",
-              "datePublished": "2026-04-03",
-              "abstract": "Virtuelle Mitarbeiterbeteiligungsprogramme (VSOP) sind der deutsche Standard. Doch wie gestaltet man sie steuerlich optimal und motivationsfördernd?",
-              "author": {
-                "@type": "Person",
-                "name": "Dr. Konstantin Filbinger"
-              }
-            },
-            {
-              "@type": "BlogPosting",
-              "headline": "Fintech & BaFin: Lizenzierungsgrenzen klug navigieren",
-              "datePublished": "2026-03-12",
-              "abstract": "Wann greift das KWG oder ZAG? Wie junge Fintech-Scaleups regulatorische Fallstricke umgehen und Partnerschaften rechtssicher strukturieren.",
-              "author": {
-                "@type": "Person",
-                "name": "Dr. Konstantin Filbinger"
-              }
+          "@type": "Person",
+          "name": "Dr. Konstantin Filbinger"
+        },
+        {
+          "@type": "Person",
+          "name": "Konstantin Filbinger"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Auenstraße 21",
+        "addressLocality": "München",
+        "postalCode": "80469",
+        "addressCountry": "DE"
+      }
+    });
+
+    // If on Varda Navigator view, inject WebPage and Service JSON-LD schemas
+    if (currentView === "navigator") {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Varda Legal Navigator",
+        "description": "Interactive Executive Assessment tools for Corporate, Shareholders, Share structures and Commercial issues.",
+        "url": `${origin}/#navigator`
+      });
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Varda Legal Navigator",
+        "serviceType": "Legal Checkup and Interactive Analysis",
+        "provider": {
+          "@type": "LegalService",
+          "name": "Varda Legal",
+          "url": "https://varda.law"
+        },
+        "description": "Structured digital assessment tools providing decision support for founder agreements, corporate risk, and financial preparations."
+      });
+    }
+
+    // If reading an article, inject BlogPosting and FAQPage if FAQ questions exist
+    if (selectedArticle) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": canonicalUrl
+        },
+        "headline": selectedArticle.title,
+        "datePublished": selectedArticle.date,
+        "description": selectedArticle.excerpt || selectedArticle.abstract,
+        "author": {
+          "@type": "Person",
+          "name": "Dr. Konstantin Filbinger"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Varda Legal",
+          "url": "https://varda.law",
+          "logo": {
+            "@type": "ImageObject",
+            "url": `${origin}/favicon.ico`
+          }
+        }
+      });
+
+      if (selectedArticle.faq && selectedArticle.faq.length > 0) {
+        schemas.push({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": selectedArticle.faq.map(item => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": item.answer
             }
-          ]
+          }))
+        });
+      }
+    }
+
+    // Add blogs schema to keep reference of standard content
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Denkwerk",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Varda Legal"
+      },
+      "blogPost": [
+        {
+          "@type": "BlogPosting",
+          "headline": "Die Series A-Runde in Deutschland: Anatomie des Term Sheets",
+          "datePublished": "2026-05-14",
+          "abstract": "Liquidationspräferenzen, Vesting-Klauseln und Anti-Dilution: Ein pragmatischer Navigator durch die wichtigsten Deal-Terms deutscher VCs im Jahr 2026."
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "VSOP vs. ESOP: Was bringt Schlüsselmitarbeiter wirklich zum Bleiben?",
+          "datePublished": "2026-04-03",
+          "abstract": "Virtuelle Mitarbeiterbeteiligungsprogramme (VSOP) sind der deutsche Standard. Doch wie gestaltet man sie steuerlich optimal und motivationsfördernd?"
+        },
+        {
+          "@type": "BlogPosting",
+          "headline": "Fintech & BaFin: Lizenzierungsgrenzen klug navigieren",
+          "datePublished": "2026-03-12",
+          "abstract": "Wann greift das KWG oder ZAG? Wie junge Fintech-Scaleups regulatorische Fallstricke umgehen und Partnerschaften rechtssicher strukturieren."
         }
       ]
-    };
+    });
 
+    // Remove any previously injected script
+    const existingScript = document.getElementById("ld-json-schema");
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    // Inject the final consolidated script
     const script = document.createElement("script");
     script.id = "ld-json-schema";
     script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(schemaData);
+    script.innerHTML = JSON.stringify(schemas);
     document.head.appendChild(script);
 
     return () => {
@@ -1126,7 +1278,7 @@ export default function App() {
         scriptToRemove.remove();
       }
     };
-  }, []);
+  }, [lang, currentView, selectedArticle]);
 
   // Calculate simulated cap table percentages
   const postMoney = preMoney + newInvestment;
@@ -1720,6 +1872,19 @@ export default function App() {
                   {d.hero.subtitle}
                 </p>
                 
+                {/* Discrete Internal Navigation Links for SEO/GEO Deep Crawling */}
+                <div className="font-mono text-[10px] uppercase tracking-wider text-charcoal/60 leading-relaxed max-w-md pt-1">
+                  {lang === "DE" ? (
+                    <span>
+                      Direktlinks: <a href="#fokus" className="text-[#C0823E] hover:underline font-semibold">02 / Expertise</a> • <a href="#verguetung" className="text-[#C0823E] hover:underline font-semibold">05 / Honorare</a> • <a href="#navigator" onClick={() => setCurrentView("navigator")} className="text-[#C0823E] hover:underline font-semibold">07 / Navigator</a>
+                    </span>
+                  ) : (
+                    <span>
+                      Quick links: <a href="#fokus" className="text-[#C0823E] hover:underline font-semibold">02 / Expertise</a> • <a href="#verguetung" className="text-[#C0823E] hover:underline font-semibold">05 / Fees</a> • <a href="#navigator" onClick={() => setCurrentView("navigator")} className="text-[#C0823E] hover:underline font-semibold">07 / Navigator</a>
+                    </span>
+                  )}
+                </div>
+                
                 <div className="flex flex-row items-center gap-6 pt-2">
                   <a
                     href="#letsgo"
@@ -1984,6 +2149,41 @@ export default function App() {
                       <p>Varda does not just answer legal questions.</p>
                       <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">We provide orientation.</p>
                       <p>You recognize faster which topics deserve attention and which do not. You make decisions with greater confidence. You gain time for what actually drives your business forward.</p>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Subsection 4: So arbeitet Varda / Method of work */}
+              <div className="space-y-6 pt-12 border-t border-charcoal/10">
+                <h3 className="font-serif text-xl sm:text-2xl font-semibold text-charcoal tracking-tight">
+                  {lang === "DE" ? "Arbeitsweise: So arbeitet Varda" : "Our Methodology: How Varda Works"}
+                </h3>
+
+                <div className="space-y-4 font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl select-text">
+                  {lang === "DE" ? (
+                    <>
+                      <p>
+                        Gute Rechtsberatung zeichnet sich nicht durch lange Abhandlungen aus, sondern durch praktischen Nutzen. Varda verbindet die klassische, präzise rechtliche Prüfung mit Ihrem individuellen unternehmerischen Kontext und liefert am Ende eine glasklare, sofort umsetzbare Entscheidungsempfehlung. Viele Kanzleien neigen dazu, die rechtliche Situation lediglich abzubilden, anstatt Stellung zu beziehen. Das Ergebnis sind zumeist seitenlange Memos, die zwar alle theoretischen Risiken aufzählen, den Unternehmer in der Praxis jedoch genau so ratlos zurücklassen wie zuvor.
+                      </p>
+                      <p>
+                        Unsere Methodik bricht mit diesem Standard. Wir analysieren jedes Mandat im Dreiklang von Recht, kaufmännischen Interessen und strategischer Weitsicht. Das bedeutet: Wir identifizieren nicht nur die juristischen Fallstricke, sondern bewerten diese direkt anhand Ihrer Geschäftsrealität. Ist ein Risiko theoretisch vorhanden, aber praktisch irrelevant? Dann sagen wir das offen. Bietet eine vertragliche Klausel strategischen Vorteil für anstehende Finanzierungsrunden? Dann heben wir sie gezielt hervor.
+                      </p>
+                      <p>
+                        Am Ende erhalten Sie keine bloße Risikoauflistung, sondern eine konkrete, fundierte Empfehlung für Ihr nächstes Handeln – sei es bei einer M&A-Transaktion, der Ausgestaltung von Beteiligungsprogrammen oder bei Commercial-Risk-Assessments. So entsteht echte Entscheidungsklarheit, die Ihr Wachstum schützt und befeuert. Dabei agieren wir stets pragmatisch, geschäftsorientiert und absolut lösungsorientiert – für rechtliche Sicherheit, die Ihr unternehmerisches Handeln stärkt, anstatt es zu bremsen.
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        Our approach: Varda combines classic, high-precision legal analysis with your individual commercial context and delivers a crystal-clear, immediately actionable decision recommendation. Many traditional law firms excel at merely documenting complexity rather than taking a stance. This results in lengthy memos listing every theoretical risk, leaving founders and executives with just as much uncertainty as before.
+                      </p>
+                      <p>
+                        Our methodology breaks this standard. We analyze every matter through the combined lens of legal mechanics, commercial interests, and strategic foresight. We do not just identify legal pitfalls; we evaluate them against your operational reality. If a risk is technically possible but commercially immaterial, we say so openly. If a contract clause offers strategic leverage for upcoming financing rounds, we highlight it clearly.
+                      </p>
+                      <p>
+                        The result is not a generic risk register, but a concrete recommendation for your direct next step – whether negotiating an M&A deal, structured equity options, or commercial risk profiles. This establishes genuine decision clarity that protects and fuels your growth. We always act with practical efficiency, maintaining a highly business-focused and completely solution-oriented perspective to deliver secure legal foundations that bolster your enterprise instead of creating roadblocks.
+                      </p>
                     </>
                   )}
                 </div>

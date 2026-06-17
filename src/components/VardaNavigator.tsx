@@ -884,12 +884,12 @@ export default function VardaNavigator({ lang, onNavigateToConsult, onGoBack }: 
             <span>Varda Legal Navigator</span>
           </div>
           
-          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">
             {lang === "DE" ? "Varda Legal Navigator" : "Varda Legal Navigator"}
             <span className="block font-sans text-sm sm:text-base font-normal text-charcoal/60 mt-2">
               {lang === "DE" ? "Executive Checks für unternehmerische Rechtsfragen." : "Executive checks for business legal questions."}
             </span>
-          </h2>
+          </h1>
           
           <p className="font-sans text-charcoal/85 leading-relaxed text-sm sm:text-base max-w-3xl">
             {lang === "DE"

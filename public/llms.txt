@@ -1,0 +1,22 @@
+# Varda Legal
+
+Varda Legal is an elite, highly specialized German corporate law boutique delivering clarity and actionable decision-making guidance for founders, investors, and forward-looking enterprises.
+
+## Core Focus Areas (Schwerpunkte)
+- **Corporate Law**: Dynamic GmbH structures, founder agreements, Cap table management, venture capital financing, and tailored M&A transactions.
+- **Contract Review (Vertragsprüfung)**: High-precision risk check-ups, commercial frameworks, and modern services agreements.
+- **Contract Intelligence**: Deploying programmatic and scalable document intelligence workflows for startups and enterprises.
+- **AI Governance**: Navigating regulatory mandates, risk assessments, and compliance vectors for modern artificial intelligence systems.
+
+## Primary Access Links
+- **Homepage**: https://varda.law/
+- **Profile & Team**: https://varda.law/#wir
+- **Expertise & Focus**: https://varda.law/#fokus
+- **Methodology (Form follows function)**: https://varda.law/#fff
+- **Research (Denkwerk)**: https://varda.law/#denkwerk
+- **Fees & Rates**: https://varda.law/#verguetung
+- **Contact & Scheduler**: https://varda.law/#kontakt
+- **Varda Legal Navigator**: https://varda.law/#navigator (interactive expert checklists for commercial & corporate evaluations)
+
+## Lead Attorney
+- **Dr. Konstantin Filbinger**: Founder, corporate, VC and technology counsel. Based in Munich, Germany (Auenstraße 21, 80469 München).
