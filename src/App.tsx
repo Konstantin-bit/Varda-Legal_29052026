@@ -62,6 +62,9 @@ import vertraegeImageEng from "./assets/images/vertraegeeng-1.png"
 import vertragsanalyseImage from "./assets/images/vertragsanalyse.png"
 import vertragsanalyseImageEng from "./assets/images/vertragsanalyseeng-1.png"
 
+// Dedicated environment/variable configuration for recipient email
+const CONTACT_FORM_RECIPIENT = import.meta.env.VITE_CONTACT_FORM_RECIPIENT || "info@vardalegal.com";
+
 function DecisionArchitectureBlueprint({ lang }: { lang: Language }) {
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [tick, setTick] = useState(0);
@@ -1372,7 +1375,7 @@ export default function App() {
             `Details/Notes:\n${bookingForm.message || "No additional details provided"}\n\n` +
             `Best regards,\n${bookingForm.name}`
       );
-      window.location.href = `mailto:info@vardalegal.com?subject=${subject}&body=${emailBody}`;
+      window.location.href = `mailto:${CONTACT_FORM_RECIPIENT}?subject=${subject}&body=${emailBody}&reply-to=${encodeURIComponent(bookingForm.email)}`;
       setBookingStep("success");
     }
   };
@@ -1400,7 +1403,7 @@ export default function App() {
             `• Email: ${bookingForm.email}\n\n` +
             `Please confirm this appointment.`
       );
-      window.location.href = `mailto:info@vardalegal.com?subject=${subject}&body=${emailBody}`;
+      window.location.href = `mailto:${CONTACT_FORM_RECIPIENT}?subject=${subject}&body=${emailBody}&reply-to=${encodeURIComponent(bookingForm.email)}`;
       setOptionalScheduled(true);
     }
   };
@@ -3535,7 +3538,7 @@ export default function App() {
 
             <div>
               <a
-                href={`mailto:konstantin.filbinger86@gmail.com?subject=${
+                href={`mailto:${CONTACT_FORM_RECIPIENT}?subject=${
                   encodeURIComponent(lang === "DE" ? "Moderne Rechtsberatung / Anfrage" : "Modern Legal Advisory / Inquiry")
                 }&body=${
                   encodeURIComponent(
