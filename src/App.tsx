@@ -1018,7 +1018,7 @@ export default function App() {
           }
         }, 150);
       } else {
-        const anchors = ["#home", "#wir", "#fokus", "#fff", "#denkwerk", "#verguetung", "#letsgo"];
+        const anchors = ["#home", "#wir", "#fokus", "#denkwerk", "#verguetung", "#letsgo"];
         if (anchors.includes(hash)) {
           setCurrentView("website");
           setTimeout(() => {
@@ -1292,7 +1292,7 @@ export default function App() {
   // Active section spy on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "wir", "fokus", "fff", "denkwerk", "verguetung", "letsgo"];
+      const sections = ["home", "wir", "fokus", "denkwerk", "verguetung", "letsgo"];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -1723,38 +1723,31 @@ export default function App() {
                         desc: lang === "DE" ? "Spezialisierte Beratungsschwerpunkte" : "Specialized strategic practice fields"
                       },
                       { 
-                        label: lang === "DE" ? "Form follows function" : "Form follows function", 
-                        target: "#fff", 
-                        subtitle: lang === "DE" ? "03 / Produkte" : "03 / products",
-                        sec: "03",
-                        desc: lang === "DE" ? "Ergebnisorientierter Pragmatismus" : "Aesthetic of radical outcome focus"
-                      },
-                      { 
                         label: lang === "DE" ? "Denkwerk" : "Denkwerk", 
                         target: "#denkwerk", 
-                        subtitle: lang === "DE" ? "04 / Schriften & Leitfäden" : "04 / Writings & Briefings",
-                        sec: "04",
+                        subtitle: lang === "DE" ? "03 / Schriften & Leitfäden" : "03 / Writings & Briefings",
+                        sec: "03",
                         desc: lang === "DE" ? "Kanzlei-Impulse" : "Intellectual publications & briefings"
                       },
                       { 
                         label: lang === "DE" ? "Vergütung" : "Fees", 
                         target: "#verguetung", 
-                        subtitle: lang === "DE" ? "05 / Vergütungsmodelle" : "05 / Fee Structures",
-                        sec: "05",
+                        subtitle: lang === "DE" ? "04 / Vergütungsmodelle" : "04 / Fee Structures",
+                        sec: "04",
                         desc: lang === "DE" ? "Strikte Preistransparenz & Flatrates" : "Predictable transaction fee modules"
                       },
                       { 
                         label: lang === "DE" ? "Kontakt" : "Contact", 
                         target: "#letsgo", 
-                        subtitle: lang === "DE" ? "06 / Online-Reservierung" : "06 / Online Reservation",
-                        sec: "06",
+                        subtitle: lang === "DE" ? "05 / Online-Reservierung" : "05 / Online Reservation",
+                        sec: "05",
                         desc: lang === "DE" ? "Direkter digitaler Beratungstermin" : "Immediate secure booking scheduler"
                       },
                       { 
                         label: "Navigator", 
                         target: lang === "DE" ? "#navigator" : "#en/navigator", 
-                        subtitle: lang === "DE" ? "07 / Varda Legal Navigator" : "07 / Varda Legal Navigator",
-                        sec: "07",
+                        subtitle: lang === "DE" ? "06 / Varda Legal Navigator" : "06 / Varda Legal Navigator",
+                        sec: "06",
                         desc: lang === "DE" ? "Executive Checks für Corporate- & Handelsrecht" : "Executive Checks for corporate & commercial issues"
                       }
                     ].map((menuItem, idx) => (
@@ -1879,11 +1872,11 @@ export default function App() {
                 <div className="font-mono text-[10px] uppercase tracking-wider text-charcoal/60 leading-relaxed max-w-md pt-1">
                   {lang === "DE" ? (
                     <span>
-                      Direktlinks: <a href="#fokus" className="text-[#C0823E] hover:underline font-semibold">02 / Expertise</a> • <a href="#verguetung" className="text-[#C0823E] hover:underline font-semibold">05 / Honorare</a> • <a href="#navigator" onClick={() => setCurrentView("navigator")} className="text-[#C0823E] hover:underline font-semibold">07 / Navigator</a>
+                      Direktlinks: <a href="#fokus" className="text-[#C0823E] hover:underline font-semibold">02 / Expertise</a> • <a href="#verguetung" className="text-[#C0823E] hover:underline font-semibold">04 / Honorare</a> • <a href="#navigator" onClick={() => setCurrentView("navigator")} className="text-[#C0823E] hover:underline font-semibold">06 / Navigator</a>
                     </span>
                   ) : (
                     <span>
-                      Quick links: <a href="#fokus" className="text-[#C0823E] hover:underline font-semibold">02 / Expertise</a> • <a href="#verguetung" className="text-[#C0823E] hover:underline font-semibold">05 / Fees</a> • <a href="#navigator" onClick={() => setCurrentView("navigator")} className="text-[#C0823E] hover:underline font-semibold">07 / Navigator</a>
+                      Quick links: <a href="#fokus" className="text-[#C0823E] hover:underline font-semibold">02 / Expertise</a> • <a href="#verguetung" className="text-[#C0823E] hover:underline font-semibold">04 / Fees</a> • <a href="#navigator" onClick={() => setCurrentView("navigator")} className="text-[#C0823E] hover:underline font-semibold">06 / Navigator</a>
                     </span>
                   )}
                 </div>
@@ -2061,48 +2054,8 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Subsection 2: Entrepreneurs make decisions */}
-              <div className="space-y-6 pt-12 border-t border-charcoal/10">
-                <h3 className="font-serif text-xl sm:text-2xl font-semibold text-charcoal tracking-tight">
-                  {lang === "DE" ? "Unternehmer treffen Entscheidungen." : "Entrepreneurs make decisions."}
-                </h3>
-                  
-                {lang === "DE" ? (
-                  <ul className="space-y-3 pl-4 font-serif text-base sm:text-lg border-l border-[#C0823E]/30 text-charcoal">
-                    <li>Sie verkaufen Unternehmen.</li>
-                    <li>Sie verhandeln Verträge.</li>
-                    <li>Sie lösen Konflikte zwischen Gesellschaftern.</li>
-                    <li>Sie erschließen neue Märkte.</li>
-                    <li>Sie investieren Zeit, Kapital und Verantwortung.</li>
-                  </ul>
-                ) : (
-                  <ul className="space-y-3 pl-4 font-serif text-base sm:text-lg border-l border-[#C0823E]/30 text-charcoal">
-                    <li>You sell companies.</li>
-                    <li>You negotiate contracts.</li>
-                    <li>You resolve disputes between shareholders.</li>
-                    <li>You expand into new markets.</li>
-                    <li>You invest time, capital, and responsibility.</li>
-                  </ul>
-                )}
 
-                <div className="space-y-4 font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl">
-                  {lang === "DE" ? (
-                    <>
-                      <p>Recht spielt dabei eine wichtige Rolle. Die eigentliche Herausforderung liegt jedoch woanders: Sie müssen die richtige Entscheidung treffen.</p>
-                      <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">Varda Legal schafft die Klarheit, die dafür notwendig ist.</p>
-                      <p>Wir strukturieren komplexe Situationen, benennen Risiken und zeigen Optionen auf. So erkennen Sie schneller, worauf es ankommt und welchen Weg Sie einschlagen wollen.</p>
-                    </>
-                  ) : (
-                    <>
-                      <p>Law plays an important role. However, the real challenge lies elsewhere: you must make the right decision.</p>
-                      <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">Varda Legal creates the clarity required for this.</p>
-                      <p>We structure complex situations, identify risks, and map out options. This allows you to recognize faster what matters most and which path you want to take.</p>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {/* Subsection 3: Clarity saves time */}
+              {/* Subsection 2: Clarity saves time */}
               <div className="space-y-6 pt-12 border-t border-charcoal/10">
                 <h3 className="font-serif text-xl sm:text-2xl font-semibold text-charcoal tracking-tight">
                   {lang === "DE" ? "Klarheit spart Zeit." : "Clarity saves time."}
@@ -2800,181 +2753,11 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 4: "FIRM FOLLOWS FUNCTION" (ABOUT ETHOS & STRUCTURAL LAYOUT) */}
-        <section id="fff" className="py-16 md:py-24 border-b border-charcoal/10">
-          <div className="space-y-4 mb-16">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">03 / {d.fff.title}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.fff.subtitle}</h2>
-          </div>
-
-          {/* Staggered blocks as requested */}
-          <div className="space-y-24">
-            
-            {/* Piece 1: Top (Text Left, Image Right) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-              {/* Text Left */}
-              <div className="lg:col-span-6 space-y-6">
-                <span className="font-mono text-xs text-brand-red font-semibold">{d.fff.blocks[0].subtitle}</span>
-                <h3 className="font-sans text-2xl md:text-3xl font-extrabold text-charcoal tracking-tight">
-                  {d.fff.blocks[0].title}
-                </h3>
-                <p className="font-sans text-charcoal/80 leading-relaxed text-sm md:text-base">
-                  {d.fff.blocks[0].text}
-                </p>
-                <div className="font-serif italic border-l-2 border-brand-red pl-4 text-xs tracking-wide text-charcoal/60">
-                  {d.fff.blocks[0].quote}
-                </div>
-              </div>
-
-              {/* Image Right -> RESTORED original Structured Transactions animation */}
-              <div className="lg:col-span-6 border border-charcoal/15 bg-[#faf8f4] p-6 shadow-sm select-none rounded-none">
-                <div className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-charcoal/10 pb-4">
-                  <div>
-                    <span className="font-display text-[10px] uppercase tracking-[0.2em] text-[#1B2A4A] font-bold">
-                      {lang === "DE" ? "Strukturierte Transaktionen" : "Structured Transactions"}
-                    </span>
-                    <p className="text-xs text-charcoal/60 font-sans mt-1">
-                      {lang === "DE" ? "Maßgeschneiderte Absicherung bei M&A, Finanzierungen und Gründungen." : "Tailored structural execution for M&A, financing, and company formations."}
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center space-x-1.5 text-[9px] font-mono tracking-wider">
-                    <span className="w-1.5 h-1.5 bg-[#C0823E]" />
-                    <span className="text-charcoal/60 uppercase tracking-widest">{lang === "DE" ? "FOLIO V-03" : "FOLIO V-03"}</span>
-                  </div>
-                </div>
-
-                {/* Simulated Modern Premium Workstation Screen Display */}
-                <div className="relative w-full bg-white text-charcoal overflow-hidden border border-charcoal/15 font-sans text-xs sm:text-sm shadow-sm rounded-none">
-                  
-                  {/* Subtle architectural grid pattern overlay */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(28,27,25,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(28,27,24,0.02)_1px,transparent_1px)] bg-[size:18px_18px] pointer-events-none" />
-
-                  {/* Elegant Platinum/Gold Trim Header Frame Bar */}
-                  <div className="bg-[#eae6db]/40 px-4 py-2.5 flex items-center justify-between border-b border-charcoal/10 text-charcoal/80">
-                    <div className="text-[9px] font-mono text-[#1B2A4A] uppercase tracking-widest">
-                      DOCKET REFERENCE: DE-MUC-VARDA-2026
-                    </div>
-                    
-                    <div className="w-1.5 h-1.5 bg-[#1B2A4A]" />
-                  </div>
-
-                  {/* Primary Editorial Typing Workspace Layout */}
-                  <div className="p-6 bg-white min-h-[280px] flex flex-col justify-between relative font-mono text-xs">
-                    <div className="space-y-4 font-mono leading-relaxed relative z-10">
-                      
-                      {/* Line 1: Corporate docket information */}
-                      <div className="text-charcoal/50 text-[9px] space-y-1 font-mono tracking-wider leading-relaxed">
-                        • M&A & EXPANSION WORKFLOW ACTIVE<br />
-                        • STRUCTURED TRANSACTIONS & FOUNDER EXIT CONTRACTS
-                      </div>
-
-                      {/* Line 2: The actual code typed character-by-character */}
-                      <div className="border border-charcoal/10 bg-[#faf8f4] p-3 rounded-none">
-                        <div className="text-[10px] text-charcoal/40 font-mono tracking-wide uppercase mb-1">Target Statement:</div>
-                        <div className="text-charcoal break-all flex flex-wrap leading-relaxed">
-                          <span className="font-serif italic font-semibold text-charcoal">"</span>
-                          <span className="text-[#1B2A4A] font-semibold font-mono">{fokusCodeText}</span>
-                          <span className="font-serif italic font-semibold text-charcoal">"</span>
-                          
-                          {/* Cursor indicator */}
-                          <span className="inline-block w-1.5 h-3.5 bg-[#1B2A4A] ml-1" />
-                        </div>
-                      </div>
-
-                      {/* Action Step trigger status screen */}
-                      <AnimatePresence>
-                        {fokusSuccessVisible && (
-                          <motion.div 
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0 }}
-                            className="space-y-3 pt-3 border-t border-charcoal/10 font-sans"
-                          >
-                            <div className="text-[9px] text-[#1B2A4A] font-mono tracking-wider">
-                              ✔ POSITION ALIGNED • ENVIRONMENT RESOLVED
-                            </div>
-
-                            <div className="bg-[#faf8f4] border border-charcoal/15 p-4 rounded-none space-y-2 mt-1 shadow-sm font-sans">
-                              <span className="bg-[#1B2A4A] text-white px-2 py-0.5 text-[8px] font-bold tracking-widest font-mono">ACTION OUTCOME</span>
-                              <p className="font-serif italic text-xs text-charcoal leading-relaxed tracking-wide">
-                                {lang === "DE" 
-                                  ? "Gesellschafterbeschluss & Lock-up geeint. Kommerzieller Fahrplan zum Unternehmensverkauf ist entscheidungsreif."
-                                  : "Shareholder consent & lock-up aligned. Operational roadmaps for execution are boardroom-ready."}
-                              </p>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                    </div>
-
-                    {/* Operational instructions and re-run buttons */}
-                    <div className="pt-4 border-t border-charcoal/10 flex flex-row justify-between items-center text-[9px] text-charcoal/50 font-mono">
-                      <div>
-                        TRANSACTION RESOLUTION PLAN • STAGE III
-                      </div>
-                      {/* Reset animation button */}
-                      <button 
-                        onClick={() => {
-                          setFokusSuccessVisible(false);
-                          setFokusCodeText("");
-                        }}
-                        className="px-2 py-1 bg-white hover:bg-[#eae6db]/40 text-[#1B2A4A] border border-charcoal/15 rounded-none flex items-center space-x-1 font-semibold transition-all"
-                      >
-                        <RotateCcw className="h-2 w-2" />
-                        <span>{lang === "DE" ? "Reset" : "Reset"}</span>
-                      </button>
-                    </div>
-
-                  </div>
-
-                </div>
-
-                {/* Sovereign, reduced professional slide footer */}
-                <div className="mt-4 pt-3 border-t border-charcoal/10 text-center">
-                  <span className="font-mono text-[8px] uppercase tracking-widest text-[#1B2A4A] block leading-relaxed">
-                    Varda Legal | Dr. Konstantin Filbinger | Rechtsanwalt für Gesellschaftsrecht, Vertragsrecht, M&A und Tech | München
-                  </span>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Piece 2: Middle (Text Right, Image Left) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-              {/* Visual Comparison Left -> REPLACED WITH LANGUAGE-SPECIFIC VERTRAGSANALYSE IMAGE */}
-              <div className="lg:col-span-6 order-2 lg:order-1 border border-charcoal/15 bg-[#faf8f4] p-6 shadow-sm select-none rounded-none flex items-center justify-center">
-                <img 
-                  src={lang === "DE" ? vertragsanalyseImage : vertragsanalyseImageEng}
-                  alt={lang === "DE" ? "Varda Kanzlei-Erbauung: Vertragsanalyse" : "Varda Firm Building: Contract Analysis"}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-auto object-contain block"
-                />
-              </div>
-              {/* Text Right */}
-              <div className="lg:col-span-6 order-1 lg:order-2 space-y-6">
-                <span className="font-mono text-xs text-brand-red font-semibold">{d.fff.blocks[1].subtitle}</span>
-                <h3 className="font-sans text-2xl md:text-3xl font-extrabold text-charcoal tracking-tight">
-                  {d.fff.blocks[1].title}
-                </h3>
-                <p className="font-sans text-charcoal/80 leading-relaxed text-sm md:text-base">
-                  {d.fff.blocks[1].text}
-                </p>
-                <div className="font-serif italic border-l-2 border-brand-red pl-4 text-xs tracking-wide text-charcoal/60">
-                  {d.fff.blocks[1].quote}
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* SECTION 5: "DENKWERK" (A CURATED PORTAL OF STRATEGIC OBSERVATIONS & EXPERIENCES) */}
+        {/* SECTION 4: "DENKWERK" (A CURATED PORTAL OF STRATEGIC OBSERVATIONS & EXPERIENCES) */}
         <section id="denkwerk" className="py-20 md:py-32 border-b border-charcoal/10">
           <div className="space-y-4 mb-10">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-red font-medium">04 / {d.denkwerk.title}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.denkwerk.subtitle}</h2>
+            <span className="font-mono text-xs uppercase tracking-widest text-brand-red font-medium">03 / {d.denkwerk.title}</span>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-[#2C2C2C]">{d.denkwerk.subtitle}</h2>
           </div>
 
           {/* Introducing quiet-luxury editorial vision for Denkwerk */}
@@ -3524,10 +3307,10 @@ export default function App() {
           </AnimatePresence>
         </section>
 
-        {/* SECTION 6: "VERGÜTUNG" (TRANSPARENT VALUE-BASED FLAT RATES & COST ESTIMATOR) */}
+        {/* SECTION 5: "VERGÜTUNG" (TRANSPARENT VALUE-BASED FLAT RATES & COST ESTIMATOR) */}
         <section id="verguetung" className="py-16 md:py-24 border-b border-charcoal/10">
           <div className="space-y-4 mb-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">05 / {d.verguetung.title}</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">04 / {d.verguetung.title}</span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.verguetung.subtitle}</h2>
           </div>
 
@@ -3559,10 +3342,10 @@ export default function App() {
           </p>
         </section>
 
-        {/* SECTION 7: "LET'S GO" (CONTACT & INTERACTIVE EMBEDDED CALENDAR SCHEDULER) */}
+        {/* SECTION 6: "LET'S GO" (CONTACT & INTERACTIVE EMBEDDED CALENDAR SCHEDULER) */}
         <section id="letsgo" className="py-16 md:py-24">
           <div className="space-y-4 mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">06 / {d.letsgo.title}</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">05 / {d.letsgo.title}</span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.letsgo.subtitle}</h2>
           </div>
 
@@ -4061,11 +3844,10 @@ export default function App() {
               <ul className="space-y-2 font-sans text-xs">
                 <li><a href="#wir" className="hover:text-brand-red transition-all">01 / {d.nav.wir}</a></li>
                 <li><a href="#fokus" className="hover:text-brand-red transition-all">02 / {d.nav.fokus}</a></li>
-                <li><a href="#fff" className="hover:text-brand-red transition-all">03 / {d.nav.fff}</a></li>
-                <li><a href="#denkwerk" className="hover:text-brand-red transition-all">04 / {d.nav.denkwerk}</a></li>
-                <li><a href="#verguetung" className="hover:text-brand-red transition-all">05 / {d.nav.verguetung}</a></li>
-                <li><a href="#letsgo" className="hover:text-brand-red transition-all">06 / {d.nav.letsgo}</a></li>
-                <li><a href={lang === "DE" ? "#navigator" : "#en/navigator"} className="hover:text-brand-red transition-all">07 / Navigator</a></li>
+                <li><a href="#denkwerk" className="hover:text-brand-red transition-all">03 / {d.nav.denkwerk}</a></li>
+                <li><a href="#verguetung" className="hover:text-brand-red transition-all">04 / {d.nav.verguetung}</a></li>
+                <li><a href="#letsgo" className="hover:text-brand-red transition-all">05 / {d.nav.letsgo}</a></li>
+                <li><a href={lang === "DE" ? "#navigator" : "#en/navigator"} className="hover:text-brand-red transition-all">06 / Navigator</a></li>
               </ul>
             </div>
 

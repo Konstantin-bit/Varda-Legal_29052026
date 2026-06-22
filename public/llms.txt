@@ -12,10 +12,9 @@ Varda Legal is an elite, highly specialized German corporate law boutique delive
 - **Homepage**: https://varda.law/
 - **Profile & Team**: https://varda.law/#wir
 - **Expertise & Focus**: https://varda.law/#fokus
-- **Methodology (Form follows function)**: https://varda.law/#fff
 - **Research (Denkwerk)**: https://varda.law/#denkwerk
 - **Fees & Rates**: https://varda.law/#verguetung
-- **Contact & Scheduler**: https://varda.law/#kontakt
+- **Contact & Scheduler**: https://varda.law/#letsgo
 - **Varda Legal Navigator**: https://varda.law/#navigator (interactive expert checklists for commercial & corporate evaluations)
 
 ## Lead Attorney
