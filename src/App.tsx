@@ -1042,13 +1042,13 @@ export default function App() {
   // Enforce correct HTML browser title & Meta / Open Graph / Canonical & JSON-LD schema injection dynamically for GEO/AEO optimization
   useEffect(() => {
     // 1. Determine active page content parameters
-    const origin = typeof window !== "undefined" ? window.location.origin : "https://varda.law";
+    const origin = typeof window !== "undefined" ? window.location.origin : "https://www.vardalegal.com";
     const canonicalUrl = typeof window !== "undefined"
-      ? (window.location.origin + window.location.pathname + (window.location.hash ? window.location.hash : ""))
-      : "https://varda.law";
+      ? ("https://www.vardalegal.com" + window.location.pathname + (window.location.hash ? window.location.hash : ""))
+      : "https://www.vardalegal.com";
 
-    let pageTitle = "Varda Legal";
-    let pageDescription = "Varda Legal — Legal clarity for founders, investors and companies.";
+    let pageTitle = "Varda Legal | Rechtsberatung für klare Entscheidungen";
+    let pageDescription = "Varda Legal ist eine Kanzlei für unternehmerische Entscheidungen. Wir beraten zu Corporate, Commercial, M&A und Tech — und übersetzen rechtliche Komplexität in klare Handlungsempfehlungen.";
     let pageImage = `${origin}/execde.png`;
     let pageType = "website";
 
@@ -1094,95 +1094,56 @@ export default function App() {
     updateMetaTag("property", "og:image", pageImage);
     updateMetaTag("property", "og:url", canonicalUrl);
     updateMetaTag("property", "og:type", pageType);
+    updateMetaTag("property", "og:site_name", "Varda Legal");
+    updateMetaTag("property", "twitter:card", "summary_large_image");
+    updateMetaTag("property", "twitter:title", pageTitle);
+    updateMetaTag("property", "twitter:description", pageDescription);
 
     // 5. Build structured JSON-LD data
-    const schemas: any[] = [];
-
-    // Always inject the core LegalService & Organization schemas on the website
-    // (with Munich locations, founder Dr. Konstantin Filbinger, and major competencies: Corporate, Vertragsprüfung, Contract Intelligence, AI Governance)
-    schemas.push({
-      "@context": "https://schema.org",
-      "@type": "LegalService",
-      "name": "Varda Legal",
-      "description": "Varda Legal — Legal clarity for founders, investors and companies.",
-      "url": "https://varda.law",
-      "logo": `${origin}/favicon.ico`,
-      "image": `${origin}/execde.png`,
-      "email": "info@varda.law",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Auenstraße 21",
-        "addressLocality": "München",
-        "postalCode": "80469",
-        "addressCountry": "DE"
+    const graph: any[] = [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.vardalegal.com/#website",
+        "url": "https://www.vardalegal.com",
+        "name": "Varda Legal",
+        "alternateName": "Varda",
+        "inLanguage": "de-DE"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "48.1257",
-        "longitude": "11.5714"
-      },
-      "founder": {
-        "@type": "Person",
-        "name": "Dr. Konstantin Filbinger",
-        "jobTitle": "Rechtsanwalt",
-        "url": "https://varda.law"
-      },
-      "knowsAbout": [
-        "Corporate Law",
-        "Venture Capital",
-        "M&A",
-        "Vertragsprüfung",
-        "Contract Intelligence",
-        "AI Governance",
-        "Commercial Law",
-        "Gesellschaftsrecht"
-      ],
-      "areaServed": "DE"
-    });
-
-    schemas.push({
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Varda Legal",
-      "url": "https://varda.law",
-      "description": "Varda Legal — Legal clarity for founders, investors and companies.",
-      "founders": [
-        {
+      {
+        "@type": "LegalService",
+        "@id": "https://www.vardalegal.com/#legalservice",
+        "name": "Varda Legal",
+        "url": "https://www.vardalegal.com",
+        "description": "Varda Legal ist eine Kanzlei für unternehmerische Entscheidungen. Wir beraten zu Corporate, Commercial, M&A und Tech.",
+        "areaServed": "DE",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "München",
+          "addressCountry": "DE"
+        },
+        "founder": {
           "@type": "Person",
           "name": "Dr. Konstantin Filbinger"
-        },
-        {
-          "@type": "Person",
-          "name": "Konstantin Filbinger"
         }
-      ],
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Auenstraße 21",
-        "addressLocality": "München",
-        "postalCode": "80469",
-        "addressCountry": "DE"
       }
-    });
+    ];
 
     // If on Varda Navigator view, inject WebPage and Service JSON-LD schemas
     if (currentView === "navigator") {
-      schemas.push({
-        "@context": "https://schema.org",
+      graph.push({
         "@type": "WebPage",
+        "@id": "https://www.vardalegal.com/#navigator-page",
         "name": "Varda Legal Navigator",
         "description": "Interactive Executive Assessment tools for Corporate, Shareholders, Share structures and Commercial issues.",
-        "url": `${origin}/#navigator`
+        "url": "https://www.vardalegal.com/#navigator"
       });
-      schemas.push({
-        "@context": "https://schema.org",
+      graph.push({
         "@type": "Service",
+        "@id": "https://www.vardalegal.com/#navigator-service",
         "name": "Varda Legal Navigator",
         "serviceType": "Legal Checkup and Interactive Analysis",
         "provider": {
-          "@type": "LegalService",
-          "name": "Varda Legal",
-          "url": "https://varda.law"
+          "@id": "https://www.vardalegal.com/#legalservice"
         },
         "description": "Structured digital assessment tools providing decision support for founder agreements, corporate risk, and financial preparations."
       });
@@ -1190,9 +1151,9 @@ export default function App() {
 
     // If reading an article, inject BlogPosting and FAQPage if FAQ questions exist
     if (selectedArticle) {
-      schemas.push({
-        "@context": "https://schema.org",
+      graph.push({
         "@type": "BlogPosting",
+        "@id": `${canonicalUrl}#entry`,
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": canonicalUrl
@@ -1205,20 +1166,14 @@ export default function App() {
           "name": "Dr. Konstantin Filbinger"
         },
         "publisher": {
-          "@type": "Organization",
-          "name": "Varda Legal",
-          "url": "https://varda.law",
-          "logo": {
-            "@type": "ImageObject",
-            "url": `${origin}/favicon.ico`
-          }
+          "@id": "https://www.vardalegal.com/#legalservice"
         }
       });
 
       if (selectedArticle.faq && selectedArticle.faq.length > 0) {
-        schemas.push({
-          "@context": "https://schema.org",
+        graph.push({
           "@type": "FAQPage",
+          "@id": `${canonicalUrl}#faq`,
           "mainEntity": selectedArticle.faq.map(item => ({
             "@type": "Question",
             "name": item.question,
@@ -1232,13 +1187,12 @@ export default function App() {
     }
 
     // Add blogs schema to keep reference of standard content
-    schemas.push({
-      "@context": "https://schema.org",
+    graph.push({
       "@type": "Blog",
+      "@id": "https://www.vardalegal.com/#blog",
       "name": "Denkwerk",
       "publisher": {
-        "@type": "Organization",
-        "name": "Varda Legal"
+        "@id": "https://www.vardalegal.com/#legalservice"
       },
       "blogPost": [
         {
@@ -1262,6 +1216,11 @@ export default function App() {
       ]
     });
 
+    const consolidatedSchema = {
+      "@context": "https://schema.org",
+      "@graph": graph
+    };
+
     // Remove any previously injected script
     const existingScript = document.getElementById("ld-json-schema");
     if (existingScript) {
@@ -1272,7 +1231,7 @@ export default function App() {
     const script = document.createElement("script");
     script.id = "ld-json-schema";
     script.type = "application/ld+json";
-    script.innerHTML = JSON.stringify(schemas);
+    script.innerHTML = JSON.stringify(consolidatedSchema);
     document.head.appendChild(script);
 
     return () => {
