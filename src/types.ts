@@ -138,7 +138,7 @@ export const content: Record<Language, ContentData> = {
     hero: {
       badge: "TRANSAKTIONEN / STRATEGISCHE VERTRÄGE / GOVERNANCE",
       title: "Recht für Entscheidungen.",
-      subtitle: "Varda Legal ist eine Boutique für geschäftskritische Transaktions-, Vertrags- und Governance-Entscheidungen. Persönlich, pragmatisch, klar.",
+      subtitle: "Varda Legal ist eine Boutique für wichtige Transaktions-, Vertrags- und Governance-Entscheidungen. Persönlich, pragmatisch, klar.",
       cta: "Beratung buchen",
       secCta: "Fokus-Bereiche",
       stats: [
