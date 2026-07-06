@@ -136,9 +136,9 @@ export const content: Record<Language, ContentData> = {
       letsgo: "Let's Go",
     },
     hero: {
-      badge: "Corporate/Commercial/M&A/Tech",
-      title: "Rechtsberatung für klare Entscheidungen.",
-      subtitle: "Varda Legal ist eine Rechtsanwaltskanzlei für unternehmerische Entscheidungen. Wir beraten in Corporate, Commercial, M&A und Tech — und übersetzen juristische Komplexität in strategische Klarheit.",
+      badge: "TRANSAKTIONEN / STRATEGISCHE VERTRÄGE / GOVERNANCE",
+      title: "Recht für Entscheidungen.",
+      subtitle: "Varda Legal ist eine Boutique für geschäftskritische Transaktions-, Vertrags- und Governance-Entscheidungen. Persönlich, pragmatisch, klar.",
       cta: "Beratung buchen",
       secCta: "Fokus-Bereiche",
       stats: [
@@ -168,50 +168,38 @@ export const content: Record<Language, ContentData> = {
       items: [
         {
           num: "01",
-          title: "Beteiligungen & Gesellschafter",
-          desc: "Sichern Sie das Zusammenspiel der Gesellschafter ab. Wir regeln Rechte, Pflichten und Governance so, dass Sie sich voll auf den Unternehmenserfolg konzentrieren können und Konflikte gar nicht erst entstehen.",
+          title: "Transaktionen & Struktur",
+          desc: "Gesellschaftsrechtliche Gestaltung und Transaktionsbegleitung. Wir strukturieren Finanzierungsrunden, M&A-Transaktionen und Gesellschafterbeziehungen so, dass Ihre Interessen gesichert und Konflikte vermieden werden.",
           details: [
             "Gesellschaftervereinbarungen & Vesting",
-            "Gründer- & Investoren-Alignment",
-            "Geschäftsführerthemen & Organhaftung",
-            "Strukturierung & Umwandlungen",
-            "Disputprävention & Konfliktlösung",
+            "Series A bis Growth-Finanzierungsrunden",
+            "M&A, Exits & strategische Partnerschaften",
+            "Unternehmensstrukturierung & Umwandlungen",
+            "Geschäftsführung & Organhaftung"
           ],
         },
         {
           num: "02",
-          title: "Verträge für Wachstum",
-          desc: "Rechtliche Leitplanken für Ihren operativen Erfolg. Wir entwerfen und prüfen Verträge, die Ihre Commercials stärken, Risiken in der Lieferkette deckeln und Ihr Business skalierbar machen.",
+          title: "Strategische Verträge",
+          desc: "Ausgestaltung und Verhandlung komplexer kommerzieller Verträge. Wir sichern Ihre operativen Geschäftsbeziehungen, Lieferketten und Vertriebskanäle mit klaren, durchsetzbaren Vereinbarungen.",
           details: [
-            "Kauf- & Lieferantenvereinbarungen",
+            "Lieferanten- & Einkaufsvereinbarungen",
             "Gewerbliche Verträge & Kooperationen",
-            "Vertragsprüfung & Risikominimierung",
             "Skalierbare AGB & Standardverträge",
-            "Vertriebs- & Partnerschaftsverträge",
+            "Vertriebs-, Franchise- & Agenturverträge",
+            "Vertrags- und Risikobewertung"
           ],
         },
         {
           num: "03",
-          title: "Unternehmen kaufen & verkaufen",
-          desc: "Erfolgreiche Exits und strategische Zukäufe. Wir begleiten Sie durch den gesamten Transaktionsprozess – von der Due Diligence über die Vertragsgestaltung bis hin zum schlüsselfertigen Closing.",
+          title: "Governance & neue Geschäftsmodelle",
+          desc: "Beratung an den Schnittstellen von Regulierung, Technologie und Gesellschaftsrecht. Wir begleiten digitale Innovationen, SaaS-Plattformen, Web3-Konzepte und IT-Governance-Strukturen.",
           details: [
-            "Share Deals & Asset Deals",
-            "Verkäuferseitige Beratung & Founder Exits",
-            "Käuferseitige Due Diligence",
-            "Transaktionsmanagement & Verhandlung",
-            "Post-Merger Integration & Abwicklung",
-          ],
-        },
-        {
-          num: "04",
-          title: "Software, Daten & KI",
-          desc: "Regulierung beherrschen, IP sichern. Wir strukturieren Ihre IT-Projekte, Lizenzmodelle und Datenströme so, dass Innovation geschützt bleibt und Sie technologische Meilensteine rechtssicher erreichen.",
-          details: [
-            "Software- & SaaS-Vereinbarungen",
-            "Lizenz- & Vertriebsstrukturen",
-            "Datenlizenzvereinbarungen",
-            "Kryptorechtfragen, Tokenarchitektur",
-            "IT-Projektverträge & Outsourcing",
+            "Software- & SaaS-Verträge",
+            "Lizenz- & Datennutzungskonzepte",
+            "IT-Governance & regulatorische Begleitung",
+            "Digitale Netze, Plattformen & KI-Anwendungen",
+            "Kryptorecht & tokenbasierte Modelle"
           ],
         },
       ],
@@ -676,9 +664,9 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
       letsgo: "Let's Go",
     },
     hero: {
-      badge: "Corporate/Commercial/M&A/Tech",
-      title: "Legal Advice for Clear Decisions.",
-      subtitle: "Varda Legal is a law firm for entrepreneurial decisions. We advise on corporate, commercial, M&A and tech matters — translating legal complexity into strategic clarity.",
+      badge: "TRANSACTIONS / STRATEGIC CONTRACTS / GOVERNANCE",
+      title: "Legal advice for decisions.",
+      subtitle: "Varda Legal is a boutique for business-critical transaction, contract and governance decisions. Personal, pragmatic, clear.",
       cta: "Book Advisory",
       secCta: "Our Focus",
       stats: [
@@ -708,50 +696,38 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
       items: [
         {
           num: "01",
-          title: "Shareholders & Governance",
-          desc: "Align rights, duties, and corporate governance for long-term operational success. We secure the relationships between founders and investors to eliminate boardroom disputes before they start.",
+          title: "Transactions & Corporate Change",
+          desc: "Corporate design and transaction support. We structure funding rounds, M&A transactions, and shareholder relations to protect your interests and eliminate governance friction.",
           details: [
             "Shareholder Agreements & Vesting",
-            "Founder & Investor Alignment",
-            "Managing Director & Board Matters",
+            "Series A to Growth Funding Rounds",
+            "M&A, Exits & Strategic Partnerships",
             "Corporate Restructuring & Setups",
-            "Dispute Prevention & Conflict Resolution",
+            "Managing Director & Board Matters"
           ],
         },
         {
           num: "02",
-          title: "Contracts for Growth",
-          desc: "Protect your day-to-day operations. We design and review commercial agreements that secure your supply chains, optimize commercial terms, and make your business scalable with compliance.",
+          title: "Strategic Commercial Agreements",
+          desc: "Drafting and negotiating complex commercial agreements. We secure your day-to-day operations, supply chains, and sales channels with clear, actionable contract designs.",
           details: [
-            "Purchase & Supplier Agreements",
-            "Commercial Contracts & Partnerships",
-            "Contract Reviews & Risk Mitigation",
+            "Supplier & Purchase Agreements",
+            "Commercial Contracts & Collaborations",
             "Scalable Terms & Conditions (T&Cs)",
-            "Distribution & License Agreements",
+            "Distribution, Franchise & Agency Contracts",
+            "Contract Portfolio Risk Assessments"
           ],
         },
         {
           num: "03",
-          title: "Buying & Selling Companies",
-          desc: "Navigate acquisitions, mergers, and exits with confidence. We guide you from initial due diligence and strategic negotiations through to robust asset-transfer structures and closing.",
+          title: "Governance & New Business Models",
+          desc: "Counsel at the intersection of regulation, technology, and corporate law. We support digital innovations, SaaS platforms, Web3 models, and IT governance systems.",
           details: [
-            "Share Deals & Asset Deals",
-            "Seller-Side Advisory & Founder Exits",
-            "Buyer-Side Due Diligence (DD)",
-            "Transaction Management & Deals",
-            "Post-Merger Advisory & Closing",
-          ],
-        },
-        {
-          num: "04",
-          title: "Software, Data & AI",
-          desc: "Protect your digital assets and navigate tech regulation. We structure software licensing, SaaS models, and data flows to secure your IP and keep your tech stack compliant and future-proof.",
-          details: [
-            "Software & SaaS Agreements",
-            "Licensing & IP Structures",
-            "Data-Sharing Agreements",
-            "Crypto Law, Token Architecture",
-            "IT Project Agreements & Outsourcing",
+            "Software & SaaS Contracts",
+            "Licensing & Data Usage Agreements",
+            "IT Governance & Regulatory Support",
+            "Digital Networks, Platforms & AI Assets",
+            "Crypto Regulation & Tokenized Frameworks"
           ],
         },
       ],

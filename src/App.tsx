@@ -885,6 +885,7 @@ export default function App() {
   const [activeLegalModal, setActiveLegalModal] = useState<"impressum" | "datenschutz" | null>(null);
   const [showShortProfile, setShowShortProfile] = useState(false);
   const [isImageModalOpen, setIsImageModalOpen] = useState(false);
+  const [activeClause, setActiveClause] = useState<string | null>(null);
 
   // Simulated ProRes Living Video state
   const [isVideoPlaying, setIsVideoPlaying] = useState(true);
@@ -1018,7 +1019,7 @@ export default function App() {
           }
         }, 150);
       } else {
-        const anchors = ["#home", "#wir", "#fokus", "#denkwerk", "#verguetung", "#letsgo"];
+        const anchors = ["#home", "#wir", "#fokus", "#produkte", "#denkwerk", "#verguetung", "#letsgo"];
         if (anchors.includes(hash)) {
           setCurrentView("website");
           setTimeout(() => {
@@ -1647,11 +1648,11 @@ export default function App() {
                     </div>
                     <div className="flex justify-between py-1">
                       <span className="text-charcoal/40">[ SPEZIALISIERUNG ]</span>
-                      <span className="text-charcoal/85 text-right font-medium">M&A • Tech • Corporate</span>
+                      <span className="text-charcoal/85 text-right font-medium">{lang === "DE" ? "Transaktionen • Strategische Verträge • Governance" : "Transactions • Strategic Contracts • Governance"}</span>
                     </div>
                     <div className="flex justify-between py-1">
                       <span className="text-[#C0823E]/70">[ BERATUNGSSTIL ]</span>
-                      <span className="text-charcoal/85 text-right font-medium">{lang === "DE" ? "Radikal Funktional" : "Radically Functional"}</span>
+                      <span className="text-charcoal/85 text-right font-medium">{lang === "DE" ? "Entscheidungsorientiert • Radikal Funktional" : "Decision-led • Radically Functional"}</span>
                     </div>
                   </div>
                 </div>
@@ -1682,31 +1683,38 @@ export default function App() {
                         desc: lang === "DE" ? "Spezialisierte Beratungsschwerpunkte" : "Specialized strategic practice fields"
                       },
                       { 
+                        label: lang === "DE" ? "Produkte" : "Products", 
+                        target: "#produkte", 
+                        subtitle: lang === "DE" ? "03 / Strukturierte Loesungen" : "03 / Structured Solutions",
+                        sec: "03",
+                        desc: lang === "DE" ? "Reale Work Products & Entscheidungssysteme" : "Real legal work products & decision systems"
+                      },
+                      { 
                         label: lang === "DE" ? "Denkwerk" : "Denkwerk", 
                         target: "#denkwerk", 
-                        subtitle: lang === "DE" ? "03 / Schriften & Leitfäden" : "03 / Writings & Briefings",
-                        sec: "03",
+                        subtitle: lang === "DE" ? "04 / Schriften & Leitfäden" : "04 / Writings & Briefings",
+                        sec: "04",
                         desc: lang === "DE" ? "Kanzlei-Impulse" : "Intellectual publications & briefings"
                       },
                       { 
-                        label: lang === "DE" ? "Vergütung" : "Fees", 
+                        label: lang === "DE" ? "Honorare" : "Fees", 
                         target: "#verguetung", 
-                        subtitle: lang === "DE" ? "04 / Vergütungsmodelle" : "04 / Fee Structures",
-                        sec: "04",
+                        subtitle: lang === "DE" ? "05 / Vergütungsmodelle" : "05 / Fee Structures",
+                        sec: "05",
                         desc: lang === "DE" ? "Strikte Preistransparenz & Flatrates" : "Predictable transaction fee modules"
                       },
                       { 
                         label: lang === "DE" ? "Kontakt" : "Contact", 
                         target: "#letsgo", 
-                        subtitle: lang === "DE" ? "05 / Online-Reservierung" : "05 / Online Reservation",
-                        sec: "05",
+                        subtitle: lang === "DE" ? "06 / Online-Reservierung" : "06 / Online Reservation",
+                        sec: "06",
                         desc: lang === "DE" ? "Direkter digitaler Beratungstermin" : "Immediate secure booking scheduler"
                       },
                       { 
                         label: "Navigator", 
                         target: lang === "DE" ? "#navigator" : "#en/navigator", 
-                        subtitle: lang === "DE" ? "06 / Varda Legal Navigator" : "06 / Varda Legal Navigator",
-                        sec: "06",
+                        subtitle: lang === "DE" ? "07 / Varda Legal Navigator" : "07 / Varda Legal Navigator",
+                        sec: "07",
                         desc: lang === "DE" ? "Executive Checks für Corporate- & Handelsrecht" : "Executive Checks for corporate & commercial issues"
                       }
                     ].map((menuItem, idx) => (
@@ -2023,47 +2031,27 @@ export default function App() {
                 <div className="space-y-4 font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl">
                   {lang === "DE" ? (
                     <>
-                      <p>Viele Unternehmer erhalten juristisch richtige Antworten.</p>
-                      <p className="font-serif text-base text-charcoal font-medium">Trotzdem bleiben Fragen offen.</p>
+                      <p className="font-serif text-lg text-charcoal font-medium leading-snug">
+                        Varda prüft nicht nur, was rechtlich möglich ist. Entscheidend ist, welche unternehmerische Entscheidung getroffen werden muss, welches Risiko wirtschaftlich relevant ist und welcher nächste Schritt tatsächlich umsetzbar ist.
+                      </p>
+                      <p className="font-sans text-charcoal/70">
+                        Viele Kanzleien neigen dazu, die rechtliche Situation lediglich abzubilden, anstatt Stellung zu beziehen. Das Ergebnis sind zumeist seitenlange Memos, die den Unternehmer in der Praxis ratlos zurücklassen.
+                      </p>
+                      <div className="my-6 space-y-1.5 pl-4 border-l border-brand-red/20 text-[#C0823E] italic font-serif text-base sm:text-lg font-medium">
+                        <p>Der Unterschied beginnt nicht beim Ergebnis. Er beginnt bei den Fragen.</p>
+                      </div>
                     </>
                   ) : (
                     <>
-                      <p>Many entrepreneurs receive legally correct answers.</p>
-                      <p className="font-serif text-base text-charcoal font-medium">Yet, questions remain.</p>
-                    </>
-                  )}
-                </div>
-
-                <div className="my-6 space-y-2.5 pl-4 border-l border-brand-red/20 text-brand-red italic font-serif text-base sm:text-lg">
-                  {lang === "DE" ? (
-                    <>
-                      <p>— Was bedeutet das konkret?</p>
-                      <p>— Wie relevant ist das Risiko?</p>
-                      <p>— Welche Konsequenzen entstehen in der Praxis?</p>
-                      <p>— Was sollten wir jetzt tun?</p>
-                    </>
-                  ) : (
-                    <>
-                      <p>— What does this mean in practice?</p>
-                      <p>— How relevant is the risk?</p>
-                      <p>— What are the consequences in reality?</p>
-                      <p>— What should we do now?</p>
-                    </>
-                  )}
-                </div>
-
-                <div className="space-y-4 font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl">
-                  {lang === "DE" ? (
-                    <>
-                      <p>Varda beantwortet nicht nur Rechtsfragen.</p>
-                      <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">Wir schaffen Orientierung.</p>
-                      <p>Sie erkennen schneller, welche Themen Aufmerksamkeit verdienen und welche nicht. Sie treffen Entscheidungen mit größerer Sicherheit. Sie gewinnen Zeit für das, was Ihr Unternehmen voranbringt.</p>
-                    </>
-                  ) : (
-                    <>
-                      <p>Varda does not just answer legal questions.</p>
-                      <p className="font-serif text-base sm:text-lg text-charcoal font-medium pt-2">We provide orientation.</p>
-                      <p>You recognize faster which topics deserve attention and which do not. You make decisions with greater confidence. You gain time for what actually drives your business forward.</p>
+                      <p className="font-serif text-lg text-charcoal font-medium leading-snug">
+                        Varda does not only assess what is legally possible. What matters is which business decision must be made, which risk is commercially relevant and which next step is actually workable.
+                      </p>
+                      <p className="font-sans text-charcoal/70">
+                        Many traditional law firms excel at merely documenting complexity rather than taking a stance. This results in lengthy memos leaving founders with just as much uncertainty as before.
+                      </p>
+                      <div className="my-6 space-y-1.5 pl-4 border-l border-brand-red/20 text-[#C0823E] italic font-serif text-base sm:text-lg font-medium">
+                        <p>The difference does not begin with the answer. It begins with the questions.</p>
+                      </div>
                     </>
                   )}
                 </div>
@@ -2077,30 +2065,47 @@ export default function App() {
 
                 <div className="space-y-4 font-sans text-charcoal/80 leading-relaxed text-sm sm:text-base max-w-2xl select-text">
                   {lang === "DE" ? (
-                    <>
-                      <p>
-                        Gute Rechtsberatung zeichnet sich nicht durch lange Abhandlungen aus, sondern durch praktischen Nutzen. Varda verbindet die klassische, präzise rechtliche Prüfung mit Ihrem individuellen unternehmerischen Kontext und liefert am Ende eine glasklare, sofort umsetzbare Entscheidungsempfehlung. Viele Kanzleien neigen dazu, die rechtliche Situation lediglich abzubilden, anstatt Stellung zu beziehen. Das Ergebnis sind zumeist seitenlange Memos, die zwar alle theoretischen Risiken aufzählen, den Unternehmer in der Praxis jedoch genau so ratlos zurücklassen wie zuvor.
-                      </p>
-                      <p>
-                        Unsere Methodik bricht mit diesem Standard. Wir analysieren jedes Mandat im Dreiklang von Recht, kaufmännischen Interessen und strategischer Weitsicht. Das bedeutet: Wir identifizieren nicht nur die juristischen Fallstricke, sondern bewerten diese direkt anhand Ihrer Geschäftsrealität. Ist ein Risiko theoretisch vorhanden, aber praktisch irrelevant? Dann sagen wir das offen. Bietet eine vertragliche Klausel strategischen Vorteil für anstehende Finanzierungsrunden? Dann heben wir sie gezielt hervor.
-                      </p>
-                      <p>
-                        Am Ende erhalten Sie keine bloße Risikoauflistung, sondern eine konkrete, fundierte Empfehlung für Ihr nächstes Handeln – sei es bei einer M&A-Transaktion, der Ausgestaltung von Beteiligungsprogrammen oder bei Commercial-Risk-Assessments. So entsteht echte Entscheidungsklarheit, die Ihr Wachstum schützt und befeuert. Dabei agieren wir stets pragmatisch, geschäftsorientiert und absolut lösungsorientiert – für rechtliche Sicherheit, die Ihr unternehmerisches Handeln stärkt, anstatt es zu bremsen.
-                      </p>
-                    </>
+                    <p>
+                      Unsere Methodik bricht mit dem Standard. Wir analysieren jedes Mandat im Dreiklang von Recht, kaufmännischen Interessen und strategischer Weitsicht. Das bedeutet: Wir identifizieren nicht nur die juristischen Fallstricke, sondern bewerten diese direkt anhand Ihrer Geschäftsrealität. Ist ein Risiko theoretisch vorhanden, aber praktisch irrelevant? Dann sagen wir das offen.
+                    </p>
                   ) : (
-                    <>
-                      <p>
-                        Our approach: Varda combines classic, high-precision legal analysis with your individual commercial context and delivers a crystal-clear, immediately actionable decision recommendation. Many traditional law firms excel at merely documenting complexity rather than taking a stance. This results in lengthy memos listing every theoretical risk, leaving founders and executives with just as much uncertainty as before.
-                      </p>
-                      <p>
-                        Our methodology breaks this standard. We analyze every matter through the combined lens of legal mechanics, commercial interests, and strategic foresight. We do not just identify legal pitfalls; we evaluate them against your operational reality. If a risk is technically possible but commercially immaterial, we say so openly. If a contract clause offers strategic leverage for upcoming financing rounds, we highlight it clearly.
-                      </p>
-                      <p>
-                        The result is not a generic risk register, but a concrete recommendation for your direct next step – whether negotiating an M&A deal, structured equity options, or commercial risk profiles. This establishes genuine decision clarity that protects and fuels your growth. We always act with practical efficiency, maintaining a highly business-focused and completely solution-oriented perspective to deliver secure legal foundations that bolster your enterprise instead of creating roadblocks.
-                      </p>
-                    </>
+                    <p>
+                      Our methodology breaks this standard. We analyze every matter through the combined lens of legal mechanics, commercial interests, and strategic foresight. We do not just identify legal pitfalls; we evaluate them against your operational reality. If a risk is technically possible but commercially immaterial, we say so openly.
+                    </p>
                   )}
+                </div>
+
+                {/* 6-Step Process Visualization: Custom Varda Grid style */}
+                <div className="mt-8 pt-6 border-t border-charcoal/10">
+                  <div className="font-mono text-[9px] uppercase tracking-widest text-[#C0823E] mb-6 font-bold">
+                    {lang === "DE" ? "PROZESSMETHODIK" : "PROCESS METHODOLOGY"}
+                  </div>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
+                    {(lang === "DE" ? [
+                      "Entscheidungs-Intake",
+                      "rechtliche Bewertung",
+                      "wirtschaftliche Einordnung",
+                      "strategischer Kontext",
+                      "Priorisierung",
+                      "klare Handlungsempfehlung"
+                    ] : [
+                      "Decision Intake",
+                      "legal assessment",
+                      "commercial context",
+                      "strategic context",
+                      "prioritisation",
+                      "clear recommendation"
+                    ]).map((step, idx) => (
+                      <div key={idx} className="space-y-2 border-l border-charcoal/15 pl-4 py-1">
+                        <div className="font-mono text-xs text-charcoal/40 font-bold">
+                          0{idx + 1}
+                        </div>
+                        <div className="font-sans text-xs text-charcoal font-semibold leading-snug">
+                          {step}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
 
@@ -2248,7 +2253,7 @@ export default function App() {
                     {lang === "DE" ? "Arbeitsweise" : "Working style"}
                   </h4>
                   <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed font-normal">
-                    {lang === "DE" ? "Direkt, strukturiert, empfehlungsorientiert" : "Direct, structured, recommendation-oriented"}
+                    {lang === "DE" ? "Direkt, strukturiert, handlungsorientiert" : "Direct, structured, action-oriented"}
                   </p>
                 </div>
 
@@ -2707,6 +2712,198 @@ export default function App() {
                 <div className="absolute bottom-0 inset-x-0 h-1 bg-charcoal/5 relative z-10">
                   <div className="absolute top-0 left-0 h-full bg-[#1B2A4A] transition-all duration-75" style={{ width: `${(fffAnimTime / 17) * 100}%` }} />
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION: "PRODUKTE" (STRUCTURED DECISION SYSTEMS) */}
+        <section id="produkte" className="py-20 md:py-28 border-b border-charcoal/10">
+          <div className="space-y-4 mb-12">
+            <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">03 / {lang === "DE" ? "Produkte" : "Products"}</span>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">
+              {lang === "DE" ? "Unsere Produkte: Strukturierte Entscheidungssysteme" : "Our Products: Structured Decision Systems"}
+            </h2>
+            <p className="font-sans text-charcoal/70 max-w-2xl text-sm sm:text-base leading-relaxed">
+              {lang === "DE" 
+                ? "Wir verpacken juristische Exzellenz in klare, wiederkehrende Formate. Keine stundenbasierten Memos ohne Aussage, sondern präzise strukturierte Arbeitsergebnisse."
+                : "We package legal excellence into clear, repeatable formats. No hourly-billed verbose memos, but precisely structured work products."}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+            {/* PRODUCT 1: Contract Intelligence (Interactive Clause Analyzer) */}
+            <div className="border border-charcoal/15 bg-white p-6 sm:p-8 flex flex-col justify-between group hover:border-[#C0823E]/50 transition-all duration-300">
+              <div className="space-y-6">
+                <div className="flex justify-between items-baseline border-b border-charcoal/10 pb-3">
+                  <span className="font-mono text-xs font-bold text-[#C0823E] uppercase tracking-wider">01 / Contract Intelligence</span>
+                  <span className="font-mono text-[9px] text-charcoal/40 uppercase tracking-widest">{lang === "DE" ? "INTERAKTIVER CLAUSE-ANALYZER" : "INTERACTIVE CLAUSE ANALYZER"}</span>
+                </div>
+                
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl font-semibold text-charcoal">
+                    {lang === "DE" ? "Verträge als präzise Maschinen." : "Contracts as precision machines."}
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
+                    {lang === "DE"
+                      ? "Wir zerlegen komplexe Vertragswerke in verständliche Risikoprofile und kommerzielle Stellschrauben. Klicken Sie auf die markierten Klauseln, um das Varda-Arbeitsergebnis zu sehen:"
+                      : "We break down complex contract terms into digestible risk profiles and commercial levers. Click the highlighted clauses below to see the Varda work product:"}
+                  </p>
+                </div>
+
+                {/* Interactive Contract Work Space */}
+                <div className="border border-charcoal/15 bg-[#FAF8F4] p-4 font-sans text-xs space-y-4 relative overflow-hidden text-left">
+                  <div className="flex justify-between items-center border-b border-charcoal/10 pb-2 text-[9px] font-mono text-charcoal/50">
+                    <span>[ DRAFT_TERM_SHEET_V3.1 ]</span>
+                    <span className="text-brand-red font-bold animate-pulse">● PRIVATE BRIEFING</span>
+                  </div>
+                  
+                  <div className="space-y-3 text-charcoal/80 leading-relaxed text-[13px]">
+                    <p>
+                      {lang === "DE" ? "§ 4.2 Die Gründer verpflichten sich zu einem " : "§ 4.2 The Founders agree to a "}
+                      <button 
+                        onClick={() => setActiveClause(activeClause === "vesting" ? null : "vesting")}
+                        className={`px-1.5 py-0.5 font-mono font-bold rounded-sm transition-all cursor-pointer ${
+                          activeClause === "vesting" ? "bg-brand-red text-white" : "bg-brand-red/10 text-brand-red hover:bg-brand-red/20"
+                        }`}
+                      >
+                        {lang === "DE" ? "Vesting-Zeitraum von 48 Monaten" : "Vesting period of 48 months"}
+                      </button>
+                      {lang === "DE" ? " mit einem einjährigen Cliff..." : " with a 12-month cliff..."}
+                    </p>
+                    <p>
+                      {lang === "DE" ? "§ 8.1 Im Falle eines Liquidationsereignisses erhalten die Investoren eine " : "§ 8.1 In the event of a liquidation, the Investors shall receive a "}
+                      <button 
+                        onClick={() => setActiveClause(activeClause === "liqpref" ? null : "liqpref")}
+                        className={`px-1.5 py-0.5 font-mono font-bold rounded-sm transition-all cursor-pointer ${
+                          activeClause === "liqpref" ? "bg-[#C0823E] text-white" : "bg-[#C0823E]/15 text-[#C0823E] hover:bg-[#C0823E]/25"
+                        }`}
+                      >
+                        {lang === "DE" ? "2x nicht-anrechenbare Liquidationspräferenz" : "2x non-participating Liquidation Preference"}
+                      </button>
+                      {lang === "DE" ? " vor allen anderen Anteilseignern..." : " prior to any other shareholder..."}
+                    </p>
+                  </div>
+
+                  {/* Clause Detail Panel */}
+                  <AnimatePresence mode="wait">
+                    {activeClause && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="mt-3 p-3 bg-white border border-charcoal/15 text-xs space-y-3 text-left"
+                      >
+                        {activeClause === "vesting" ? (
+                          <>
+                            <div className="flex justify-between items-center border-b border-charcoal/10 pb-1.5">
+                              <span className="font-mono text-[9px] text-brand-red font-bold uppercase">Briefing: Founder Vesting</span>
+                              <button onClick={() => setActiveClause(null)} className="text-charcoal/40 hover:text-charcoal cursor-pointer">×</button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <span className="font-mono text-[8px] text-charcoal/40 uppercase block">[ Klassische Kanzlei ]</span>
+                                <p className="text-charcoal/60 text-[11px] leading-snug">
+                                  {lang === "DE" 
+                                    ? "Eine 48-monatige Bindung mit 12-monatigem Cliff entspricht dem üblichen Marktstandard und schützt die Gesellschaft." 
+                                    : "A 48-month vesting with a 12-month cliff is market standard and protects the corporate entity."}
+                                </p>
+                              </div>
+                              <div className="space-y-1 border-l border-brand-red/20 pl-3">
+                                <span className="font-mono text-[8px] text-brand-red font-bold uppercase">[ Contract Intelligence ]</span>
+                                <p className="text-charcoal text-[11px] font-semibold leading-snug">
+                                  {lang === "DE" 
+                                    ? "Zulässig, aber: Das Ausscheiden durch Tod/Krankheit muss zwingend als 'Good Leaver' geregelt sein. Klausel anpassen, um automatische Anteilsabtretung bei höherer Gewalt auszuschließen." 
+                                    : "Standard, but: Departure due to health/force majeure must qualify as a 'Good Leaver'. Adjust clause to prevent automatic share forfeiture under force majeure."}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="flex justify-between items-center border-b border-charcoal/10 pb-1.5">
+                              <span className="font-mono text-[9px] text-[#C0823E] font-bold uppercase">Briefing: Liq-Preference</span>
+                              <button onClick={() => setActiveClause(null)} className="text-charcoal/40 hover:text-charcoal cursor-pointer">×</button>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <span className="font-mono text-[8px] text-charcoal/40 uppercase block">[ Klassische Kanzlei ]</span>
+                                <p className="text-charcoal/60 text-[11px] leading-snug">
+                                  {lang === "DE" 
+                                    ? "Die Investoren fordern eine doppelte Absicherung im Verteilungsfall. Dies mindert den Erlös der Stammgesellschafter." 
+                                    : "The investors demand double preference protection. This dilutes the proceeds of common shareholders."}
+                                </p>
+                              </div>
+                              <div className="space-y-1 border-l border-[#C0823E]/20 pl-3">
+                                <span className="font-mono text-[8px] text-[#C0823E] font-bold uppercase">[ Contract Intelligence ]</span>
+                                <p className="text-charcoal text-[11px] font-semibold leading-snug">
+                                  {lang === "DE" 
+                                    ? "Inakzeptabel. Eine 2x Präferenz vernichtet die Gründer-Motivation bei moderaten Exits. Verhandlungslinie: Striktes Beharren auf 1x non-participating (anrechenbar). Das rettet Ihre Exit-Erlöse." 
+                                    : "Unacceptable. A 2x preference destroys founder motivation at moderate exit valuations. Negotiation line: Strict insistence on 1x non-participating. This saves your exit proceeds."}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-charcoal/10 mt-6 flex justify-between items-center">
+                <span className="font-mono text-[10px] text-charcoal/40">[ TARGET: SECURE CONTRACTS ]</span>
+                <button 
+                  onClick={() => handleNavigateToConsult(lang === "DE" ? "Anfrage Contract Intelligence" : "Request Contract Intelligence")}
+                  className="text-xs font-mono uppercase tracking-widest text-[#C0823E] hover:text-charcoal font-bold transition-colors cursor-pointer"
+                >
+                  {lang === "DE" ? "Produkt anfragen" : "Inquire product"} →
+                </button>
+              </div>
+            </div>
+
+            {/* PRODUCT 2: Executive Clarity (Decision Blueprint & Analysis) */}
+            <div className="border border-charcoal/15 bg-white p-6 sm:p-8 flex flex-col justify-between group hover:border-brand-red/50 transition-all duration-300">
+              <div className="space-y-6">
+                <div className="flex justify-between items-baseline border-b border-charcoal/10 pb-3">
+                  <span className="font-mono text-xs font-bold text-brand-red uppercase tracking-wider">02 / Executive Clarity</span>
+                  <span className="font-mono text-[9px] text-charcoal/40 uppercase tracking-widest">{lang === "DE" ? "DIAGNOSE & STRUKTURPRÜFUNG" : "DIAGNOSIS & STRUCTURE CHECK"}</span>
+                </div>
+
+                <div className="space-y-2">
+                  <h3 className="font-serif text-2xl font-semibold text-charcoal">
+                    {lang === "DE" ? "Komplexität auf einer Seite." : "Complexity on a single page."}
+                  </h3>
+                  <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
+                    {lang === "DE"
+                      ? "Wir übersetzen unübersichtliche gesellschaftsrechtliche Gemengelagen in ein präzises visuelles und strukturiertes Memo."
+                      : "We translate messy corporate and cap-table scenarios into a crisp, visual governance audit."}
+                  </p>
+                </div>
+
+                {/* Show visual reference to Executive Clarity example document */}
+                <div className="relative border border-charcoal/10 bg-[#FAF8F4] p-2 flex items-center justify-center cursor-pointer" onClick={() => setIsImageModalOpen(true)}>
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone-50 border border-charcoal/5">
+                    <img 
+                      src={lang === "DE" ? execDe : execEng}
+                      alt="Executive Clarity Preview"
+                      className="w-full h-full object-contain block group-hover:scale-[1.01] transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-charcoal/5 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="bg-charcoal/90 text-white font-mono text-[10px] uppercase tracking-wider px-3 py-2">{lang === "DE" ? "Beispieldokument öffnen" : "Open sample document"}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-charcoal/10 mt-6 flex justify-between items-center">
+                <span className="font-mono text-[10px] text-charcoal/40">[ TARGET: GOVERNANCE ALIGNMENT ]</span>
+                <button 
+                  onClick={() => handleNavigateToConsult(lang === "DE" ? "Anfrage Executive Clarity" : "Request Executive Clarity")}
+                  className="text-xs font-mono uppercase tracking-widest text-brand-red hover:text-charcoal font-bold transition-colors cursor-pointer"
+                >
+                  {lang === "DE" ? "Produkt anfragen" : "Inquire product"} →
+                </button>
               </div>
             </div>
           </div>
