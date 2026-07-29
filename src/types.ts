@@ -42,19 +42,23 @@ export interface PriceTier {
 export interface ContentData {
   nav: {
     home: string;
-    wir: string;
     fokus: string;
-    fff: string;
+    produkte: string;
     denkwerk: string;
-    verguetung: string;
+    wir: string;
     letsgo: string;
+    cta: string;
+    verguetung?: string;
+    fff?: string;
   };
   hero: {
     badge: string;
     title: string;
     subtitle: string;
+    directSentence?: string;
     cta: string;
     secCta: string;
+    trustCue?: string;
     stats: { value: string; label: string }[];
   };
   wir: {
@@ -128,19 +132,23 @@ export const content: Record<Language, ContentData> = {
   DE: {
     nav: {
       home: "Start",
-      wir: "Unser Ansatz",
-      fokus: "Fokus",
-      fff: "Form follows function",
-      denkwerk: "Denkwerk",
+      fokus: "Expertise",
+      produkte: "Leistungen",
+      denkwerk: "Einblicke",
+      wir: "Über Varda",
+      letsgo: "Kontakt",
+      cta: "Erstgespräch vereinbaren",
       verguetung: "Vergütung",
-      letsgo: "Let's Go",
+      fff: "Form follows function",
     },
     hero: {
-      badge: "TRANSAKTIONEN / STRATEGISCHE VERTRÄGE / GOVERNANCE",
-      title: "Recht für Entscheidungen.",
-      subtitle: "Varda Legal ist eine Boutique für wichtige Transaktions-, Vertrags- und Governance-Entscheidungen. Persönlich, pragmatisch, klar.",
-      cta: "Beratung buchen",
-      secCta: "Fokus-Bereiche",
+      badge: "CORPORATE · COMMERCIAL · M&A · TECHNOLOGIE",
+      title: "Rechtsberatung für klare Entscheidungen.",
+      subtitle: "Varda berät Gründer, Technologieunternehmen und inhabergeführte Unternehmen, wenn Verträge, Gesellschaftsstrukturen oder Transaktionen eine klare wirtschaftliche Entscheidung erfordern – nicht noch ein langes juristisches Memo.",
+      directSentence: "Sie arbeiten direkt mit Dr. Konstantin Filbinger. Er bewertet die Rechtslage im wirtschaftlichen Kontext und empfiehlt einen umsetzbaren nächsten Schritt.",
+      cta: "Anliegen besprechen",
+      secCta: "Arbeitsbeispiel ansehen",
+      trustCue: "Gründergeführte Boutique in München · Direkte Zusammenarbeit mit Konstantin Filbinger",
       stats: [
         { value: "50+", label: "Erfolgreiche Finanzierungsrunden" },
         { value: "€450M+", label: "Transaktionsvolumen" },
@@ -225,12 +233,101 @@ export const content: Record<Language, ContentData> = {
       ],
     },
     denkwerk: {
-      title: "Denkwerk",
-      subtitle: "Impulse",
-      all: "Perspektiven",
-      readMore: "Perspektive öffnen",
+      title: "DECISION NOTES",
+      subtitle: "Gedanken, Beobachtungen und praktische Perspektiven aus Gesellschaftsrecht, Vertragsrecht und Technologierecht.",
+      all: "Alle Decision Notes ansehen",
+      readMore: "Beitrag lesen",
       back: "Zurück zur Übersicht",
       articles: [
+        {
+          id: "vertraege-risiko",
+          category: "VERTRAGSRECHT",
+          title: "Die sicherste Rechtsposition ist nicht immer die beste Empfehlung.",
+          excerpt: "Warum der wirtschaftliche Kontext oft verändert, wie vertragliche Risiken gesteuert werden sollten.",
+          date: "Juli 2026",
+          readingTime: "4 Min. Lesezeit",
+          content: `Der Kunde wartet auf die Unterschrift. Das Quartalsende rückt näher. Die wirtschaftlichen Eckpunkte sind längst verhandelt. Zwei Stunden vor dem Signing landet der Vertrag erstmals beim Anwalt.
+
+Viele Vertragsrisiken entstehen genau in diesem Moment. Viele Unternehmen glauben, dass gute Verträge vor allem durch maximale Risikovermeidung entstehen. In der Praxis ist das nur die halbe Wahrheit.
+
+### Zwei Funktionen eines Vertrags
+
+Verträge erfüllen in der Praxis regelmäßig zwei Funktionen. Erstens dokumentieren sie eine Vereinbarung für steuerliche Zwecke, die Buchhaltung und für die Beteiligten selbst. Zweitens erfüllen Verträge eine Versicherungsfunktion: Sie regeln, wer welches Risiko trägt, wenn etwas nicht wie geplant verläuft.
+
+Genau hier zeigt sich die Qualität eines Vertrags. Die sicherste Rechtsposition ist jedoch nicht automatisch die beste Empfehlung, wenn sie den wirtschaftlichen Deal blockiert oder unverhältnismäßige operative Hürden aufbaut.
+
+### Warum schlechte Verträge häufig keine Folgen haben
+
+Die meisten Vertragsrisiken verwirklichen sich nie. Das ist einer der Gründe, weshalb Unternehmen die Bedeutung von Verträgen regelmäßig unterschätzen. Ein Vertrag kann erhebliche rechtliche Schwächen enthalten und trotzdem über Jahre hinweg problemlos funktionieren, solange beide Parteien zufrieden sind.
+
+Dadurch entsteht der gefährliche Eindruck, ein Vertrag sei gut, obwohl lediglich kein Problem eingetreten ist. Das eigentliche Ziel juristischer Beratung liegt deshalb darin, wirtschaftlichen Kontext und Risikoabwägung in Einklang zu bringen.
+
+### Fazit
+
+Gute Verträge entstehen nicht am Verhandlungstisch durch maximale Abwehrklauseln. Sie entstehen durch pragmatisches Urteilsvermögen in der Organisation.`,
+          faq: [
+            {
+              question: "Warum ist die sicherste Rechtsposition nicht immer optimal?",
+              answer: "Weil maximale Absicherung oft zu langwierigen Verhandlungen, verlorener Dynamik oder inakzeptablen kaufmännischen Zugeständnissen führt. Ein guter Berater bewertet Eintrittswahrscheinlichkeiten im wirtschaftlichen Kontext."
+            }
+          ]
+        },
+        {
+          id: "gesellschafter-erfolg",
+          category: "GESELLSCHAFTSRECHT",
+          title: "Gesellschaftervereinbarungen sollten Erfolg antizipieren – nicht nur Konflikte.",
+          excerpt: "Viele Governance-Probleme beginnen lange bevor Meinungsverschiedenheiten entstehen.",
+          date: "Juni 2026",
+          readingTime: "5 Min. Lesezeit",
+          content: `Ein Gesellschaftervertrag wird meistens in der Gründungsphase entworfen, wenn Harmonie herrscht. Viele Gründer konzentrieren sich dabei ausschließlich auf Bad-Leaver-Klauseln und Streitbeilegungsmechanismen.
+
+Doch die anspruchsvollsten Fragen in Gesellschafterkreisen entstehen nicht bei Misserfolg, sondern bei plötzlichem Erfolg und starkem Wachstum.
+
+### Die Architektur von Wachstum und Exits
+
+Wenn Folgefinanzierungen anstehen, neue Gesellschafter hinzukommen oder Buyout-Angebote vorliegen, zeigen sich die Lücken klassischer Musterverträge. Drag-Along- und Tag-Along-Rechte, Vesting-Schedule-Anpassungen und Zustimmungs-Kataloge der Geschäftsführung müssen so austariert sein, dass sie künftigen Handlungsspielraum sichern.
+
+### Vertrauen durch Vorhersehbarkeit
+
+Governance-Probleme entstehen selten spontan. Sie kündigen sich durch unklare Entscheidungspfade an. Eine vorausschauende Gesellschaftervereinbarung schafft klare Spielregeln für Stimmrechte, Kapitalmaßnahmen und Nachfolge.
+
+### Fazit
+
+Ein hervorragender Gesellschaftervertrag schützt die Gesellschafter nicht nur vor Konflikten, sondern beflügelt die unternehmerische Handlungsfähigkeit bei Erfolg.`,
+          faq: [
+            {
+              question: "Was gehört in eine zukunftssichere Gesellschaftervereinbarung?",
+              answer: "Neben klaren Vesting- und Leaver-Regelungen vor allem transparente Entscheidungsquoren für Folgefinanzierungen, M&A-Szenarien und klare Liquidationspräferenzen."
+            }
+          ]
+        },
+        {
+          id: "datenraeume-vertrauen",
+          category: "TECHNOLOGIE",
+          title: "Datenräume drehen sich weniger um Daten als um Vertrauen.",
+          excerpt: "Warum die vertragliche Gestaltung entscheidet, ob kollaborative Ökosysteme tatsächlich funktionieren.",
+          date: "Mai 2026",
+          readingTime: "6 Min. Lesezeit",
+          content: `In datengetriebenen Ökosystemen und digitalen Netzwerken rückt die vertragliche Infrastruktur in den Vordergrund. Oft wird fälschlicherweise angenommen, dass technische Schnittstellen (APIs) und Verschlüsselung alleine ausreichen, um Datenräume zu etablieren.
+
+Tatsächlich beruht jeder erfolgreiche Datenraum auf einem vertraglichen Vertrauensrahmen.
+
+### Wer kontrolliert die Nutzung?
+
+Die entscheidenden Fragen sind juristischer Natur: Welche Rechte an abgeleiteten Datenmodellen entstehen? Wer haftet für die Richtigkeit von Datenströmen? Welche Datennutzungsrechte bleiben nach Beendigung einer Kooperation bestehen?
+
+Ohne ausgewogene vertragliche Leitplanken halten sich Marktteilnehmer mit der Freigabe wertvoller Daten zurück.
+
+### Fazit
+
+Vertragliches Design entscheidet darüber, ob digitale Kollaboration in der Praxis funktioniert oder an Bedenken scheitert.`,
+          faq: [
+            {
+              question: "Welche Verträge sichern Datenräume ab?",
+              answer: "Datennutzungsverträge, Governance-Frameworks, IP-Rechteübertragungen und klare Haftungsabgrenzungen für Datenpipelines."
+            }
+          ]
+        },
         {
           id: "der-unternehmensverkauf",
           category: "01 / Entscheidungen",
@@ -656,19 +753,23 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
   EN: {
     nav: {
       home: "Start",
-      wir: "Our Approach",
-      fokus: "Focus",
-      fff: "Form follows function",
-      denkwerk: "Brainery",
+      fokus: "Expertise",
+      produkte: "Work Products",
+      denkwerk: "Insights",
+      wir: "About Varda",
+      letsgo: "Contact",
+      cta: "Book a Conversation",
       verguetung: "Fees",
-      letsgo: "Let's Go",
+      fff: "Form follows function",
     },
     hero: {
-      badge: "TRANSACTIONS / STRATEGIC CONTRACTS / GOVERNANCE",
+      badge: "CORPORATE · COMMERCIAL · M&A · TECHNOLOGY",
       title: "Legal advice for decisions.",
-      subtitle: "Varda Legal is a boutique for business-critical transaction, contract and governance decisions. Personal, pragmatic, clear.",
-      cta: "Book Advisory",
-      secCta: "Our Focus",
+      subtitle: "Varda advises founders, technology companies and owner-managed businesses when contracts, corporate structures or transactions require a clear commercial decision—not another long legal memo.",
+      directSentence: "You work directly with Dr Konstantin Filbinger, who assesses the legal position in its commercial context and recommends a workable next step.",
+      cta: "Discuss your matter",
+      secCta: "See a real work product",
+      trustCue: "Founder-led boutique in Munich · Direct work with Konstantin Filbinger",
       stats: [
         { value: "50+", label: "Successful Financing Rounds" },
         { value: "€450M+", label: "Transaction Volume Managed" },
@@ -753,12 +854,101 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
       ],
     },
     denkwerk: {
-      title: "Brainery",
-      subtitle: "Impulses",
-      all: "Perspectives",
-      readMore: "Read Perspective",
+      title: "DECISION NOTES",
+      subtitle: "Ideas, observations and practical perspectives from corporate, commercial and technology law.",
+      all: "Explore all Decision Notes",
+      readMore: "Read Decision Note",
       back: "Back to Overview",
       articles: [
+        {
+          id: "vertraege-risiko",
+          category: "COMMERCIAL",
+          title: "The safest legal position is not always the best recommendation.",
+          excerpt: "Why commercial context often changes how contractual risks should be managed.",
+          date: "July 2026",
+          readingTime: "4 min read",
+          content: `The client waits for the signature. The quarter-end approaches. Economic terms are long since agreed upon. Two hours before signing, the contract lands with the lawyer for the first time.
+
+Many contractual risks arise exactly at this moment. Many companies believe that good contracts are primarily created by maximizing risk avoidance. In practice, that is only half the truth.
+
+### Two Functions of a Contract
+
+In practice, contracts serve two functions. First, they document an agreement for tax, accounting, and internal record purposes. Second, contracts serve an insurance function: regulating who bears which risk if events deviate from plan.
+
+This is precisely where contract quality reveals itself. However, the safest legal position is not automatically the best recommendation if it stalls the commercial deal or creates disproportionate operational friction.
+
+### Why Bad Contracts Often Have No Consequences
+
+Most contractual risks never materialize. This is one reason why companies systematically underestimate contract quality. A contract can contain significant legal weaknesses and still function smoothly for years as long as both parties remain satisfied.
+
+This creates a dangerous illusion that a contract is sound merely because no dispute occurred. The true objective of legal counsel is to align commercial context with risk assessment.
+
+### Conclusion
+
+Great contracts are not created at the negotiating table through maximum defensive clauses. They are created through pragmatic judgement in the organization.`,
+          faq: [
+            {
+              question: "Why isn't the safest legal position always optimal?",
+              answer: "Because maximum legal protection often leads to protracted negotiations, lost deal momentum, or unacceptable commercial concessions. An expert advisor weighs probabilities within the commercial context."
+            }
+          ]
+        },
+        {
+          id: "gesellschafter-erfolg",
+          category: "CORPORATE",
+          title: "Founder agreements should anticipate success—not conflict.",
+          excerpt: "Many governance problems begin long before disagreements arise.",
+          date: "June 2026",
+          readingTime: "5 min read",
+          content: `Shareholder agreements are typically drafted during the founding phase when harmony prevails. Many founders focus exclusively on bad-leaver clauses and dispute resolution mechanisms.
+
+Yet the most demanding governance questions arise not in failure, but during sudden success and rapid scaling.
+
+### The Architecture of Growth and Exits
+
+When follow-on funding rounds approach, new investors join, or buyout offers arrive, the flaws of standard template agreements emerge. Drag-along and tag-along rights, vesting schedule adjustments, and board consent thresholds must be calibrated to safeguard future strategic freedom.
+
+### Trust Through Predictability
+
+Governance problems rarely appear spontaneously. They signal themselves through ambiguous decision pathways. A forward-looking shareholder agreement establishes clear rules for voting rights, capital measures, and succession.
+
+### Conclusion
+
+An exceptional shareholder agreement not only protects partners from conflict—it fuels operational capability in success.`,
+          faq: [
+            {
+              question: "What should be included in a future-proof shareholder agreement?",
+              answer: "Alongside clear vesting and leaver provisions, transparent voting thresholds for follow-on funding, M&A scenarios, and clear liquidation preferences are essential."
+            }
+          ]
+        },
+        {
+          id: "datenraeume-vertrauen",
+          category: "TECHNOLOGY",
+          title: "Data spaces are less about data than about trust.",
+          excerpt: "Why contractual design determines whether collaborative data ecosystems actually work.",
+          date: "May 2026",
+          readingTime: "6 min read",
+          content: `In data-driven ecosystems and digital networks, contractual infrastructure takes center stage. It is often mistakenly assumed that technical APIs and encryption alone suffice to establish data spaces.
+
+In reality, every successful data space rests on a contractual framework of trust.
+
+### Who Controls Data Utilization?
+
+The decisive questions are legal: What IP rights attach to derived data models? Who bears liability for data pipeline accuracy? Which usage rights persist after a collaboration terminates?
+
+Without balanced contractual guardrails, market participants hesitate to share valuable data assets.
+
+### Conclusion
+
+Contractual design determines whether digital collaboration succeeds in practice or falters over unaddressed concerns.`,
+          faq: [
+            {
+              question: "Which agreements secure data ecosystems?",
+              answer: "Data usage agreements, governance frameworks, IP transfer mechanisms, and clear liability allocations for data feeds."
+            }
+          ]
+        },
         {
           id: "der-unternehmensverkauf",
           category: "01 / Decisions",
