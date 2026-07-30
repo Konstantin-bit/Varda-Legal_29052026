@@ -10,7 +10,6 @@ import {
   Check, 
   Globe, 
   Calendar, 
-  Clock, 
   MapPin, 
   Mail, 
   Phone, 
@@ -830,29 +829,9 @@ export default function App() {
   // Fee calculation state
   const [selectedFeeAddons, setSelectedFeeAddons] = useState<string[]>([]);
   
-  // Custom Scheduler State
-  const [bookingStep, setBookingStep] = useState<"intake" | "success">("intake");
-  const [selectedMeetingType, setSelectedMeetingType] = useState<"15min" | "45min">("15min");
-  const [selectedDay, setSelectedDay] = useState<number | null>(null);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
-  const [bookingForm, setBookingForm] = useState({
-    name: "",
-    email: "",
-    company: "",
-    phone: "",
-    challenge: "",
-    message: "",
-    preferredContact: "call" // "call" | "videocall" | "email"
-  });
-
-  const handleNavigateToConsult = (msg: string) => {
-    setBookingForm(prev => ({
-      ...prev,
-      challenge: msg
-    }));
+  const handleNavigateToConsult = (_msg: string) => {
     document.getElementById("letsgo")?.scrollIntoView({ behavior: "smooth" });
   };
-  const [optionalScheduled, setOptionalScheduled] = useState(false);
 
   // Unique layout states requested by USER
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1249,15 +1228,6 @@ export default function App() {
 
   const d = content[lang];
 
-  // Helper mock calendar days (starts on Monday 25th May 2026 based on metadata)
-  const mockDays = [
-    { day: 25, label: "Mo", dateString: "25. Mai 2026", slots: ["09:00", "11:30", "14:00"] },
-    { day: 26, label: "Di", dateString: "26. Mai 2026", slots: ["10:00", "13:30", "15:00", "16:30"] },
-    { day: 27, label: "Mi", dateString: "27. Mai 2026", slots: ["09:30", "11:00", "15:30"] },
-    { day: 28, label: "Do", dateString: "28. Mai 2026", slots: ["13:00", "14:30", "16:00"] },
-    { day: 29, label: "Fr", dateString: "29. Mai 2026", slots: ["09:00", "10:30", "12:00"] },
-  ];
-
   const toggleFeeAddon = (addonKey: string) => {
     if (selectedFeeAddons.includes(addonKey)) {
       setSelectedFeeAddons(selectedFeeAddons.filter(a => a !== addonKey));
@@ -1273,73 +1243,6 @@ export default function App() {
       case "saas": return 1200;
       case "gdpr": return 850;
       default: return 0;
-    }
-  };
-
-  const handleIntakeSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (bookingForm.name && bookingForm.email) {
-      const contactMethodLabel = 
-        bookingForm.preferredContact === "call" ? (lang === "DE" ? "Rückruf" : "Phone Call") : 
-        bookingForm.preferredContact === "videocall" ? (lang === "DE" ? "Videocall" : "Video Call") : 
-        (lang === "DE" ? "E-Mail" : "Email");
-
-      const subject = encodeURIComponent(
-        lang === "DE" 
-          ? `Mandatsanfrage: Varda Legal - ${bookingForm.name}` 
-          : `Inquiry: Varda Legal - ${bookingForm.name}`
-      );
-      const emailBody = encodeURIComponent(
-        lang === "DE"
-          ? `Sehr geehrter Herr Dr. Filbinger,\n\nhier ist eine neue Beratungsanfrage:\n\n` +
-            `• Name: ${bookingForm.name}\n` +
-            `• E-Mail: ${bookingForm.email}\n` +
-            `• Telefonnummer: ${bookingForm.phone || "Nicht angegeben"}\n` +
-            `• Unternehmen: ${bookingForm.company || "Nicht angegeben"}\n` +
-            `• Bevorzugter Kontaktweg: ${contactMethodLabel}\n` +
-            `• Anliegen: ${bookingForm.challenge || "Nicht angegeben"}\n\n` +
-            `Nachricht/Details:\n${bookingForm.message || "Keine zusätzlichen Details angegeben"}\n\n` +
-            `Mit freundlichen Grüßen\n${bookingForm.name}`
-          : `Dear Dr. Filbinger,\n\nHere is a new client inquiry:\n\n` +
-            `• Name: ${bookingForm.name}\n` +
-            `• Email: ${bookingForm.email}\n` +
-            `• Phone Number: ${bookingForm.phone || "Not specified"}\n` +
-            `• Company: ${bookingForm.company || "Not specified"}\n` +
-            `• Preferred Connection: ${contactMethodLabel}\n` +
-            `• Challenge: ${bookingForm.challenge || "Not specified"}\n\n` +
-            `Details/Notes:\n${bookingForm.message || "No additional details provided"}\n\n` +
-            `Best regards,\n${bookingForm.name}`
-      );
-      window.location.href = `mailto:${CONTACT_FORM_RECIPIENT}?subject=${subject}&body=${emailBody}&reply-to=${encodeURIComponent(bookingForm.email)}`;
-      setBookingStep("success");
-    }
-  };
-
-  const handleScheduleSubmit = (e?: React.FormEvent) => {
-    if (e) e.preventDefault();
-    if (selectedDay && selectedTimeSlot) {
-      const subject = encodeURIComponent(
-        lang === "DE" 
-          ? `Terminreservierung (Optional): Varda Legal - ${selectedMeetingType === "15min" ? "15 Min" : "45 Min"} für ${bookingForm.name}` 
-          : `Time Slot Booking (Optional): Varda Legal - ${selectedMeetingType === "15min" ? "15 Min" : "45 Min"} for ${bookingForm.name}`
-      );
-      const emailBody = encodeURIComponent(
-        lang === "DE"
-          ? `Sehr geehrter Herr Dr. Filbinger,\n\nich möchte meinen Termin zusätzlich reservieren:\n\n` +
-            `• Typ: ${selectedMeetingType === "15min" ? "15 Min. Fast Check" : "45 Min. Strategy Box"}\n` +
-            `• Datum: 2026-05-${selectedDay} um ${selectedTimeSlot} Uhr (Europe/Berlin)\n` +
-            `• Name: ${bookingForm.name}\n` +
-            `• E-Mail: ${bookingForm.email}\n\n` +
-            `Bitte bestätigen Sie diesen Termin.`
-          : `Dear Dr. Filbinger,\n\nI would like to additionally reserve my selected time slot:\n\n` +
-            `• Type: ${selectedMeetingType === "15min" ? "15-Min Fast Check" : "45-Min Strategy Box"}\n` +
-            `• Date: 2026-05-${selectedDay} at ${selectedTimeSlot} (Europe/Berlin)\n` +
-            `• Name: ${bookingForm.name}\n` +
-            `• Email: ${bookingForm.email}\n\n` +
-            `Please confirm this appointment.`
-      );
-      window.location.href = `mailto:${CONTACT_FORM_RECIPIENT}?subject=${subject}&body=${emailBody}&reply-to=${encodeURIComponent(bookingForm.email)}`;
-      setOptionalScheduled(true);
     }
   };
 
@@ -4205,392 +4108,11 @@ export default function App() {
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.letsgo.subtitle}</h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
             
-            {/* Left Hand Side: Redesigned Consultative Intake & Optional Booking Journey */}
-            <div className="lg:col-span-12 xl:col-span-7 bg-white border border-charcoal/15 p-6 md:p-8 shadow-sm">
-              
-              {bookingStep === "intake" ? (
-                /* STEP 1 & 2 & 3: Refined Intake Experience */
-                <form onSubmit={handleIntakeSubmit} className="space-y-6">
-                  <div className="space-y-3 pb-6 border-b border-charcoal/10">
-                    <h3 className="font-serif text-xl md:text-2xl font-medium text-charcoal">
-                      {lang === "DE" ? "Lassen Sie uns Ihr Anliegen verstehen." : "Let us understand your challenge."}
-                    </h3>
-                    <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
-                      {lang === "DE" 
-                        ? "Unser Anspruch ist strategische Klarheit und präzise Risikobewertung ab dem ersten Kontakt. Beschreiben Sie kurz Ihr transaktionales Vorhaben – wir melden uns innerhalb von 24 Stunden."
-                        : "Our standard is strategic clarity and meticulous risk assessment from the very first contact. Briefly outline your project – we typically respond within 24 hours."}
-                    </p>
-                  </div>
-
-                  {/* Form fields */}
-                  <div className="space-y-4">
-                    {/* Name & Company */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <label className="block text-[10px] uppercase font-mono tracking-wider text-charcoal/60">{d.letsgo.inputs.name} *</label>
-                        <input
-                          type="text"
-                          required
-                          value={bookingForm.name}
-                          onChange={(e) => setBookingForm({...bookingForm, name: e.target.value})}
-                          className="w-full bg-paper-light border border-charcoal/20 px-3 py-2 text-xs focus:border-[#C0823E] focus:outline-none transition-all placeholder-charcoal/35"
-                          placeholder="z.B. Dr. Alexander Weber"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <label className="block text-[10px] uppercase font-mono tracking-wider text-charcoal/60">{d.letsgo.inputs.company}</label>
-                        <input
-                          type="text"
-                          value={bookingForm.company}
-                          onChange={(e) => setBookingForm({...bookingForm, company: e.target.value})}
-                          className="w-full bg-paper-light border border-charcoal/20 px-3 py-2 text-xs focus:border-[#C0823E] focus:outline-none transition-all placeholder-charcoal/35"
-                          placeholder="z.B. CoreTech GmbH"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Email & Phone */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="space-y-1">
-                        <label className="block text-[10px] uppercase font-mono tracking-wider text-charcoal/60">{d.letsgo.inputs.email} *</label>
-                        <input
-                          type="email"
-                          required
-                          value={bookingForm.email}
-                          onChange={(e) => setBookingForm({...bookingForm, email: e.target.value})}
-                          className="w-full bg-paper-light border border-charcoal/20 px-3 py-2 text-xs focus:border-[#C0823E] focus:outline-none transition-all placeholder-charcoal/35"
-                          placeholder="weber[at]coretech.io"
-                        />
-                      </div>
-                      <div className="space-y-1">
-                        <label className="block text-[10px] uppercase font-mono tracking-wider text-charcoal/60">{d.letsgo.inputs.phone}</label>
-                        <input
-                          type="tel"
-                          value={bookingForm.phone}
-                          onChange={(e) => setBookingForm({...bookingForm, phone: e.target.value})}
-                          className="w-full bg-paper-light border border-charcoal/20 px-3 py-2 text-xs focus:border-[#C0823E] focus:outline-none transition-all placeholder-charcoal/35"
-                          placeholder="z.B. +49 89 1234567"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Highlighted Core Challenge Intake field */}
-                    <div className="space-y-1.5 p-4 border border-charcoal/15 bg-paper-light/40 rounded-none shadow-xs">
-                      <label className="block text-[10px] uppercase font-mono tracking-widest text-[#1B2A4A] font-bold">
-                        {d.letsgo.inputs.challenge} *
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={bookingForm.challenge}
-                        onChange={(e) => setBookingForm({...bookingForm, challenge: e.target.value})}
-                        className="w-full bg-white border border-charcoal/20 px-3 py-2 text-xs font-serif italic text-[#1B2A4A] focus:border-[#C0823E] focus:outline-none transition-all"
-                        placeholder={d.letsgo.inputs.challengePlaceholder}
-                      />
-                    </div>
-
-                    {/* Preferred Contact Method Selection Step 3 */}
-                    <div className="space-y-2 pt-2">
-                      <span className="block text-[10px] uppercase font-mono tracking-wider text-charcoal/60">
-                        {d.letsgo.inputs.preferredContact}
-                      </span>
-                      <div className="grid grid-cols-3 gap-3">
-                        <button
-                          type="button"
-                          onClick={() => setBookingForm({...bookingForm, preferredContact: "call"})}
-                          className={`flex flex-col items-center justify-center p-3 border transition-all text-center gap-1 cursor-pointer ${
-                            bookingForm.preferredContact === "call"
-                              ? "border-[#C0823E] bg-charcoal text-white font-bold"
-                              : "border-charcoal/10 hover:border-charcoal/50 bg-paper-light/35 text-charcoal/70 font-medium"
-                          }`}
-                        >
-                          <Phone className="h-4 w-4" />
-                          <span className="font-mono text-[10px] tracking-wide uppercase">
-                            {d.letsgo.inputs.contactCallback}
-                          </span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => setBookingForm({...bookingForm, preferredContact: "videocall"})}
-                          className={`flex flex-col items-center justify-center p-3 border transition-all text-center gap-1 cursor-pointer ${
-                            bookingForm.preferredContact === "videocall"
-                              ? "border-[#C0823E] bg-charcoal text-white font-bold"
-                              : "border-charcoal/10 hover:border-charcoal/50 bg-paper-light/35 text-charcoal/70 font-medium"
-                          }`}
-                        >
-                          <Camera className="h-4 w-4" />
-                          <span className="font-mono text-[10px] tracking-wide uppercase">
-                            {d.letsgo.inputs.contactVideo}
-                          </span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => setBookingForm({...bookingForm, preferredContact: "email"})}
-                          className={`flex flex-col items-center justify-center p-3 border transition-all text-center gap-1 cursor-pointer ${
-                            bookingForm.preferredContact === "email"
-                              ? "border-[#C0823E] bg-charcoal text-white font-bold"
-                              : "border-charcoal/10 hover:border-charcoal/50 bg-paper-light/35 text-charcoal/70 font-medium"
-                          }`}
-                        >
-                          <Mail className="h-4 w-4" />
-                          <span className="font-mono text-[10px] tracking-wide uppercase">
-                            {d.letsgo.inputs.contactEmail}
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Additional Message Details */}
-                    <div className="space-y-1">
-                      <label className="block text-[10px] uppercase font-mono tracking-wider text-charcoal/60">{d.letsgo.inputs.message}</label>
-                      <textarea
-                        rows={3}
-                        value={bookingForm.message}
-                        onChange={(e) => setBookingForm({...bookingForm, message: e.target.value})}
-                        className="w-full bg-paper-light border border-charcoal/20 px-3 py-2 text-xs focus:border-[#C0823E] focus:outline-none transition-all placeholder-charcoal/35"
-                        placeholder={lang === "DE" ? "z.B. Beteiligungsvertrag der Serie A liegt vor, Prüfung bis Ende nächster Woche gewünscht." : "e.g., Series A investment agreement drafted, review required by end of next week."}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Submission and Reassurance */}
-                  <div className="pt-4 border-t border-charcoal/10 space-y-4">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <div className="text-[11px] font-mono text-charcoal/55 italic">
-                        {lang === "DE" 
-                          ? "• Wir melden uns in der Regel innerhalb von 24 Stunden mit einem passenden nächsten Schritt."
-                          : "• We typically reply within 24 hours with a custom next step."}
-                      </div>
-                      <button
-                        type="submit"
-                        className="bg-charcoal text-white hover:bg-[#C0823E] transition-all px-8 py-3 font-mono text-xs uppercase tracking-widest font-bold self-end md:self-auto cursor-pointer shadow-sm border border-charcoal/10 shadow-stone-100"
-                      >
-                        {d.letsgo.inputs.submit}
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              ) : (
-                /* STEP 4: Success State with UNLOCKED optional calendar routing */
-                <div className="space-y-8">
-                  
-                  {/* Success Notification Banner */}
-                  <div className="bg-[#FAF8F4] border border-[#C0823E]/30 p-6 md:p-8 space-y-4 shadow-sm relative overflow-hidden">
-                    {/* Corner architectural style tag */}
-                    <div className="absolute top-0 right-0 bg-[#C0823E] text-white font-mono text-[8.5px] uppercase tracking-widest px-3 py-1 font-bold">
-                      {lang === "DE" ? "ANFRAGE ERFASST" : "INQUIRY REGISTERED"}
-                    </div>
-
-                    <div className="flex items-start gap-4">
-                      <div className="h-10 w-10 rounded-full bg-amber-50 border border-[#C0823E]/20 flex items-center justify-center text-[#C0823E] flex-shrink-0">
-                        <Check className="h-5 w-5" />
-                      </div>
-                      <div className="space-y-2 text-left">
-                        <h4 className="font-serif text-lg md:text-xl font-bold text-charcoal leading-tight">
-                          {lang === "DE" ? "Herzlichen Dank." : "Thank you very much."}
-                        </h4>
-                        <p className="font-sans text-xs sm:text-sm text-charcoal/80 leading-relaxed">
-                          {d.letsgo.successMessage}
-                        </p>
-                        <p className="font-mono text-[11px] text-[#C0823E] font-semibold italic">
-                          {lang === "DE" 
-                            ? "Wir analysieren Ihre Daten und kontaktieren Sie innerhalb von 24 Stunden bezüglich des nächsten Schrittes."
-                            : "We serve strategic diagnostics on your inquiry and will connect with you within 24 hours."}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Redirection / Copy ticket */}
-                  <div className="border border-charcoal/12 bg-white p-4 font-mono text-[11px] text-charcoal/85 max-w-xl space-y-2">
-                    <div className="flex justify-between border-b border-charcoal/10 pb-2 font-bold uppercase tracking-wider text-[10px]">
-                      <span>VARDA LEGAL DOCKET REF</span>
-                      <span className="text-[#C0823E]">#VL-{Math.floor(Math.random() * 90000) + 10000}</span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-left">
-                      <p><strong>{lang === "DE" ? "Kompagnon" : "Correspondent"}:</strong> {bookingForm.name}</p>
-                      <p><strong>{lang === "DE" ? "Kanzlei / Firma" : "Entity"}:</strong> {bookingForm.company || "Private Advisory"}</p>
-                      <p><strong>E-Mail:</strong> {bookingForm.email}</p>
-                      <p><strong>{lang === "DE" ? "Telefon" : "Direct Dial"}:</strong> {bookingForm.phone || "N/A"}</p>
-                      <p className="col-span-1 sm:col-span-2"><strong>{lang === "DE" ? "Büromodus" : "Preferred Method"}:</strong> {
-                        bookingForm.preferredContact === "call" ? (lang === "DE" ? "Rückruf" : "Phone Callback") : 
-                        bookingForm.preferredContact === "videocall" ? (lang === "DE" ? "Videocall (Teams)" : "Video Conference") : 
-                        "E-Mail"
-                      }</p>
-                      <p className="col-span-1 sm:col-span-2 border-t border-charcoal/5 pt-2"><strong>{lang === "DE" ? "Zentrales Anliegen" : "Matter Core"}:</strong> <br/><span className="text-charcoal italic">"{bookingForm.challenge}"</span></p>
-                    </div>
-                  </div>
-
-                  {/* UNLOCKED OPTIONAL CALENDAR BLOCK */}
-                  <div className="border-t border-charcoal/15 pt-8 space-y-6">
-                    <div className="space-y-2 text-left">
-                      <h3 className="font-serif text-lg md:text-xl font-medium text-charcoal flex items-center gap-2">
-                        <Calendar className="h-5 text-[#C0823E]" />
-                        {d.letsgo.calendarTitle}
-                      </h3>
-                      <p className="font-sans text-xs text-charcoal/65 leading-relaxed">
-                        {d.letsgo.calendarDesc}
-                      </p>
-                    </div>
-
-                    {!optionalScheduled ? (
-                      <div className="space-y-6 bg-paper-light/35 p-5 border border-charcoal/10 text-left">
-                        {/* Selector of duration for optional call */}
-                        <div className="space-y-2">
-                          <span className="font-mono text-[9px] uppercase tracking-wider text-charcoal/55">Select Meeting Scope:</span>
-                          <div className="grid grid-cols-2 gap-3">
-                            <button
-                              onClick={() => setSelectedMeetingType("15min")}
-                              className={`py-2 text-center text-xs font-mono uppercase transition-all border cursor-pointer ${
-                                selectedMeetingType === "15min" 
-                                  ? "bg-charcoal text-white border-charcoal font-bold" 
-                                  : "bg-white text-charcoal/50 border-charcoal/15 hover:text-charcoal hover:border-charcoal/30"
-                              }`}
-                            >
-                              15 Min • Initial Quick Check
-                            </button>
-                            <button
-                              onClick={() => setSelectedMeetingType("45min")}
-                              className={`py-2 text-center text-xs font-mono uppercase transition-all border cursor-pointer ${
-                                selectedMeetingType === "45min" 
-                                  ? "bg-charcoal text-white border-charcoal font-bold" 
-                                  : "bg-white text-charcoal/50 border-charcoal/15 hover:text-charcoal hover:border-charcoal/30"
-                              }`}
-                            >
-                              45 Min • Detailed Diagnostic
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* Booking calendar details */}
-                        <div className="space-y-4">
-                          <div className="space-y-2">
-                            <span className="font-mono text-[9px] uppercase tracking-wider text-charcoal/55">
-                              {lang === "DE" ? "Datum wählen (Mai 2026)" : "Select Date (May 2026)"}
-                            </span>
-                            <div className="grid grid-cols-5 gap-2">
-                              {mockDays.map((dayObj, i) => (
-                                <button
-                                  key={i}
-                                  onClick={() => {
-                                    setSelectedDay(dayObj.day);
-                                    setSelectedTimeSlot(null);
-                                  }}
-                                  className={`p-3 border flex flex-col items-center justify-center transition-all cursor-pointer ${
-                                    selectedDay === dayObj.day 
-                                      ? "border-[#C0823E] bg-charcoal text-white font-bold" 
-                                      : "border-charcoal/10 hover:border-charcoal/60 bg-white text-charcoal/70"
-                                  }`}
-                                >
-                                  <span className="text-[10px] font-mono opacity-50 uppercase">{dayObj.label}</span>
-                                  <span className="font-mono font-bold text-sm mt-0.5">{dayObj.day}</span>
-                                </button>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Time selection */}
-                          {selectedDay ? (
-                            <div className="space-y-3 animate-fade-in">
-                              <span className="font-mono text-[9px] uppercase tracking-wider text-charcoal/55">
-                                {lang === "DE" ? `Verfügbare Uhrzeiten am ${selectedDay}. Mai` : `Available slots on May ${selectedDay}th`}
-                              </span>
-                              <div className="grid grid-cols-3 gap-2">
-                                {mockDays.find(d => d.day === selectedDay)?.slots.map((slot) => (
-                                  <button
-                                    key={slot}
-                                    onClick={() => setSelectedTimeSlot(slot)}
-                                    className={`py-2 text-center text-xs font-mono border transition-all cursor-pointer ${
-                                      selectedTimeSlot === slot 
-                                        ? "bg-[#C0823E] border-[#C0823E] text-white font-bold" 
-                                        : "bg-white border-charcoal/10 hover:border-charcoal text-charcoal/80"
-                                    }`}
-                                  >
-                                    {slot}
-                                  </button>
-                                ))}
-                              </div>
-
-                              {/* Trigger Booking confirmation */}
-                              {selectedTimeSlot && (
-                                <div className="pt-4 text-right">
-                                  <button
-                                    onClick={() => handleScheduleSubmit()}
-                                    className="bg-charcoal text-white hover:bg-[#C0823E] py-2.5 px-6 font-mono text-xs uppercase tracking-widest font-bold transition-all cursor-pointer shadow-sm border border-charcoal/10"
-                                  >
-                                    <span>{lang === "DE" ? "Terminerfassung abschließen" : "Reserve Time Slot"}</span>
-                                  </button>
-                                </div>
-                              )}
-                            </div>
-                          ) : (
-                            <div className="border border-dashed border-charcoal/15 bg-white p-6 text-center">
-                              <span className="text-xs font-mono text-charcoal/40 italic">
-                                {lang === "DE" ? "Bitte wählen Sie erst ein Datum oben." : "Please select an available booking date first."}
-                              </span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    ) : (
-                      /* Scheduled Success Ticket */
-                      <div className="bg-[#FAF8F4] border border-[#C0823E]/40 p-5 space-y-3 text-left shadow-sm">
-                        <span className="bg-[#C0823E] text-white px-2 py-0.5 text-[9px] font-bold tracking-widest font-mono uppercase">
-                          {lang === "DE" ? "ZEITFENSTER RESERVIERT" : "TIME SLOT CAPTURED"}
-                        </span>
-                        <h4 className="font-serif text-base font-bold text-charcoal">
-                          {lang === "DE" ? "Terminslot im Kalender vorgemerkt!" : "Advisory slot captured!"}
-                        </h4>
-                        <div className="font-sans text-xs text-charcoal/85 space-y-1.5 pt-2 border-t border-charcoal/10">
-                          <p><strong>{lang === "DE" ? "Typ" : "Meeting Scope"}:</strong> {selectedMeetingType === "15min" ? "15-Min Fast Check" : "45-Min Strategy Diagnostic"}</p>
-                          <p><strong>{lang === "DE" ? "Uhrzeit" : "Schedule"}:</strong> 2026-05-{selectedDay} um {selectedTimeSlot} Uhr (Europe/Berlin)</p>
-                          <p className="text-charcoal/60 pt-2 italic text-[11px]">
-                            {lang === "DE" 
-                              ? "* Dieser Termin wurde in unseren Systemen blockiert. Nach erfolgreicher diagnostischer Prüfung des intake-Anliegens erhalten Sie eine offizielle digitale Kalendereinladung."
-                              : "* This spot has been locked in our docket. Upon diagnostic alignment on your project core, you will receive a secure calendar invite."}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Reset form view trigger */}
-                  <div className="pt-4 border-t border-charcoal/5 text-right">
-                    <button
-                      onClick={() => {
-                        setBookingStep("intake");
-                        setSelectedDay(null);
-                        setSelectedTimeSlot(null);
-                        setOptionalScheduled(false);
-                        setBookingForm({ name: "", email: "", company: "", phone: "", challenge: "", message: "", preferredContact: "call" });
-                      }}
-                      className="text-xs font-mono text-[#C0823E] hover:text-charcoal border border-[#C0823E]/35 hover:border-charcoal px-3 py-1.5 transition-all cursor-pointer font-semibold uppercase tracking-wider"
-                    >
-                      {lang === "DE" ? "Zurück zum Hauptformular" : "New Request"}
-                    </button>
-                  </div>
-                </div>
-              )}
-
-              {/* Status footer for scheduler */}
-              <div className="mt-6 pt-4 border-t border-charcoal/10 flex justify-between items-center font-mono text-[10px] text-charcoal/40">
-                <span className="flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-blockAnimation" />
-                  {d.letsgo.calendarStatus}
-                </span>
-                <span>Active timezone: GMT+2 (Munich)</span>
-              </div>
-            </div>
-
-            {/* Right Hand Side: Address / Legal Contact coordinates */}
-            <div className="lg:col-span-5 space-y-8">
-              
-              {/* Approachable Founder Contact Card */}
-              <div className="border border-charcoal/15 bg-white p-5 md:p-6 space-y-4 group">
+            {/* Approachable Founder Contact Card */}
+            <div className="border border-charcoal/15 bg-white p-5 md:p-6 space-y-4 group flex flex-col justify-between">
+              <div className="space-y-4">
                 <div className="relative w-full aspect-square bg-[#FAF8F4] overflow-hidden border border-charcoal/10">
                   <img
                     src={konstiImage}
@@ -4613,9 +4135,11 @@ export default function App() {
                   </p>
                 </div>
               </div>
-              
-              {/* Munich HQ Station */}
-              <div className="border border-charcoal/15 bg-white p-6 md:p-8 space-y-4">
+            </div>
+            
+            {/* Munich HQ Station */}
+            <div className="border border-charcoal/15 bg-white p-6 md:p-8 space-y-4 flex flex-col justify-between">
+              <div className="space-y-4">
                 <div className="flex items-center space-x-2 text-brand-red text-xs font-mono">
                   <MapPin className="h-4" />
                   <span className="uppercase tracking-widest">{d.letsgo.addressTitle}</span>
@@ -4627,30 +4151,30 @@ export default function App() {
                   Deutschland
                 </h4>
               </div>
+            </div>
 
-              {/* Direct coordinates */}
-              <div className="border border-charcoal/15 bg-white p-6 md:p-8 space-y-4 font-mono text-xs">
-                {/* Mail */}
-                <div className="flex items-start space-x-3 py-1.5 border-b border-charcoal/5">
-                  <Mail className="h-4 text-brand-red mt-0.5" />
-                  <div className="space-y-0.5">
-                    <span className="text-charcoal/40 text-[10px]">{d.letsgo.emailTitle}</span>
-                    <p className="font-semibold text-charcoal">info[at]vardalegal.com</p>
-                  </div>
+            {/* Direct coordinates */}
+            <div className="border border-charcoal/15 bg-white p-6 md:p-8 space-y-4 font-mono text-xs flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="flex items-center space-x-2 text-brand-red text-xs font-mono">
+                  <Mail className="h-4" />
+                  <span className="uppercase tracking-widest">{d.letsgo.emailTitle}</span>
                 </div>
-
-                {/* Clock info */}
-                <div className="flex items-start space-x-3 py-1.5">
-                  <Clock className="h-4 text-brand-red mt-0.5" />
-                  <div className="space-y-0.5 text-[10px] text-charcoal/60 leading-normal">
-                    <span className="text-charcoal uppercase tracking-wider font-bold">DEUTSCHLAND • EST</span>
-                    <p>Mon – Fr: 09:00 – 18:00 (CET)</p>
-                  </div>
+                
+                <div className="space-y-2">
+                  <a 
+                    href="mailto:info@vardalegal.com"
+                    className="font-serif text-xl sm:text-2xl font-bold text-charcoal hover:text-brand-red transition-colors block break-all"
+                  >
+                    info[at]vardalegal.com
+                  </a>
+                  <p className="font-sans text-xs text-charcoal/70 leading-relaxed pt-2">
+                    {lang === "DE"
+                      ? "Senden Sie uns Ihre Anfrage direkt per E-Mail. Wir antworten in der Regel innerhalb von 24 Stunden."
+                      : "Send us your inquiry directly via email. We typically respond within 24 hours."}
+                  </p>
                 </div>
               </div>
-
-
-
             </div>
 
           </div>
