@@ -3643,9 +3643,9 @@ export default function App() {
             </div>
           </div>
 
-          {/* Curated Editorial Selection: 3 Columns Desktop, 2 Columns Tablet, 1 Column Mobile */}
+          {/* Curated Editorial Selection */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 pt-8 border-t border-charcoal/15">
-            {d.denkwerk.articles.slice(0, 3).map((article) => {
+            {d.denkwerk.articles.filter((article) => article.id === "vertraege-risiko").map((article) => {
               return (
                 <article
                   key={article.id}

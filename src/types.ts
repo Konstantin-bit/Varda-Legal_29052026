@@ -273,62 +273,6 @@ Gute Verträge entstehen nicht am Verhandlungstisch durch maximale Abwehrklausel
           ]
         },
         {
-          id: "gesellschafter-erfolg",
-          category: "GESELLSCHAFTSRECHT",
-          title: "Gesellschaftervereinbarungen sollten Erfolg antizipieren – nicht nur Konflikte.",
-          excerpt: "Viele Governance-Probleme beginnen lange bevor Meinungsverschiedenheiten entstehen.",
-          date: "Juni 2026",
-          readingTime: "5 Min. Lesezeit",
-          content: `Ein Gesellschaftervertrag wird meistens in der Gründungsphase entworfen, wenn Harmonie herrscht. Viele Gründer konzentrieren sich dabei ausschließlich auf Bad-Leaver-Klauseln und Streitbeilegungsmechanismen.
-
-Doch die anspruchsvollsten Fragen in Gesellschafterkreisen entstehen nicht bei Misserfolg, sondern bei plötzlichem Erfolg und starkem Wachstum.
-
-### Die Architektur von Wachstum und Exits
-
-Wenn Folgefinanzierungen anstehen, neue Gesellschafter hinzukommen oder Buyout-Angebote vorliegen, zeigen sich die Lücken klassischer Musterverträge. Drag-Along- und Tag-Along-Rechte, Vesting-Schedule-Anpassungen und Zustimmungs-Kataloge der Geschäftsführung müssen so austariert sein, dass sie künftigen Handlungsspielraum sichern.
-
-### Vertrauen durch Vorhersehbarkeit
-
-Governance-Probleme entstehen selten spontan. Sie kündigen sich durch unklare Entscheidungspfade an. Eine vorausschauende Gesellschaftervereinbarung schafft klare Spielregeln für Stimmrechte, Kapitalmaßnahmen und Nachfolge.
-
-### Fazit
-
-Ein hervorragender Gesellschaftervertrag schützt die Gesellschafter nicht nur vor Konflikten, sondern beflügelt die unternehmerische Handlungsfähigkeit bei Erfolg.`,
-          faq: [
-            {
-              question: "Was gehört in eine zukunftssichere Gesellschaftervereinbarung?",
-              answer: "Neben klaren Vesting- und Leaver-Regelungen vor allem transparente Entscheidungsquoren für Folgefinanzierungen, M&A-Szenarien und klare Liquidationspräferenzen."
-            }
-          ]
-        },
-        {
-          id: "datenraeume-vertrauen",
-          category: "TECHNOLOGIE",
-          title: "Datenräume drehen sich weniger um Daten als um Vertrauen.",
-          excerpt: "Warum die vertragliche Gestaltung entscheidet, ob kollaborative Ökosysteme tatsächlich funktionieren.",
-          date: "Mai 2026",
-          readingTime: "6 Min. Lesezeit",
-          content: `In datengetriebenen Ökosystemen und digitalen Netzwerken rückt die vertragliche Infrastruktur in den Vordergrund. Oft wird fälschlicherweise angenommen, dass technische Schnittstellen (APIs) und Verschlüsselung alleine ausreichen, um Datenräume zu etablieren.
-
-Tatsächlich beruht jeder erfolgreiche Datenraum auf einem vertraglichen Vertrauensrahmen.
-
-### Wer kontrolliert die Nutzung?
-
-Die entscheidenden Fragen sind juristischer Natur: Welche Rechte an abgeleiteten Datenmodellen entstehen? Wer haftet für die Richtigkeit von Datenströmen? Welche Datennutzungsrechte bleiben nach Beendigung einer Kooperation bestehen?
-
-Ohne ausgewogene vertragliche Leitplanken halten sich Marktteilnehmer mit der Freigabe wertvoller Daten zurück.
-
-### Fazit
-
-Vertragliches Design entscheidet darüber, ob digitale Kollaboration in der Praxis funktioniert oder an Bedenken scheitert.`,
-          faq: [
-            {
-              question: "Welche Verträge sichern Datenräume ab?",
-              answer: "Datennutzungsverträge, Governance-Frameworks, IP-Rechteübertragungen und klare Haftungsabgrenzungen für Datenpipelines."
-            }
-          ]
-        },
-        {
           id: "der-unternehmensverkauf",
           category: "01 / Entscheidungen",
           title: "Der Unternehmensverkauf",
@@ -890,62 +834,6 @@ Great contracts are not created at the negotiating table through maximum defensi
             {
               question: "Why isn't the safest legal position always optimal?",
               answer: "Because maximum legal protection often leads to protracted negotiations, lost deal momentum, or unacceptable commercial concessions. An expert advisor weighs probabilities within the commercial context."
-            }
-          ]
-        },
-        {
-          id: "gesellschafter-erfolg",
-          category: "CORPORATE",
-          title: "Founder agreements should anticipate success—not conflict.",
-          excerpt: "Many governance problems begin long before disagreements arise.",
-          date: "June 2026",
-          readingTime: "5 min read",
-          content: `Shareholder agreements are typically drafted during the founding phase when harmony prevails. Many founders focus exclusively on bad-leaver clauses and dispute resolution mechanisms.
-
-Yet the most demanding governance questions arise not in failure, but during sudden success and rapid scaling.
-
-### The Architecture of Growth and Exits
-
-When follow-on funding rounds approach, new investors join, or buyout offers arrive, the flaws of standard template agreements emerge. Drag-along and tag-along rights, vesting schedule adjustments, and board consent thresholds must be calibrated to safeguard future strategic freedom.
-
-### Trust Through Predictability
-
-Governance problems rarely appear spontaneously. They signal themselves through ambiguous decision pathways. A forward-looking shareholder agreement establishes clear rules for voting rights, capital measures, and succession.
-
-### Conclusion
-
-An exceptional shareholder agreement not only protects partners from conflict—it fuels operational capability in success.`,
-          faq: [
-            {
-              question: "What should be included in a future-proof shareholder agreement?",
-              answer: "Alongside clear vesting and leaver provisions, transparent voting thresholds for follow-on funding, M&A scenarios, and clear liquidation preferences are essential."
-            }
-          ]
-        },
-        {
-          id: "datenraeume-vertrauen",
-          category: "TECHNOLOGY",
-          title: "Data spaces are less about data than about trust.",
-          excerpt: "Why contractual design determines whether collaborative data ecosystems actually work.",
-          date: "May 2026",
-          readingTime: "6 min read",
-          content: `In data-driven ecosystems and digital networks, contractual infrastructure takes center stage. It is often mistakenly assumed that technical APIs and encryption alone suffice to establish data spaces.
-
-In reality, every successful data space rests on a contractual framework of trust.
-
-### Who Controls Data Utilization?
-
-The decisive questions are legal: What IP rights attach to derived data models? Who bears liability for data pipeline accuracy? Which usage rights persist after a collaboration terminates?
-
-Without balanced contractual guardrails, market participants hesitate to share valuable data assets.
-
-### Conclusion
-
-Contractual design determines whether digital collaboration succeeds in practice or falters over unaddressed concerns.`,
-          faq: [
-            {
-              question: "Which agreements secure data ecosystems?",
-              answer: "Data usage agreements, governance frameworks, IP transfer mechanisms, and clear liability allocations for data feeds."
             }
           ]
         },
