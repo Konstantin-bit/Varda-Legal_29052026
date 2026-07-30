@@ -56,7 +56,6 @@ import konstiArch from "./assets/images/konsti2024_arch.png"
 import konstiImage from "./assets/images/konsti.png"
 import konstineuImage from "./assets/images/konstineu.png"
 import konstiClarity from "./assets/images/konsticlarity.png"
-import linkedinImage from "./assets/images/linkedin.png"
 
 import coffeeImage from "./assets/images/vardalegal_coffeetable.png"
 import tokenRecoveryImage from "./assets/images/tokenrecovery.png.png"
@@ -4731,25 +4730,14 @@ export default function App() {
               </ul>
             </div>
 
-            {/* Direct Contact & Social */}
+            {/* Direct Contact */}
             <div className="space-y-3">
               <div className="font-mono text-[10px] uppercase text-charcoal/40 font-bold tracking-widest">
-                {lang === "DE" ? "Kontakt & Netzwerk" : "Contact & Social"}
+                {lang === "DE" ? "Kontakt" : "Contact"}
               </div>
               <ul className="space-y-2 font-mono text-xs">
                 <li className="font-semibold text-charcoal">info[at]vardalegal.com</li>
                 <li className="text-charcoal/70">Auenstraße 21, 80469 München</li>
-                <li className="pt-2">
-                  <a 
-                    href="https://www.linkedin.com/in/dr-konstantin-filbinger-b6a3b2a2/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-brand-red hover:text-charcoal font-bold transition-colors"
-                  >
-                    <span>LinkedIn Profile</span>
-                    <span>↗</span>
-                  </a>
-                </li>
               </ul>
             </div>
 
