@@ -712,7 +712,7 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
       subtitle: "Varda advises founders, technology companies and owner-managed businesses when contracts, corporate structures or transactions require a clear commercial decision—not another long legal memo.",
       directSentence: "You work directly with Dr Konstantin Filbinger, who assesses the legal position in its commercial context and recommends a workable next step.",
       cta: "Discuss your matter",
-      secCta: "See a real work product",
+      secCta: "See a work product example",
       trustCue: "Founder-led boutique in Munich · Direct work with Konstantin Filbinger",
       stats: [
         { value: "50+", label: "Successful Financing Rounds" },
