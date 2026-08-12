@@ -147,7 +147,7 @@ export const content: Record<Language, ContentData> = {
       subtitle: "Varda berät Gründer, Technologieunternehmen und inhabergeführte Unternehmen, wenn Verträge, Gesellschaftsstrukturen oder Transaktionen eine klare wirtschaftliche Entscheidung erfordern – nicht noch ein langes juristisches Memo.",
       directSentence: "Sie arbeiten direkt mit Dr. Konstantin Filbinger. Er bewertet die Rechtslage im wirtschaftlichen Kontext und empfiehlt einen umsetzbaren nächsten Schritt.",
       cta: "Anliegen besprechen",
-      secCta: "Arbeitsbeispiel ansehen",
+      secCta: "So arbeitet Varda",
       trustCue: "Gründergeführte Boutique in München · Direkte Zusammenarbeit mit Konstantin Filbinger",
       stats: [
         { value: "50+", label: "Erfolgreiche Finanzierungsrunden" },
@@ -668,8 +668,8 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
       note: "Individuelle Projekte (z.B. komplexe M&A-Restrukturierungen) werden auf Basis klarer Festpreisangebote nach Erstgespräch modular budgetiert. Alle Preise zzgl. gesetzlicher USt."
     },
     letsgo: {
-      title: "Let's Go",
-      subtitle: "Lassen Sie uns Ihr Anliegen verstehen.",
+      title: "Kontakt",
+      subtitle: "Direkter Kontakt zu Dr. Konstantin Filbinger.",
       ctaBtn: "Anfrage senden",
       calendarTitle: "Wählen Sie Ihren Gesprächstermin (Optional)",
       calendarDesc: "Wenn Sie möchten, können Sie hier direkt ein passendes Zeitfenster für unser erstes Kennenlernen reservieren.",
@@ -712,7 +712,7 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
       subtitle: "Varda advises founders, technology companies and owner-managed businesses when contracts, corporate structures or transactions require a clear commercial decision—not another long legal memo.",
       directSentence: "You work directly with Dr Konstantin Filbinger, who assesses the legal position in its commercial context and recommends a workable next step.",
       cta: "Discuss your matter",
-      secCta: "See a work product example",
+      secCta: "How Varda works",
       trustCue: "Founder-led boutique in Munich · Direct work with Konstantin Filbinger",
       stats: [
         { value: "50+", label: "Successful Financing Rounds" },
@@ -1233,8 +1233,8 @@ Token recovery issues arising from transfers to a wallet whose keys are held by 
       note: "Custom transactions (e.g., cross-border mergers, M&A exits) are budgeted via transparent modular project proposals after an initial consultation. All prices excl. VAT."
     },
     letsgo: {
-      title: "Let's Go",
-      subtitle: "Let us understand your challenge.",
+      title: "Contact",
+      subtitle: "Direct contact with Dr Konstantin Filbinger.",
       ctaBtn: "Send Inquiry",
       calendarTitle: "Select your conversation slot (Optional)",
       calendarDesc: "If you wish, you can reserve a convenient time slot for our first conversation directly.",

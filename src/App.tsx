@@ -838,7 +838,6 @@ export default function App() {
   const [heroSlide, setHeroSlide] = useState(0);
   const [activeLegalModal, setActiveLegalModal] = useState<"impressum" | "datenschutz" | null>(null);
   const [showShortProfile, setShowShortProfile] = useState(false);
-  const [isImageModalOpen, setIsImageModalOpen] = useState(false);
   const [activeClause, setActiveClause] = useState<string | null>(null);
 
   // Simulated ProRes Living Video state
@@ -973,7 +972,7 @@ export default function App() {
           }
         }, 150);
       } else {
-        const anchors = ["#home", "#wir", "#fokus", "#produkte", "#denkwerk", "#verguetung", "#letsgo"];
+        const anchors = ["#home", "#fokus", "#methode", "#beispiel-output", "#wir", "#letsgo"];
         if (anchors.includes(hash)) {
           setCurrentView("website");
           setTimeout(() => {
@@ -1389,35 +1388,35 @@ export default function App() {
               onClick={() => setCurrentView("website")}
               className="hover:text-[#C0823E] transition-colors py-1 font-semibold"
             >
-              {d.nav.fokus}
+              {lang === "DE" ? "EXPERTISE" : "EXPERTISE"}
             </a>
             <a 
-              href="#produkte" 
+              href="#methode" 
               onClick={() => setCurrentView("website")}
               className="hover:text-[#C0823E] transition-colors py-1 font-semibold"
             >
-              {d.nav.produkte}
+              {lang === "DE" ? "VARDA ANSATZ" : "VARDA APPROACH"}
             </a>
             <a 
-              href="#denkwerk" 
+              href="#beispiel-output" 
               onClick={() => setCurrentView("website")}
               className="hover:text-[#C0823E] transition-colors py-1 font-semibold"
             >
-              {d.nav.denkwerk}
+              {lang === "DE" ? "WAS SIE BEKOMMEN" : "WHAT YOU GET"}
             </a>
             <a 
               href="#wir" 
               onClick={() => setCurrentView("website")}
               className="hover:text-[#C0823E] transition-colors py-1 font-semibold"
             >
-              {d.nav.wir}
+              {lang === "DE" ? "DR. KONSTANTIN FILBINGER" : "DR KONSTANTIN FILBINGER"}
             </a>
             <a 
               href="#letsgo" 
               onClick={() => setCurrentView("website")}
               className="hover:text-[#C0823E] transition-colors py-1 font-semibold"
             >
-              {d.nav.letsgo}
+              {lang === "DE" ? "KONTAKT" : "CONTACT"}
             </a>
           </nav>
 
@@ -1576,51 +1575,44 @@ export default function App() {
                       { 
                         label: lang === "DE" ? "Expertise" : "Expertise", 
                         target: "#fokus", 
-                        subtitle: lang === "DE" ? "01 / Kernbereiche" : "01 / Core Practice Areas",
+                        subtitle: lang === "DE" ? "01 / Kernbereiche" : "01 / Core Practice Fields",
                         sec: "01",
-                        desc: lang === "DE" ? "Spezialisierte Beratungsschwerpunkte" : "Specialized strategic practice fields"
+                        desc: lang === "DE" ? "Spezialisierte Beratungsschwerpunkte" : "Specialised practice fields"
                       },
                       { 
-                        label: lang === "DE" ? "Leistungen" : "Work Products", 
-                        target: "#produkte", 
-                        subtitle: lang === "DE" ? "02 / Strukturierte Lösungen" : "02 / Structured Solutions",
+                        label: lang === "DE" ? "Varda-Ansatz" : "Varda Approach", 
+                        target: "#methode", 
+                        subtitle: lang === "DE" ? "02 / Arbeitsweise" : "02 / How We Work",
                         sec: "02",
-                        desc: lang === "DE" ? "Reale Work Products & Entscheidungssysteme" : "Real legal work products & decision systems"
+                        desc: lang === "DE" ? "Wirtschaftliche Perspektive & Methode" : "Commercial perspective & method"
                       },
                       { 
-                        label: lang === "DE" ? "Einblicke" : "Insights", 
-                        target: "#denkwerk", 
-                        subtitle: lang === "DE" ? "03 / Schriften & Leitfäden" : "03 / Publications & Briefings",
+                        label: lang === "DE" ? "Was Sie bekommen" : "What You Get", 
+                        target: "#beispiel-output", 
+                        subtitle: lang === "DE" ? "03 / Klare Empfehlung" : "03 / Clear Recommendation",
                         sec: "03",
-                        desc: lang === "DE" ? "Schriftenreihe & Praxiseinblicke" : "Intellectual publications & briefings"
+                        desc: lang === "DE" ? "Pragmatische Entscheidungen & konkrete nächste Schritte" : "Pragmatic decisions & concrete next steps"
                       },
                       { 
-                        label: lang === "DE" ? "Über Varda" : "About Varda", 
+                        label: lang === "DE" ? "Dr. Konstantin Filbinger" : "Dr. Konstantin Filbinger", 
                         target: "#wir", 
-                        subtitle: lang === "DE" ? "04 / Profil & Haltung" : "04 / Profile & Principles",
+                        subtitle: lang === "DE" ? "04 / Profil & Haltung" : "04 / Profile & Practice",
                         sec: "04",
-                        desc: lang === "DE" ? "Selbstverständnis & Profil des Gründers" : "Executive summary & founder portrait"
-                      },
-                      { 
-                        label: "Varda Navigator", 
-                        target: lang === "DE" ? "#navigator" : "#en/navigator", 
-                        subtitle: lang === "DE" ? "05 / Interactive Suite" : "05 / Interactive Suite",
-                        sec: "05",
-                        desc: lang === "DE" ? "Executive Checks für Corporate- & Handelsrecht" : "Executive Checks for corporate & commercial issues"
-                      },
-                      { 
-                        label: lang === "DE" ? "Vergütung" : "Fees", 
-                        target: "#verguetung", 
-                        subtitle: lang === "DE" ? "06 / Vergütungsmodelle" : "06 / Fee Structures",
-                        sec: "06",
-                        desc: lang === "DE" ? "Strikte Preistransparenz & Flatrates" : "Predictable transaction fee modules"
+                        desc: lang === "DE" ? "Gründer, Haltung & juristische Präzision" : "Founder, ethos & legal precision"
                       },
                       { 
                         label: lang === "DE" ? "Kontakt" : "Contact", 
                         target: "#letsgo", 
-                        subtitle: lang === "DE" ? "07 / Erstgespräch" : "07 / Consultation",
-                        sec: "07",
+                        subtitle: lang === "DE" ? "05 / Erstgespräch" : "05 / Consultation",
+                        sec: "05",
                         desc: lang === "DE" ? "Direkter digitaler Beratungstermin" : "Immediate secure booking scheduler"
+                      },
+                      { 
+                        label: "Varda Navigator", 
+                        target: lang === "DE" ? "#navigator" : "#en/navigator", 
+                        subtitle: lang === "DE" ? "06 / Interactive Tool" : "06 / Interactive Tool",
+                        sec: "06",
+                        desc: lang === "DE" ? "Interaktive Orientierung für unternehmerische Fragen" : "Interactive guide for business questions"
                       }
                     ].map((menuItem, idx) => (
                       <motion.div 
@@ -1752,7 +1744,7 @@ export default function App() {
                     </a>
                     
                     <a
-                      href="#beispiel-output"
+                      href="#methode"
                       className="inline-flex items-center justify-center gap-2 text-xs font-mono uppercase tracking-[0.15em] font-bold text-charcoal hover:text-[#C0823E] border-b border-charcoal/40 hover:border-[#C0823E] pb-1 py-3 transition-colors"
                     >
                       <span>{d.hero.secCta}</span>
@@ -1807,725 +1799,7 @@ export default function App() {
               </div>
             </section>
 
-        {/* SECTION 2: WHEN VARDA IS USEFUL (WANN VARDA BESONDERS HILFT) */}
-        <section id="situations" className="py-20 md:py-28 border-b border-charcoal/10">
-          <div className="space-y-4 mb-16 max-w-4xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">
-              01 / {lang === "DE" ? "WANN VARDA BESONDERS HILFT" : "WHEN VARDA IS USEFUL"}
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
-              {lang === "DE" 
-                ? "Wenn die Rechtsfrage nur ein Teil der Entscheidung ist." 
-                : "When the legal question is only part of the decision."}
-            </h2>
-            <p className="font-sans text-charcoal/80 text-base sm:text-lg max-w-3xl leading-relaxed pt-2">
-              {lang === "DE" 
-                ? "Varda ist besonders dann hilfreich, wenn sich ein Vertrag, eine Gesellschaftsstruktur oder eine Transaktion nicht isoliert rechtlich bewerten lässt. In diesen Situationen müssen Rechtslage, wirtschaftliches Ziel, operative Realität und realistische Handlungsoptionen gemeinsam betrachtet werden."
-                : "Varda is most useful when a contract, corporate structure or transaction cannot be assessed in isolation. These are typical situations in which the legal position must be considered together with the commercial objective, operational reality and available options."}
-            </p>
-          </div>
-
-          {/* 6 Scenario Modules Grid: 2 columns x 3 rows */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-            {[
-              {
-                num: "01",
-                label: lang === "DE" ? "01 · WIRTSCHAFTSVERTRAG" : "01 · COMMERCIAL CONTRACT",
-                title: lang === "DE" 
-                  ? "Ein wichtiger Kunde hat einen schwierigen Vertrag geschickt." 
-                  : "A major customer has sent a difficult agreement.",
-                situation: lang === "DE" 
-                  ? "Die wirtschaftliche Chance ist relevant. Gleichzeitig werfen Haftung, geistiges Eigentum, Abnahme oder Kündigungsrechte echte Fragen auf."
-                  : "The commercial opportunity matters, but liability, intellectual property, acceptance procedures or termination rights create genuine concerns.",
-                contribution: lang === "DE" 
-                  ? "Varda identifiziert die wirtschaftlich relevanten Regelungen, entwickelt eine klare Verhandlungsposition und empfiehlt, welche Risiken geändert, akzeptiert oder operativ gesteuert werden sollten."
-                  : "Varda identifies the provisions that matter commercially, develops a clear negotiation position and recommends which risks should be changed, accepted or managed operationally."
-              },
-              {
-                num: "02",
-                label: lang === "DE" ? "02 · GRÜNDER & GOVERNANCE" : "02 · FOUNDERS & GOVERNANCE",
-                title: lang === "DE" 
-                  ? "Mehrere Gründer brauchen eine Struktur, die auch in drei Jahren noch funktioniert." 
-                  : "Several founders need a structure that will still work in three years.",
-                situation: lang === "DE" 
-                  ? "Beteiligungen, Rollen, Vesting, Entscheidungsrechte und Exit-Szenarien müssen zusammenpassen – vor dem ersten Konflikt oder der ersten Finanzierungsrunde."
-                  : "Shares, roles, vesting, decision rights and exit scenarios must fit together before the first disagreement or financing round.",
-                contribution: lang === "DE" 
-                  ? "Varda übersetzt das wirtschaftliche Verständnis der Gründer in eine stimmige gesellschaftsrechtliche und vertragliche Struktur."
-                  : "Varda translates the founders’ commercial understanding into a coherent corporate and contractual structure."
-              },
-              {
-                num: "03",
-                label: lang === "DE" ? "03 · TRANSAKTION" : "03 · TRANSACTION",
-                title: lang === "DE" 
-                  ? "Eine Finanzierung, ein Unternehmenskauf oder ein Verkauf steht bevor." 
-                  : "An investment, acquisition or sale is approaching.",
-                situation: lang === "DE" 
-                  ? "Das Unternehmen muss transaktionsfähig werden. Wesentliche Risiken müssen verstanden und die Struktur auf das angestrebte Ergebnis ausgerichtet werden."
-                  : "The company must become transaction-ready, key risks must be understood and the structure must support the intended outcome.",
-                contribution: lang === "DE" 
-                  ? "Varda bereitet den Prozess mit dem Management vor, löst strukturelle Fragen frühzeitig und richtet die Verhandlung auf die Punkte aus, die den Erfolg der Transaktion tatsächlich beeinflussen."
-                  : "Varda helps management prepare the process, resolve structural issues early and focus negotiations on the points that actually affect the transaction."
-              },
-              {
-                num: "04",
-                label: lang === "DE" ? "04 · RISIKOENTSCHEIDUNG" : "04 · RISK DECISION",
-                title: lang === "DE" 
-                  ? "Der rechtlich sicherste Weg würde die wirtschaftliche Chance gefährden." 
-                  : "The legally safest answer would undermine the commercial opportunity.",
-                situation: lang === "DE" 
-                  ? "Entscheidend ist nicht nur, ob ein Risiko besteht. Entscheidend ist, ob es bepreist, versichert, begrenzt, operativ gesteuert oder bewusst akzeptiert werden kann."
-                  : "The issue is not whether a risk exists. The issue is whether it can be priced, insured, limited, controlled or consciously accepted.",
-                contribution: lang === "DE" 
-                  ? "Varda ordnet das rechtliche Risiko wirtschaftlich ein und entwickelt eine umsetzbare Empfehlung, statt automatisch die defensivste Position einzunehmen."
-                  : "Varda places the legal exposure in its commercial context and develops a workable recommendation rather than defaulting to the most defensive position."
-              },
-              {
-                num: "05",
-                label: lang === "DE" ? "05 · TECHNOLOGIE & DATEN" : "05 · TECHNOLOGY & DATA",
-                title: lang === "DE" 
-                  ? "Ein neues digitales Geschäftsmodell wirft rechtliche Fragen auf." 
-                  : "A new digital business model raises legal uncertainty.",
-                situation: lang === "DE" 
-                  ? "Produktgestaltung, Datennutzung, geistiges Eigentum, Verantwortlichkeiten und Regulierung müssen das Geschäftsmodell unterstützen, statt getrennt davon entwickelt zu werden."
-                  : "Product design, data use, intellectual property, customer responsibilities and regulation must support the commercial model rather than evolve separately from it.",
-                contribution: lang === "DE" 
-                  ? "Varda übersetzt das Geschäftsmodell in klare rechtliche Beziehungen, Verantwortlichkeiten und Umsetzungsprioritäten."
-                  : "Varda helps translate the business model into clear legal relationships, responsibilities and implementation priorities."
-              },
-              {
-                num: "06",
-                label: lang === "DE" ? "06 · GESELLSCHAFTSRECHTLICHE VERÄNDERUNG" : "06 · CORPORATE CHANGE",
-                title: lang === "DE" 
-                  ? "Die bestehende Struktur passt nicht mehr zum Unternehmen." 
-                  : "The existing structure no longer fits the business.",
-                situation: lang === "DE" 
-                  ? "Wachstum, neue Gesellschafter, zusätzliche Geschäftsbereiche oder internationale Expansion können unklare Verantwortlichkeiten und ineffiziente Strukturen sichtbar machen."
-                  : "Growth, new shareholders, additional business lines or international expansion may expose unclear responsibilities and inefficient legal structures.",
-                contribution: lang === "DE" 
-                  ? "Varda zeigt auf, was geändert werden sollte, vergleicht realistische Optionen und entwickelt einen praktikablen Weg von der bestehenden zur gewünschten Struktur."
-                  : "Varda identifies what must change, compares realistic options and develops a practical path from the current structure to the intended one."
-              }
-            ].map((item, idx) => (
-              <div 
-                key={idx} 
-                className="border border-charcoal/15 bg-[#FAF8F4] p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:border-charcoal/30 shadow-2xs"
-              >
-                <div className="space-y-4">
-                  <div className="font-mono text-[10px] text-[#C0823E] font-bold uppercase tracking-widest border-b border-charcoal/10 pb-3">
-                    {item.label}
-                  </div>
-                  <h3 className="font-serif text-xl sm:text-2xl font-medium text-charcoal leading-snug">
-                    {item.title}
-                  </h3>
-                  <div className="space-y-4 pt-1 font-sans text-xs sm:text-sm text-charcoal/80 leading-relaxed">
-                    <div className="space-y-1">
-                      <span className="font-mono text-[9px] uppercase tracking-wider text-charcoal/40 font-bold block">
-                        {lang === "DE" ? "Situation" : "Situation"}
-                      </span>
-                      <p className="text-charcoal/85">
-                        {item.situation}
-                      </p>
-                    </div>
-                    <div className="space-y-1 pt-3 border-t border-charcoal/10">
-                      <span className="font-mono text-[9px] uppercase tracking-wider text-[#C0823E] font-bold block">
-                        {lang === "DE" ? "Vardas Beitrag" : "What Varda adds"}
-                      </span>
-                      <p className="text-charcoal font-medium">
-                        {item.contribution}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Closing Statement & Section CTA */}
-          <div className="mt-16 sm:mt-20 pt-12 border-t border-charcoal/10 flex flex-col items-start space-y-6 max-w-4xl">
-            <blockquote className="font-serif text-2xl sm:text-3xl md:text-4xl font-medium text-charcoal leading-snug tracking-tight">
-              {lang === "DE"
-                ? "Varda schafft den größten Mehrwert nicht dort, wo das Recht eine offensichtliche Antwort liefert, sondern dort, wo die Antwort für das Unternehmen funktionieren muss."
-                : "Varda is not most valuable when the law provides an obvious answer. It is most valuable when the answer must work for the business."}
-            </blockquote>
-
-            <div className="pt-2">
-              <a 
-                href="#fokus"
-                className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold text-charcoal hover:text-[#C0823E] border-b border-charcoal/40 hover:border-[#C0823E] pb-1 transition-colors"
-              >
-                <span>{lang === "DE" ? "Vardas Beratungsbereiche ansehen" : "See Varda’s areas of expertise"}</span>
-                <span className="font-sans font-normal">→</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 2: EXECUTIVE CLARITY (BEISPIEL-ARBEITSERGEBNIS) */}
-        <section id="beispiel-output" className="py-20 md:py-28 border-b border-charcoal/10 bg-[#FAF8F4]/50">
-          <div className="space-y-4 mb-16 max-w-4xl">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">
-              02 / EXECUTIVE CLARITY
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
-              {lang === "DE"
-                ? "So macht Varda aus rechtlicher Komplexität eine klare Handlungsempfehlung."
-                : "See how Varda turns legal complexity into a clear recommendation."}
-            </h2>
-            <div className="space-y-3 font-sans text-charcoal/80 text-base sm:text-lg max-w-3xl leading-relaxed pt-2">
-              <p>
-                {lang === "DE"
-                  ? "Unternehmen scheitern selten daran, dass das Recht keine Antwort gibt. Schwieriger ist die Entscheidung zwischen mehreren rechtlich möglichen Wegen mit sehr unterschiedlichen wirtschaftlichen Folgen."
-                  : "Clients rarely struggle because the law is unavailable. They struggle because several legally possible options lead to very different commercial outcomes."}
-              </p>
-              <p className="font-medium text-charcoal">
-                {lang === "DE"
-                  ? "Executive Clarity verdichtet Rechtslage, wirtschaftliche Auswirkungen und realistische Handlungsoptionen zu einer klaren Empfehlung für das Management."
-                  : "Executive Clarity distils the legal position, commercial implications and practical options into one recommendation that management can act upon."}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Left/Main Visual (60-70% width: col-span-8) */}
-            <div className="lg:col-span-8 space-y-8">
-              {/* Restrained Annotations Bar */}
-              <div className="hidden sm:grid grid-cols-5 gap-2 font-mono text-[9px] uppercase tracking-wider text-charcoal/60 border-b border-charcoal/10 pb-3">
-                <div className="flex items-center gap-1">
-                  <span className="text-[#C0823E]">↓</span>
-                  <span>{lang === "DE" ? "Business-Frage" : "Business question"}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-[#C0823E]">↓</span>
-                  <span>{lang === "DE" ? "Wirtschaftl. Kontext" : "Commercial context"}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-[#C0823E]">↓</span>
-                  <span>{lang === "DE" ? "Rechtl. Bewertung" : "Legal assessment"}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-[#C0823E]">↓</span>
-                  <span>{lang === "DE" ? "Empfehlung" : "Recommendation"}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <span className="text-[#C0823E]">↓</span>
-                  <span>{lang === "DE" ? "Nächster Schritt" : "Next step"}</span>
-                </div>
-              </div>
-
-              {/* Board-Ready Document Preview Container */}
-              <div 
-                className="select-none group/mockup relative border border-charcoal/20 bg-white p-3 sm:p-5 shadow-sm transition-all duration-300 hover:shadow-md cursor-pointer"
-                onClick={() => setIsImageModalOpen(true)}
-              >
-                {/* Header Banner on Document */}
-                <div className="flex justify-between items-center border-b border-charcoal/10 pb-2.5 mb-3 font-mono text-[9px] uppercase tracking-widest text-charcoal/50">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-[#1B2A4A]" />
-                    <span className="font-bold text-[#1B2A4A]">VARDA LEGAL · EXECUTIVE CLARITY</span>
-                  </div>
-                  <span>{lang === "DE" ? "BOARD BRIEFING (MUSTER)" : "BOARD BRIEFING (SAMPLE)"}</span>
-                </div>
-
-                <div className="relative aspect-[1600/2280] w-full overflow-hidden bg-[#FAF8F4] border border-charcoal/10">
-                  <img 
-                    src={execFigmaImage}
-                    alt={lang === "DE" 
-                      ? "Zweiseitiges fiktives Executive-Clarity-Beispiel mit strukturierter rechtlicher Analyse und Empfehlung zur Gestaltung einer deutschen GmbH und einer Gesellschaftervereinbarung."
-                      : "Two-page fictional Executive Clarity example showing Varda’s structured legal analysis and recommendation for a German GmbH and shareholders’ agreement."}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-contain block transition-transform duration-500 group-hover/mockup:scale-[1.01]"
-                  />
-                  
-                  {/* Zoom overlay badge */}
-                  <div className="absolute bottom-4 right-4 bg-charcoal/90 hover:bg-charcoal text-white font-mono text-[10px] uppercase tracking-wider py-2 px-3 flex items-center gap-1.5 shadow transition-all">
-                    <Plus className="h-3 w-3" />
-                    <span>{lang === "DE" ? "Beispiel vergrößern" : "Enlarge example"}</span>
-                  </div>
-                </div>
-
-                {/* Example Scenario Flow Illustration */}
-                <div className="mt-4 pt-3 border-t border-charcoal/10 bg-[#FAF8F4] p-3 text-xs font-mono text-charcoal/75 space-y-2">
-                  <div className="text-[10px] font-bold text-[#C0823E] uppercase tracking-wider">
-                    {lang === "DE" ? "Szenario-Beispiel: Software-Einkaufsvertrag mit unbeschränkter Haftung & IP-Klauseln" : "Illustrative Scenario: Software procurement agreement with unlimited liability & IP transfer"}
-                  </div>
-                  <div className="flex flex-wrap items-center gap-1.5 text-[10px] text-charcoal/70">
-                    <span className="bg-white px-2 py-0.5 border border-charcoal/10 font-semibold">{lang === "DE" ? "Relevanz" : "Importance"}</span>
-                    <span>→</span>
-                    <span className="bg-white px-2 py-0.5 border border-charcoal/10 font-semibold">{lang === "DE" ? "Durchsetzbarkeit" : "Enforceability"}</span>
-                    <span>→</span>
-                    <span className="bg-white px-2 py-0.5 border border-charcoal/10 font-semibold">{lang === "DE" ? "Verhandlungshebel" : "Negotiation leverage"}</span>
-                    <span>→</span>
-                    <span className="bg-white px-2 py-0.5 border border-charcoal/10 font-semibold">{lang === "DE" ? "Lösungsoptionen" : "Alternative options"}</span>
-                    <span>→</span>
-                    <span className="bg-brand-red/10 text-brand-red px-2 py-0.5 border border-brand-red/20 font-bold">{lang === "DE" ? "Empfehlung" : "Recommendation"}</span>
-                    <span>→</span>
-                    <span className="bg-white px-2 py-0.5 border border-charcoal/10 font-semibold">{lang === "DE" ? "Umsetzung" : "Implementation"}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Microcopy beneath preview */}
-              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center text-xs font-mono text-charcoal/60 gap-2">
-                <p>
-                  {lang === "DE"
-                    ? "Jedes Executive-Clarity-Dokument wird individuell auf die jeweilige unternehmerische Entscheidung zugeschnitten."
-                    : "Every Executive Clarity document is tailored to the specific commercial decision."}
-                </p>
-                <p className="italic text-[10px] text-charcoal/40 flex-shrink-0">
-                  {lang === "DE" ? "Beispiel zur Veranschaulichung." : "Example for illustration purposes."}
-                </p>
-              </div>
-
-              {/* CTAs */}
-              <div className="pt-6 border-t border-charcoal/10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <button
-                  onClick={() => setIsImageModalOpen(true)}
-                  className="px-6 py-3 bg-brand-red text-white hover:bg-[#72201d] text-xs font-mono uppercase tracking-wider font-semibold transition-all text-center cursor-pointer shadow-2xs"
-                >
-                  {lang === "DE" ? "Weiteres Beispiel ansehen" : "View another example"}
-                </button>
-                <a
-                  href="#letsgo"
-                  className="px-4 py-2 font-mono text-xs uppercase tracking-widest font-bold text-charcoal hover:text-[#C0823E] border-b border-charcoal/30 hover:border-[#C0823E] transition-colors"
-                >
-                  {lang === "DE" ? "Anliegen besprechen" : "Discuss your matter"}
-                </a>
-              </div>
-            </div>
-
-            {/* Right Column Explanation (max ~360px on desktop) */}
-            <div className="lg:col-span-4 lg:max-w-[360px] bg-white border border-charcoal/15 p-6 sm:p-8 space-y-8 shadow-2xs">
-              <div className="space-y-2 border-b border-charcoal/10 pb-6">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[#C0823E] font-bold block">01 / {lang === "DE" ? "DIE FRAGE" : "THE QUESTION"}</span>
-                <h3 className="font-serif text-lg font-semibold text-charcoal leading-snug">
-                  {lang === "DE"
-                    ? "Welche Entscheidung muss die Geschäftsführung tatsächlich treffen?"
-                    : "What decision does management actually need to make?"}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed pt-1">
-                  {lang === "DE"
-                    ? "Identifikation der tatsächlichen unternehmerischen Wahl vor dem Verhandeln von Detailklauseln."
-                    : "Identifying the core commercial choice before getting lost in complex contractual wording."}
-                </p>
-              </div>
-
-              <div className="space-y-2 border-b border-charcoal/10 pb-6">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[#C0823E] font-bold block">02 / {lang === "DE" ? "DIE BEWERTUNG" : "THE ASSESSMENT"}</span>
-                <h3 className="font-serif text-lg font-semibold text-charcoal leading-snug">
-                  {lang === "DE"
-                    ? "Was ist rechtlich und wirtschaftlich wirklich relevant?"
-                    : "What matters legally and commercially?"}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed pt-1">
-                  {lang === "DE"
-                    ? "Abwägen rechtlicher Haftungsrisiken gegen kommerzielle Erträge, Preismechanismen und operative Steuerung."
-                    : "Weighing legal exposure against commercial value, pricing models, and operational risk controls."}
-                </p>
-              </div>
-
-              <div className="space-y-2 border-b border-charcoal/10 pb-6">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[#C0823E] font-bold block">03 / {lang === "DE" ? "DIE EMPFEHLUNG" : "THE RECOMMENDATION"}</span>
-                <h3 className="font-serif text-lg font-semibold text-charcoal leading-snug">
-                  {lang === "DE"
-                    ? "Welche Option sollte realistisch gewählt werden – und warum?"
-                    : "Which option should realistically be chosen—and why?"}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed pt-1">
-                  {lang === "DE"
-                    ? "Entwicklung eines klaren, umsetzbaren Weges statt defensiver Bedenkenträgerei oder vager Risikoaufzählungen."
-                    : "Developing a clear, actionable path instead of defaulting to defensive legal hedging or vague risk lists."}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                <span className="font-mono text-[9px] uppercase tracking-widest text-[#C0823E] font-bold block">04 / {lang === "DE" ? "DAS ERGEBNIS" : "THE OUTCOME"}</span>
-                <h3 className="font-serif text-lg font-semibold text-charcoal leading-snug">
-                  {lang === "DE"
-                    ? "Ein entscheidungstragendes Dokument, das das Management direkt nutzen kann."
-                    : "A decision-ready document that management can use immediately."}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed pt-1">
-                  {lang === "DE"
-                    ? "Ein prägnantes, strukturiertes Dokument, aufbereitet für Geschäftsführung, Beirat oder Investment Committee."
-                    : "A concise, structured executive document formatted specifically for leadership, boards, or investment committees."}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3: "FOKUS" (AREAS OF EXPERTISE) */}
-        <section id="fokus" className="py-16 md:py-24 border-b border-charcoal/10">
-          <div className="space-y-4 mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">03 / {d.fokus.title}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.fokus.subtitle}</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {d.fokus.items.map((item, i) => (
-              <div 
-                key={i} 
-                className="group border border-charcoal/15 bg-white p-6 md:p-8 flex flex-col justify-between transition-all hover:border-brand-red hover:shadow-sm"
-              >
-                <div className="space-y-4">
-                  {/* Giant Number Label */}
-                  <div className="flex justify-between items-baseline">
-                    <span className="font-mono text-3xl sm:text-4xl font-bold text-charcoal/20 group-hover:text-brand-red/35 transition-colors">
-                      {item.num}
-                    </span>
-                    <span className="w-2 h-2 rounded-full bg-charcoal/20 group-hover:bg-brand-red" />
-                  </div>
-                  
-                  <h3 className="font-display font-bold text-lg text-charcoal group-hover:text-brand-red transition-colors">
-                    {item.title}
-                  </h3>
-                  
-                  <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* Sublist mapping with clean grids */}
-                <div className="mt-6 pt-6 border-t border-charcoal/10">
-                  <ul className="grid grid-cols-1 gap-2">
-                    {item.details.map((detail, dIdx) => (
-                      <li key={dIdx} className="flex items-start text-xs font-mono text-charcoal/80 space-x-2">
-                        <Check className="h-3 w-3 text-brand-red mt-0.5 flex-shrink-0" />
-                        <span>{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Varda Legal Simulation */}
-          <div className="mt-16 border-t border-charcoal/10 pt-16 max-w-4xl mx-auto space-y-6">
-            <div className="text-center mb-8">
-              <span className="font-display text-xs font-bold tracking-[0.3em] text-[#1B2A4A] uppercase">VARDA LEGAL</span>
-            </div>
-            
-            <div className="border border-charcoal/15 bg-white p-6 md:p-8 shadow-sm rounded-none">
-              <div className="overflow-hidden relative bg-[#faf8f4] border border-charcoal/15 rounded-none">
-                {/* 17-Second Custom Simulation Player Header */}
-                <div className="absolute top-0 inset-x-0 p-3 flex justify-between items-center z-20 bg-[#faf8f4]/90 backdrop-blur-sm border-b border-charcoal/10 text-charcoal/70 font-mono text-[8px] uppercase tracking-widest select-none">
-                  <div className="flex items-center space-x-1.5 flex-row">
-                    <span className="w-1.5 h-1.5 bg-[#1B2A4A]" />
-                    <span>VARDA LEGAL</span>
-                  </div>
-                  <div>SEC 0:{(Math.floor(fffAnimTime)).toString().padStart(2, "0")} / 0:17</div>
-                </div>
- 
-                 {/* Main Render Area */}
-                <div className="aspect-[4/3] w-full flex items-center justify-center relative bg-[#faf8f4]">
-                  
-                  {/* Subtle technical background grid */}
-                  <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(28,27,25,0.025)_1px,transparent_1px),linear-gradient(to_bottom,rgba(28,27,25,0.025)_1px,transparent_1px)] bg-[size:11px_11px] pointer-events-none" />
- 
-                  {/* Render elements based on fffAnimTime */}
-                  <svg className="w-full h-full absolute inset-0" viewBox="0 0 600 450" fill="none">
-                    <defs>
-                      <linearGradient id="montBlack-port" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#252c38" />
-                        <stop offset="25%" stopColor="#0a0f18" />
-                        <stop offset="50%" stopColor="#020408" />
-                        <stop offset="85%" stopColor="#1e222b" />
-                        <stop offset="100%" stopColor="#05070a" />
-                      </linearGradient>
-
-                      <linearGradient id="platinumTrim-port" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#f1f5f9" />
-                        <stop offset="30%" stopColor="#94a3b8" />
-                        <stop offset="70%" stopColor="#cbd5e1" />
-                        <stop offset="100%" stopColor="#475569" />
-                      </linearGradient>
-
-                      <linearGradient id="goldTip-port" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#fef08a" />
-                        <stop offset="40%" stopColor="#ca8a04" />
-                        <stop offset="100%" stopColor="#8d6205" />
-                      </linearGradient>
-
-                      <linearGradient id="goldGrad-port" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0%" stopColor="#d4af37" />
-                        <stop offset="100%" stopColor="#8d6205" />
-                      </linearGradient>
-
-                      <radialGradient id="greenGlow-port" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="#10b981" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
-                      </radialGradient>
-                      <radialGradient id="orangeGlow-port" cx="50%" cy="50%" r="50%">
-                        <stop offset="0%" stopColor="#ea580c" stopOpacity="0.4" />
-                        <stop offset="100%" stopColor="#ea580c" stopOpacity="0" />
-                      </radialGradient>
-                    </defs>
-
-                    {/* ANIMATED SECTION 1 */}
-                    {fffAnimTime < 7.7 && (
-                      <g>
-                        {(() => {
-                          const cx = 300;
-                          const cy = 200;
-                          const t = fffAnimTime;
-                          let nodeScale = 1.0;
-                          if (t >= 6.1 && t < 6.9) {
-                            nodeScale = Math.max(0, 1.0 - (t - 6.1) / 0.8);
-                          } else if (t >= 6.9) {
-                            nodeScale = 0.0;
-                          }
-                          
-                          const ptsConfig = [
-                            { label: "IP Conflict", color: "#1B2A4A" },
-                            { label: "Tax Liability", color: "#1B2A4A" },
-                            { label: "VSOP Friction", color: "#C0823E" },
-                            { label: "Dilution Risk", color: "#C0823E" },
-                            { label: "Veto Clause", color: "#7F8287" },
-                            { label: "Bad Vesting", color: "#7F8287" },
-                            { label: "Asset Flaw", color: "#7F8287" },
-                          ];
-
-                          const neurons = ptsConfig.map((pt, i) => {
-                            const baseAngle = (i * 2 * Math.PI) / 7;
-                            const chaoticJitterX = Math.sin(t * (4.2 + i * 0.6) + i * 1.8) * 18;
-                            const chaoticJitterY = Math.cos(t * (4.8 - i * 0.5) - i * 1.2) * 15;
-                            const angle = baseAngle + t * 0.32;
-                            const baseRadius = 120;
-                            const rad = (baseRadius + Math.sin(t * 3.5 + i) * 10) * nodeScale;
-                            
-                            return {
-                             x: cx + Math.cos(angle) * rad + chaoticJitterX * nodeScale,
-                             y: cy + Math.sin(angle) * rad + chaoticJitterY * nodeScale,
-                             label: pt.label,
-                             color: pt.color,
-                            };
-                          });
-
-                          const microJunctions = Array.from({ length: 11 }).map((_, j) => {
-                            const microAngleBase = (j * 2 * Math.PI) / 11;
-                            const angle = microAngleBase - t * 0.24;
-                            const rJitterX = Math.cos(t * (3.1 + j * 0.4) + j) * 20;
-                            const rJitterY = Math.sin(t * (2.8 - j * 0.4) - j) * 18;
-                            const baseRadius = 65 + (j % 3) * 35;
-                            const rad = (baseRadius + Math.sin(t * 4 + j) * 8) * nodeScale;
-                            return {
-                              x: cx + Math.cos(angle) * rad + rJitterX * nodeScale,
-                              y: cy + Math.sin(angle) * rad + rJitterY * nodeScale,
-                              color: j % 2 === 0 ? "rgba(27, 42, 74, 0.15)" : "rgba(127, 130, 135, 0.12)"
-                            };
-                          });
-
-                          return (
-                            <g>
-                              <circle cx={cx} cy={cy} r={140 * nodeScale} stroke="rgba(28, 27, 25, 0.05)" strokeWidth="0.5" strokeDasharray="1, 4" />
-                              <circle cx={cx} cy={cy} r={100 * nodeScale} stroke="rgba(28, 27, 25, 0.04)" strokeWidth="0.5" strokeDasharray="2, 2" />
-                              <circle cx={cx} cy={cy} r={60 * nodeScale} stroke="rgba(28, 27, 25, 0.03)" strokeWidth="0.5" />
-
-                              {/* DENSE CONNECTIVE MESH LINES */}
-                              {neurons.map((n1, i) => {
-                                const connections = [(i + 1) % 7, (i + 2) % 7, (i + 3) % 7, (i + 4) % 7];
-                                return connections.map((nextIdx, cKey) => {
-                                  const n2 = neurons[nextIdx];
-                                  return (
-                                    <line
-                                      key={`ln-${i}-${cKey}`}
-                                      x1={n1.x}
-                                      y1={n1.y}
-                                      x2={n2.x}
-                                      y2={n2.y}
-                                      stroke={nodeScale > 0.4 ? "rgba(27, 42, 74, 0.06)" : "rgba(27, 42, 74, 0.12)"}
-                                      strokeWidth="0.5"
-                                    />
-                                  );
-                                });
-                              })}
-
-                              {microJunctions.map((mj1, j) => {
-                                const microConns = [(j + 1) % 11, (j + 3) % 11];
-                                return microConns.map((nextIdx, cKey) => {
-                                  const mj2 = microJunctions[nextIdx];
-                                  return (
-                                    <line
-                                      key={`mj-${j}-${cKey}`}
-                                      x1={mj1.x}
-                                      y1={mj1.y}
-                                      x2={mj2.x}
-                                      y2={mj2.y}
-                                      stroke={nodeScale > 0.4 ? "rgba(127, 130, 135, 0.04)" : "rgba(127, 130, 135, 0.08)"}
-                                      strokeWidth="0.4"
-                                    />
-                                  );
-                                });
-                              })}
-
-                              {neurons.map((n, i) => {
-                                const crossConns = [i % 11, (i + 4) % 11, (i + 7) % 11];
-                                return crossConns.map((mjIdx, cKey) => {
-                                  const mj = microJunctions[mjIdx];
-                                  return (
-                                    <line
-                                      key={`cross-${i}-${cKey}`}
-                                      x1={n.x}
-                                      y1={n.y}
-                                      x2={mj.x}
-                                      y2={mj.y}
-                                      stroke={nodeScale > 0.4 ? "rgba(27, 42, 74, 0.04)" : "rgba(27, 42, 74, 0.08)"}
-                                      strokeWidth="0.4"
-                                    />
-                                  );
-                                });
-                              })}
-
-                              {microJunctions.map((mj, j) => {
-                                if (nodeScale <= 0.02) return null;
-                                return (
-                                  <circle
-                                    key={`mj-dot-${j}`}
-                                    cx={mj.x}
-                                    cy={mj.y}
-                                    r="1.5"
-                                    fill={mj.color}
-                                    opacity={nodeScale * 0.4}
-                                  />
-                                );
-                              })}
-
-                              {neurons.map((n, i) => {
-                                const opacity = nodeScale;
-                                if (opacity <= 0.02) return null;
-
-                                return (
-                                  <g key={i} transform={`translate(${n.x}, ${n.y})`} style={{ opacity }}>
-                                    <rect x="-26" y="-8" width="52" height="16" fill="#faf8f4" stroke={n.color} strokeWidth="0.5" />
-                                    <rect x="-26" y="-8" width="2" height="16" fill={n.color} />
-                                    <text x="2" y="2" fill="#111115" fontSize="4.5" fontFamily="var(--font-mono)" letterSpacing="0.2px" fontWeight="600" textAnchor="middle">{n.label}</text>
-                                  </g>
-                                );
-                              })}
-
-                              <circle cx={cx} cy={cy} r={28} stroke={t >= 6.1 ? "#1B2A4A" : "#C0823E"} strokeWidth="0.5" strokeDasharray="2, 2" fill="none" />
-                              <circle cx={cx} cy={cy} r={6.5} fill={t >= 6.1 ? "#1B2A4A" : "#C0823E"} stroke="#faf8f4" strokeWidth="1" />
-                            </g>
-                          );
-                        })()}
-                      </g>
-                    )}
-
-                    {/* ANIMATED SECTION 2 */}
-                    {fffAnimTime >= 3.5 && fffAnimTime < 7.7 && (
-                      (() => {
-                        const t = fffAnimTime;
-                        let px = -240;
-                        const py = 200;
-
-                        if (t >= 3.5 && t < 6.1) {
-                          const pct = (t - 3.5) / 2.6;
-                          px = -240 + (300 - (-240)) * pct;
-                        } else {
-                          px = 300;
-                        }
-
-                        return (
-                          <g transform={`translate(${px}, ${py}) rotate(0)`}>
-                            <rect x="-6" y="-0.3" width="6" height="0.6" fill="#0f172a" />
-                            <polygon points="-16,-1.3 -6,-0.4 -6,0.4 -16,1.4" fill="url(#platinumTrim-port)" stroke="#1e293b" strokeWidth="0.2" />
-                            <rect x="-19" y="-1.5" width="3" height="3" fill="url(#platinumTrim-port)" stroke="#1e293b" strokeWidth="0.2" />
-                            <rect x="-56" y="-1.5" width="37" height="3" fill="#334155" stroke="#1e293b" strokeWidth="0.2" />
-                            <line x1="-51" y1="-1.5" x2="-51" y2="1.5" stroke="#94a3b8" strokeWidth="0.25" />
-                            <line x1="-46" y1="-1.5" x2="-46" y2="1.5" stroke="#94a3b8" strokeWidth="0.25" />
-                            <line x1="-41" y1="-1.5" x2="-41" y2="1.5" stroke="#94a3b8" strokeWidth="0.25" />
-                            <line x1="-36" y1="-1.5" x2="-36" y2="1.5" stroke="#94a3b8" strokeWidth="0.25" />
-                            <line x1="-31" y1="-1.5" x2="-31" y2="1.5" stroke="#94a3b8" strokeWidth="0.25" />
-                            <line x1="-26" y1="-1.5" x2="-26" y2="1.5" stroke="#94a3b8" strokeWidth="0.25" />
-                            <rect x="-58.5" y="-1.6" width="2.5" height="3.2" fill="url(#goldTip-port)" stroke="#8d6205" strokeWidth="0.15" />
-                            <rect x="-225" y="-1.5" width="166" height="3" fill="url(#platinumTrim-port)" stroke="#475569" strokeWidth="0.2" />
-                            <rect x="-220" y="-2.3" width="45" height="0.6" rx="0.1" fill="#1e293b" stroke="#334155" strokeWidth="0.1" />
-                            <rect x="-231" y="-1.5" width="6" height="3" fill="#1e293b" rx="0.2" />
-                            <rect x="-233" y="-1" width="2" height="2" rx="0.1" fill="url(#platinumTrim-port)" />
-                            <rect x="-227" y="-1.6" width="1" height="3.2" fill="url(#goldTip-port)" />
-                          </g>
-                        );
-                      })()
-                    )}
-
-                    {/* ANIMATED SECTION 3 */}
-                    {fffAnimTime >= 7.7 && (
-                      (() => {
-                        const t = fffAnimTime;
-                        const lines = [
-                          "Complexity demands action.",
-                          "Action requires decisions.",
-                          "We turn risk into decision intelligence.",
-                          "Quiet confidence. Strategic judgment."
-                        ];
-
-                        const targetStr = lines.join(" ");
-                        const progress = Math.min(1.0, Math.max(0, (t - 7.9) / 3.5));
-                        const charsTotal = targetStr.length;
-                        const charsToShow = Math.floor(progress * charsTotal);
-                        
-                        return (
-                          <g>
-                            <rect x="50" y="80" width="500" height="240" rx="0" fill="#ffffff" fillOpacity="0.98" stroke="rgba(28, 27, 25, 0.12)" strokeWidth="1" className="shadow-sm" />
-                            <text x="80" y="115" fill="#1B2A4A" fontSize="8" fontFamily="var(--font-display)" fontWeight="700" letterSpacing="2.5px">
-                              VARDA LEGAL | DECISION ARCHITECTURE
-                            </text>
-                            <line x1="80" y1="130" x2="520" y2="130" stroke="rgba(28, 27, 25, 0.08)" strokeWidth="0.8" />
-
-                            <g transform="translate(80, 168)">
-                              {(() => {
-                                let charsLeftToType = charsToShow;
-                                return lines.map((line, lIdx) => {
-                                  if (charsLeftToType <= 0 && progress < 0.99) return null;
-                                  const textToDisplay = progress >= 0.99 ? line : line.slice(0, charsLeftToType);
-                                  charsLeftToType -= line.length;
-                                  const isLastHighlightLine = lIdx === 3;
-                                  const isSolutionLine = lIdx === 2;
-
-                                  return (
-                                    <text
-                                      key={lIdx}
-                                      x="0"
-                                      y={lIdx * 34}
-                                      fill={isLastHighlightLine ? "#1B2A4A" : isSolutionLine ? "#111115" : "rgba(28,27,25,0.7)"}
-                                      fontSize={isLastHighlightLine ? "14" : "12.5"}
-                                      fontFamily={isLastHighlightLine ? "var(--font-display)" : "var(--font-sans)"}
-                                      fontWeight={isLastHighlightLine ? "700" : "500"}
-                                      letterSpacing={isLastHighlightLine ? "0.3px" : "0.1px"}
-                                      fontStyle={lIdx === 1 ? "italic" : "normal"}
-                                    >
-                                      {textToDisplay}
-                                      {charsLeftToType + line.length > 0 && charsLeftToType + line.length <= line.length && progress < 0.99 && (
-                                        <tspan fill="#1B2A4A" className="animate-pulse">_</tspan>
-                                      )}
-                                    </text>
-                                  );
-                                });
-                              })()}
-                            </g>
-
-                            <text x="80" y="295" fill="rgba(28,27,25,0.4)" fontSize="7" fontFamily="var(--font-mono)" letterSpacing="1px">
-                              © 2026 VARDA LEGAL • PRIVAT-EXPERTENBRIEFING • MÜNCHEN
-                            </text>
-                          </g>
-                        );
-                      })()
-                    )}
-                  </svg>
-                </div>
-
-                {/* Tracker Progress Indicator */}
-                <div className="absolute bottom-0 inset-x-0 h-1 bg-charcoal/5 relative z-10">
-                  <div className="absolute top-0 left-0 h-full bg-[#1B2A4A] transition-all duration-75" style={{ width: `${(fffAnimTime / 17) * 100}%` }} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SECTION 3: AREAS OF EXPERTISE / BERATUNGSBEREICHE */}
+        {/* SECTION 2: EXPERTISE / BERATUNGSBEREICHE */}
         <section id="fokus" className="py-20 md:py-28 border-b border-charcoal/10 bg-[#FAF8F4] relative">
           <div id="beratungsbereiche" className="scroll-mt-24" />
           
@@ -2537,7 +1811,7 @@ export default function App() {
               <span className="text-[#C0823E] font-semibold">{lang === "DE" ? "Beratungsbereiche" : "Areas of Expertise"}</span>
             </div>
             <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">
-              03 / {lang === "DE" ? "BERATUNGSBEREICHE" : "AREAS OF EXPERTISE"}
+              01 / {lang === "DE" ? "BERATUNGSBEREICHE" : "AREAS OF EXPERTISE"}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
               {lang === "DE"
@@ -2781,7 +2055,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 4: HOW VARDA WORKS / SO ARBEITET VARDA */}
+        {/* SECTION 3: VARDA APPROACH / SO ARBEITET VARDA */}
         <section id="methode" className="py-20 md:py-28 border-b border-charcoal/10 bg-white relative">
           <div id="so-arbeitet-varda" className="scroll-mt-24" />
           <div id="how-varda-works" className="scroll-mt-24" />
@@ -2794,7 +2068,7 @@ export default function App() {
               <span className="text-[#C0823E] font-semibold">{lang === "DE" ? "Arbeitsweise" : "How Varda Works"}</span>
             </div>
             <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">
-              03 / {lang === "DE" ? "SO ARBEITET VARDA" : "HOW VARDA WORKS"}
+              02 / {lang === "DE" ? "SO ARBEITET VARDA" : "HOW VARDA WORKS"}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
               {lang === "DE"
@@ -2938,374 +2212,86 @@ export default function App() {
             </div>
           </div>
 
-          {/* Section CTA Leading into What Varda Helps You Do */}
+          {/* Section CTA Leading into About Varda */}
           <div className="mt-14 pt-8 border-t border-charcoal/15">
             <a
-              href="#wobei-varda-unterstuetzt"
+              href="#wir"
               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold text-charcoal hover:text-[#C0823E] border-b border-charcoal/40 hover:border-[#C0823E] pb-1 transition-colors"
             >
-              <span>{lang === "DE" ? "Wobei Varda Sie unterstützt" : "See what Varda helps you do"}</span>
+              <span>{lang === "DE" ? "Über Dr. Konstantin Filbinger" : "About Dr. Konstantin Filbinger"}</span>
               <span className="font-sans font-normal">→</span>
             </a>
           </div>
         </section>
 
-        {/* SECTION 5: WHAT VARDA HELPS YOU DO / WOBEI VARDA SIE UNTERSTÜTZT */}
-        <section id="unterstuetzung" className="py-20 md:py-28 border-b border-charcoal/10 bg-white relative">
-          <div id="wobei-varda-unterstuetzt" className="scroll-mt-24" />
-          <div id="what-varda-helps-you-do" className="scroll-mt-24" />
-          <div id="produkte" className="scroll-mt-24" />
-          <div id="work-products" className="scroll-mt-24" />
-
-          {/* Section Header */}
-          <div className="space-y-4 mb-16 max-w-4xl">
-            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-charcoal/40">
-              <a href="#home" className="hover:text-charcoal transition-colors">Home</a>
-              <span>/</span>
-              <span className="text-[#C0823E] font-semibold">
-                {lang === "DE" ? "Unterstützung" : "What We Do"}
-              </span>
-            </div>
-            <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold">
-              04 / {lang === "DE" ? "WOBEI VARDA SIE UNTERSTÜTZT" : "WHAT VARDA HELPS YOU DO"}
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
-              {lang === "DE"
-                ? "Vom Vertragsentwurf bis zur nächsten unternehmerischen Entscheidung."
-                : "From drafting the agreement to recommending the next decision."}
-            </h2>
-            <p className="font-sans text-charcoal/80 text-base sm:text-lg leading-relaxed max-w-3xl pt-2">
-              {lang === "DE"
-                ? "Manche Mandate beginnen mit einem Vertragsentwurf. Andere mit einer schwierigen Entscheidung, bevor überhaupt ein Dokument entsteht. Varda begleitet Unternehmen entlang dieses gesamten Prozesses – von der rechtlichen Grundlage bis zur klaren Handlungsempfehlung."
-                : "Some mandates require carefully drafted legal documents. Others require commercially informed recommendations before anything is drafted. Varda supports businesses throughout this process—from creating the legal foundation to helping management make the next decision."}
-            </p>
-          </div>
-
-          {/* Four Substantial Editorial Modules (2x2 Grid) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 items-stretch">
-            {/* MODULE 01: Drafting & Negotiating Contracts */}
-            <div className="border border-charcoal/15 bg-white p-8 md:p-10 flex flex-col justify-between space-y-8 hover:border-charcoal/30 transition-all duration-300">
-              <div className="space-y-6">
-                <div className="flex justify-between items-center border-b border-charcoal/10 pb-4">
-                  <span className="font-mono text-xs font-bold text-[#C0823E] uppercase tracking-wider">
-                    01 / {lang === "DE" ? "Vertragsrecht" : "Contracts"}
-                  </span>
-                  <div className="p-1.5 bg-[#FAF8F4] border border-charcoal/10">
-                    <FileText className="w-4 h-4 text-[#C0823E]" strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-charcoal">
-                    {lang === "DE" ? "Verträge entwerfen & verhandeln" : "Drafting & Negotiating Contracts"}
-                  </h3>
-                  <p className="font-sans text-sm sm:text-base text-charcoal/80 leading-relaxed">
-                    {lang === "DE"
-                      ? "Verträge bestimmen, wie Unternehmen zusammenarbeiten. Varda entwirft, prüft und verhandelt Verträge, die das wirtschaftliche Ziel abbilden und rechtliche Risiken bewusst verteilen."
-                      : "Contracts define how businesses work together. Varda drafts, reviews and negotiates agreements that reflect the commercial objective while allocating legal risk consciously."}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold block">
-                    [ {lang === "DE" ? "BEISPIELE" : "REPRESENTATIVE MATTERS"} ]
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs sm:text-sm text-charcoal/85">
-                    {(lang === "DE" ? [
-                      "SaaS-Verträge",
-                      "Softwarelizenzverträge",
-                      "Kundenverträge",
-                      "Lieferantenverträge",
-                      "Technologieverträge",
-                      "Kooperationsverträge",
-                      "Rahmenverträge",
-                      "Allgemeine Geschäftsbedingungen",
-                      "Einkaufsverträge"
-                    ] : [
-                      "SaaS Agreements",
-                      "Software Licences",
-                      "Customer Agreements",
-                      "Supplier Agreements",
-                      "Technology Agreements",
-                      "Cooperation Agreements",
-                      "Framework Agreements",
-                      "General Terms & Conditions",
-                      "Procurement Documentation"
-                    ]).map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C0823E] flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+        {/* SECTION 4: WHAT YOU GET / WAS SIE BEKOMMEN */}
+        <section id="beispiel-output" className="py-20 md:py-28 border-b border-charcoal/10 bg-[#FAF8F4] relative">
+          <div id="what-you-get" className="scroll-mt-24" />
+          <div className="mx-auto max-w-7xl px-4 md:px-8">
+            
+            {/* Section Header */}
+            <div className="space-y-4 mb-12 sm:mb-16 max-w-3xl">
+              <div className="flex items-center gap-2 font-mono text-[10px] sm:text-xs text-[#C0823E] font-bold uppercase tracking-widest">
+                <span className="w-1.5 h-1.5 bg-[#C0823E] rounded-full" />
+                <span>04 / {lang === "DE" ? "WAS SIE BEKOMMEN" : "WHAT YOU GET"}</span>
               </div>
+              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
+                {lang === "DE" 
+                  ? "Sie sollten wissen, was als Nächstes zu tun ist." 
+                  : "You should know what to do next."}
+              </h2>
+              <p className="font-sans text-charcoal/80 text-base sm:text-lg leading-relaxed pt-2">
+                {lang === "DE"
+                  ? "Gute Rechtsberatung sollte die nächste Entscheidung erleichtern. Varda verdichtet die relevanten rechtlichen, wirtschaftlichen und operativen Erwägungen zu einer klaren Empfehlung und einem konkreten nächsten Schritt."
+                  : "Good legal advice should make the next decision easier. Varda reduces the relevant legal, commercial and operational considerations to a clear recommendation and concrete next step."}
+              </p>
+            </div>
 
-              <div className="border-t border-charcoal/10 pt-4 mt-auto">
-                <p className="font-serif italic text-charcoal/90 text-sm sm:text-base">
+            {/* Restrained Editorial Decision Example */}
+            <div className="max-w-4xl border border-charcoal/15 bg-white p-6 sm:p-10 md:p-12 shadow-2xs">
+              
+              {/* 1. RECOMMENDATION */}
+              <div className="space-y-3 pb-8 border-b border-charcoal/15">
+                <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold block">
+                  {lang === "DE" ? "EMPFEHLUNG" : "RECOMMENDATION"}
+                </span>
+                <p className="font-serif text-xl sm:text-2xl md:text-3xl font-medium text-charcoal leading-snug">
                   {lang === "DE"
-                    ? "Ein guter Vertrag unterstützt das Geschäft – nicht nur die Rechtsposition."
-                    : "Every contract should support the business—not merely document it."}
+                    ? "Option B umsetzen. Verbleibendes rechtliches Risiko akzeptieren, aber vor der Unterzeichnung operativ absichern."
+                    : "Proceed with Option B. Accept the remaining legal risk, but address it operationally before signing."}
                 </p>
               </div>
-            </div>
 
-            {/* MODULE 02: Building Corporate Structures */}
-            <div className="border border-charcoal/15 bg-white p-8 md:p-10 flex flex-col justify-between space-y-8 hover:border-charcoal/30 transition-all duration-300">
-              <div className="space-y-6">
-                <div className="flex justify-between items-center border-b border-charcoal/10 pb-4">
-                  <span className="font-mono text-xs font-bold text-[#C0823E] uppercase tracking-wider">
-                    02 / {lang === "DE" ? "Gesellschaftsrecht" : "Corporate"}
-                  </span>
-                  <div className="p-1.5 bg-[#FAF8F4] border border-charcoal/10">
-                    <Building className="w-4 h-4 text-[#C0823E]" strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-charcoal">
-                    {lang === "DE" ? "Gesellschaftsstrukturen gestalten" : "Building Corporate Structures"}
-                  </h3>
-                  <p className="font-sans text-sm sm:text-base text-charcoal/80 leading-relaxed">
-                    {lang === "DE"
-                      ? "Unternehmen brauchen Strukturen, die auch bei Wachstum, neuen Gesellschaftern und veränderten Prioritäten funktionieren."
-                      : "Companies require structures that continue to work as ownership, management and commercial priorities evolve."}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold block">
-                    [ {lang === "DE" ? "BEISPIELE" : "REPRESENTATIVE WORK"} ]
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs sm:text-sm text-charcoal/85">
-                    {(lang === "DE" ? [
-                      "Gründungen",
-                      "Satzungen",
-                      "Gesellschaftervereinbarungen",
-                      "Founder Vesting",
-                      "VSOP",
-                      "Kapitalmaßnahmen",
-                      "Holdingstrukturen",
-                      "Anteilsübertragungen",
-                      "Reorganisationen"
-                    ] : [
-                      "Company Formation",
-                      "Articles of Association",
-                      "Shareholders' Agreements",
-                      "Founder Vesting",
-                      "VSOP",
-                      "Capital Measures",
-                      "Holding Structures",
-                      "Share Transfers",
-                      "Corporate Reorganisations"
-                    ]).map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C0823E] flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-charcoal/10 pt-4 mt-auto">
-                <p className="font-serif italic text-charcoal/90 text-sm sm:text-base">
+              {/* 2. WHY */}
+              <div className="space-y-3 py-8 border-b border-charcoal/15">
+                <span className="font-mono text-xs uppercase tracking-widest text-charcoal/50 font-bold block">
+                  {lang === "DE" ? "WARUM" : "WHY"}
+                </span>
+                <p className="font-sans text-base sm:text-lg text-charcoal/85 leading-relaxed">
                   {lang === "DE"
-                    ? "Gute Strukturen erleichtern spätere Entscheidungen."
-                    : "Good structures make future decisions easier."}
+                    ? "Option A würde das rechtliche Risiko weiter reduzieren, aber die Umsetzung verzögern und unverhältnismäßige wirtschaftliche Kosten verursachen."
+                    : "Option A reduces legal exposure further, but would delay implementation and create disproportionate commercial cost."}
                 </p>
               </div>
-            </div>
 
-            {/* MODULE 03: Contract Intelligence */}
-            <div className="border border-charcoal/15 bg-white p-8 md:p-10 flex flex-col justify-between space-y-8 hover:border-charcoal/30 transition-all duration-300">
-              <div className="space-y-6">
-                <div className="flex justify-between items-center border-b border-charcoal/10 pb-4">
-                  <span className="font-mono text-xs font-bold text-[#C0823E] uppercase tracking-wider">
-                    03 / Contract Intelligence
-                  </span>
-                  <div className="p-1.5 bg-[#FAF8F4] border border-charcoal/10">
-                    <Layers className="w-4 h-4 text-[#C0823E]" strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-charcoal">
-                    Contract Intelligence
-                  </h3>
-                  <p className="font-sans text-sm sm:text-base text-charcoal/80 leading-relaxed">
-                    {lang === "DE"
-                      ? "Wichtige Verträge verdienen mehr als eine rein juristische Prüfung. Contract Intelligence verbindet rechtliche Analyse mit wirtschaftlicher Priorisierung."
-                      : "Important contracts deserve more than a legal review. Contract Intelligence combines legal analysis with commercial prioritisation."}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold block">
-                    [ {lang === "DE" ? "TYPISCHER INHALT" : "TYPICAL OUTPUT"} ]
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs sm:text-sm text-charcoal/85">
-                    {(lang === "DE" ? [
-                      "rechtliche Bewertung",
-                      "wirtschaftliche Folgen",
-                      "Verhandlungsschwerpunkte",
-                      "Risikoeinstufung",
-                      "Handlungsempfehlungen",
-                      "operative Alternativen",
-                      "Executive Summary"
-                    ] : [
-                      "Legal assessment",
-                      "Commercial implications",
-                      "Negotiation priorities",
-                      "Risk classification",
-                      "Recommended changes",
-                      "Operational alternatives",
-                      "Executive summary"
-                    ]).map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C0823E] flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-charcoal/10 pt-4 mt-auto">
-                <p className="font-serif italic text-charcoal/90 text-sm sm:text-base">
+              {/* 3. NEXT STEP */}
+              <div className="space-y-3 pt-8">
+                <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold block">
+                  {lang === "DE" ? "NÄCHSTER SCHRITT" : "NEXT STEP"}
+                </span>
+                <p className="font-sans text-base sm:text-lg font-semibold text-charcoal leading-relaxed">
                   {lang === "DE"
-                    ? "Das Management erkennt sofort, was wirklich entscheidend ist."
-                    : "Management sees what matters—not just what is legally possible."}
+                    ? "Die zwei kritischen Klauseln anpassen, die operative Schutzmaßnahme bestätigen und zur Unterschrift übergehen."
+                    : "Amend the two critical clauses, confirm the operational safeguard and proceed to signature."}
                 </p>
               </div>
+
             </div>
 
-            {/* MODULE 04: Executive Clarity */}
-            <div className="border border-charcoal/15 bg-white p-8 md:p-10 flex flex-col justify-between space-y-8 hover:border-charcoal/30 transition-all duration-300">
-              <div className="space-y-6">
-                <div className="flex justify-between items-center border-b border-charcoal/10 pb-4">
-                  <span className="font-mono text-xs font-bold text-[#C0823E] uppercase tracking-wider">
-                    04 / Executive Clarity
-                  </span>
-                  <div className="p-1.5 bg-[#FAF8F4] border border-charcoal/10">
-                    <Zap className="w-4 h-4 text-[#C0823E]" strokeWidth={1.5} />
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-charcoal">
-                    Executive Clarity
-                  </h3>
-                  <p className="font-sans text-sm sm:text-base text-charcoal/80 leading-relaxed">
-                    {lang === "DE"
-                      ? "Manche Situationen erfordern zunächst eine klare Empfehlung – bevor Verträge entstehen. Executive Clarity verdichtet Rechtslage, wirtschaftliche Folgen und realistische Handlungsoptionen zu einer entscheidungsreifen Empfehlung."
-                      : "Some situations require a recommendation before documents are drafted. Executive Clarity condenses legal analysis, commercial consequences and realistic options into one decision-ready recommendation."}
-                  </p>
-                </div>
-
-                <div className="space-y-3 pt-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold block">
-                    [ {lang === "DE" ? "TYPISCHER INHALT" : "TYPICAL OUTPUT"} ]
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-sans text-xs sm:text-sm text-charcoal/85">
-                    {(lang === "DE" ? [
-                      "Fragestellung",
-                      "wirtschaftlicher Kontext",
-                      "Rechtslage",
-                      "Optionen",
-                      "Empfehlung",
-                      "Nächste Schritte"
-                    ] : [
-                      "Business question",
-                      "Commercial context",
-                      "Legal assessment",
-                      "Options",
-                      "Recommendation",
-                      "Next steps"
-                    ]).map((item, idx) => (
-                      <div key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#C0823E] flex-shrink-0" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="border-t border-charcoal/10 pt-4 mt-auto">
-                <p className="font-serif italic text-charcoal/90 text-sm sm:text-base">
-                  {lang === "DE"
-                    ? "Beratung, die unmittelbar umgesetzt werden kann."
-                    : "Advice that management can act upon immediately."}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Section Conclusion (Serif quote statement) */}
-          <div className="w-full h-[1px] bg-charcoal/15 my-14" />
-
-          <div className="max-w-4xl py-2">
-            <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-charcoal leading-[1.25]">
-              {lang === "DE"
-                ? "Verträge schaffen Sicherheit. Gute Empfehlungen schaffen Handlungsfähigkeit."
-                : "Legal documents create certainty. Good recommendations create momentum."}
-            </p>
-          </div>
-
-          {/* Primary & Secondary CTAs */}
-          <div className="mt-10 pt-8 border-t border-charcoal/15 flex flex-wrap items-center gap-6">
-            <button
-              onClick={() => handleNavigateToConsult(lang === "DE" ? "Erstgespräch Anliegen" : "Discuss Matter")}
-              className="px-6 py-3.5 bg-[#1C1B19] text-[#FAF8F4] font-mono text-xs uppercase tracking-widest font-bold hover:bg-[#C0823E] transition-colors cursor-pointer flex items-center gap-2"
-            >
-              <span>{lang === "DE" ? "Anliegen besprechen" : "Discuss your matter"}</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
-
-            <button
-              onClick={() => setIsImageModalOpen(true)}
-              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest font-bold text-charcoal hover:text-[#C0823E] border-b border-charcoal/40 hover:border-[#C0823E] pb-1 transition-colors cursor-pointer"
-            >
-              <span>{lang === "DE" ? "Executive Clarity ansehen" : "See Executive Clarity"}</span>
-              <span className="font-sans font-normal">→</span>
-            </button>
-          </div>
-
-          {/* Small Navigator Teaser Panel */}
-          <div className="bg-[#FAF8F4] border-t-2 border-[#C0823E] border-x border-b border-charcoal/15 p-6 sm:p-8 mt-16 max-w-5xl">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <div className="space-y-3 max-w-3xl">
-                <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold">
-                  <Compass className="w-4 h-4 text-[#C0823E]" />
-                  <span>[ {lang === "DE" ? "KOSTENLOSES TOOL" : "FREE TOOL"} ]</span>
-                </div>
-                <h3 className="font-serif text-xl sm:text-2xl font-medium text-charcoal">
-                  {lang === "DE" ? "Sie wissen noch nicht, wo Sie anfangen sollen?" : "Not sure where to start?"}
-                </h3>
-                <p className="font-sans text-xs sm:text-sm text-charcoal/75 leading-relaxed">
-                  {lang === "DE"
-                    ? "Der Varda Navigator hilft Ihnen dabei, typische gesellschaftsrechtliche und vertragsrechtliche Fragestellungen systematisch einzuordnen. Er ersetzt keine Rechtsberatung, kann Ihnen aber helfen, sich vorzubereiten und die richtigen Fragen für das Gespräch zu identifizieren."
-                    : "Explore the Varda Navigator to work through common corporate and commercial questions before speaking with us. It won't replace legal advice, but it may help you understand the issues, prepare for a conversation and identify the questions that matter most."}
-                </p>
-              </div>
-              <div className="flex-shrink-0 pt-2 md:pt-0">
-                <button
-                  onClick={() => {
-                    setCurrentView("navigator");
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="px-5 py-3 border border-charcoal/30 bg-white hover:border-[#C0823E] hover:text-[#C0823E] font-mono text-xs uppercase tracking-widest font-bold text-charcoal transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap"
-                >
-                  <span>{lang === "DE" ? "Varda Navigator öffnen" : "Open Varda Navigator"}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* SECTION 5: "ÜBER VARDA" / ABOUT (PHILOSOPHY & KONSTANTIN FILBINGER) */}
+        {/* SECTION 5: KONSTANTIN FILBINGER */}
         <section id="wir" className="py-20 md:py-28 border-b border-charcoal/10 bg-white relative">
           <div id="uber-varda" className="scroll-mt-24" />
           <div id="about" className="scroll-mt-24" />
@@ -3499,612 +2485,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* SECTION 6: "DECISION NOTES" (EDITORIAL PERSPECTIVES ON BUSINESS DECISIONS) */}
-        <section id="denkwerk" className="py-20 md:py-32 border-b border-charcoal/10 bg-[#FAF8F5]/30 relative">
-          <div id="decision-notes" className="scroll-mt-24" />
-          <div id="insights" className="scroll-mt-24" />
-          <div id="einblicke" className="scroll-mt-24" />
-
-          {/* Section Header & Editorial Positioning */}
-          <div className="space-y-6 mb-16 max-w-4xl">
-            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-charcoal/40">
-              <a href="#home" className="hover:text-charcoal transition-colors">Home</a>
-              <span>/</span>
-              <span className="text-[#C0823E] font-semibold">DECISION NOTES</span>
-            </div>
-            
-            <div className="space-y-2">
-              <span className="font-mono text-xs uppercase tracking-widest text-[#C0823E] font-bold block">
-                06 / DECISION NOTES
-              </span>
-              <p className="font-mono text-xs text-charcoal/60">
-                {lang === "DE"
-                  ? "Gedanken, Beobachtungen und praktische Perspektiven aus Gesellschaftsrecht, Vertragsrecht und Technologierecht."
-                  : "Ideas, observations and practical perspectives from corporate, commercial and technology law."}
-              </p>
-            </div>
-
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
-              {lang === "DE"
-                ? "Unternehmerische Entscheidungen verdienen bessere rechtliche Denkanstöße."
-                : "Business decisions deserve better legal thinking."}
-            </h2>
-
-            {/* Introductory Manifesto */}
-            <div className="pt-2 font-sans text-sm sm:text-base text-charcoal/80 leading-relaxed max-w-3xl space-y-2">
-              <p>
-                {lang === "DE"
-                  ? "Manche rechtliche Fragen lassen sich nicht mit einer einzelnen Vorschrift beantworten. Sie erfordern Urteilsvermögen."
-                  : "Some legal questions cannot be answered with a single rule. They require judgement."}
-              </p>
-              <p>
-                {lang === "DE"
-                  ? "Decision Notes zeigen anhand praktischer Situationen und Beobachtungen, wie wirtschaftliches Denken und juristische Präzision zusammenwirken."
-                  : "Decision Notes explore the commercial thinking behind legal advice through practical examples, observations and real-world situations."}
-              </p>
-            </div>
-          </div>
-
-          {/* Curated Editorial Selection */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 pt-8 border-t border-charcoal/15">
-            {d.denkwerk.articles.filter((article) => article.id === "vertraege-risiko").map((article) => {
-              return (
-                <article
-                  key={article.id}
-                  className="flex flex-col justify-between space-y-6 bg-white border border-charcoal/10 p-6 sm:p-8 hover:border-[#C0823E]/50 transition-colors duration-300 group"
-                >
-                  <div className="space-y-4">
-                    {/* Category Label */}
-                    <div className="font-mono text-[10px] tracking-widest text-[#C0823E] uppercase font-bold border-b border-charcoal/10 pb-2 flex items-center justify-between">
-                      <span>{article.category}</span>
-                      <span className="text-charcoal/40 font-normal">{article.date}</span>
-                    </div>
-
-                    {/* Editorial Article Title */}
-                    <h3
-                      onClick={() => setSelectedArticle(article)}
-                      className="font-serif text-xl sm:text-2xl font-medium tracking-tight text-charcoal leading-snug group-hover:text-[#C0823E] transition-colors duration-200 cursor-pointer"
-                    >
-                      {article.title}
-                    </h3>
-
-                    {/* Teaser Paragraph */}
-                    <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed font-normal">
-                      {article.excerpt}
-                    </p>
-                  </div>
-
-                  <div className="pt-4 border-t border-charcoal/10 flex items-center justify-between font-mono text-[10px] uppercase tracking-widest">
-                    <span className="text-charcoal/50">{article.readingTime}</span>
-                    
-                    <button
-                      onClick={() => setSelectedArticle(article)}
-                      className="inline-flex items-center space-x-1.5 text-[#C0823E] group-hover:text-charcoal font-bold transition-colors cursor-pointer"
-                    >
-                      <span>{d.denkwerk.readMore}</span>
-                      <ChevronRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-                    </button>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-
-          {/* Editorial Quote Block */}
-          <div className="my-20 py-12 px-6 sm:px-12 border-y border-charcoal/15 bg-white text-center max-w-4xl mx-auto space-y-3">
-            <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-charcoal leading-snug font-medium">
-              {lang === "DE"
-                ? "Gute Rechtsberatung sollte schwierige Entscheidungen einfacher machen – nicht nur erklären, warum sie schwierig sind."
-                : "Good legal advice should make complex decisions easier—not merely explain why they are difficult."}
-            </p>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold block pt-2">
-              — DECISION NOTES • VARDA LEGAL
-            </span>
-          </div>
-
-          {/* Call to Action: Explore All Decision Notes */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 bg-[#1C1B19] text-[#FAF8F4] p-8 md:p-10">
-            <div className="space-y-2 max-w-2xl text-left">
-              <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold">
-                [ {lang === "DE" ? "KANZLEI-ARCHIV" : "EDITORIAL ARCHIVE"} ]
-              </span>
-              <h3 className="font-serif text-xl sm:text-2xl font-medium text-[#FAF8F4]">
-                {lang === "DE" ? "Vertiefende Beiträge & Kompendium" : "In-depth Analyses & Compendium"}
-              </h3>
-              <p className="font-sans text-xs sm:text-sm text-[#FAF8F4]/75 leading-relaxed">
-                {lang === "DE"
-                  ? "Greifen Sie auf das vollständige Varda-Archiv mit juristischen Analysen und Leitfäden zu."
-                  : "Access our full publication library with in-depth legal analyses and strategic decision briefs."}
-              </p>
-            </div>
-
-            <div className="shrink-0 w-full sm:w-auto">
-              <button
-                onClick={() => setIsKompendiumOpen(true)}
-                className="w-full sm:w-auto px-6 py-3.5 bg-[#C0823E] text-white hover:bg-[#a66d30] font-mono text-xs uppercase tracking-widest font-bold transition-colors cursor-pointer inline-flex items-center justify-center gap-2"
-              >
-                <span>{d.denkwerk.all}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* DETAILED ARTICLE EXPANSION DRAWER/MODAL (Unmistakably Premium European Publication Style) */}
-          <AnimatePresence>
-            {selectedArticle && (
-              <div 
-                className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/40 backdrop-blur-sm flex items-start md:items-center justify-center pt-24 pb-6 px-4 sm:pt-28 sm:pb-8 sm:px-6 md:p-10"
-                onClick={() => setSelectedArticle(null)}
-              >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98, y: 15 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full max-w-4xl bg-[#FAF8F5] border border-charcoal/15 p-6 sm:p-10 md:p-16 shadow-2xl flex flex-col justify-between rounded-[2px] max-h-[78vh] sm:max-h-[82vh] md:max-h-[92vh] overflow-y-auto relative"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="space-y-10">
-                    {/* Editorial Top bar */}
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-charcoal/10 font-mono text-[10px] uppercase tracking-widest text-charcoal/40">
-                      <div className="flex items-center gap-2">
-                        <button
-                          onClick={() => setSelectedArticle(null)}
-                          className="group inline-flex items-center space-x-1.5 text-charcoal/60 hover:text-charcoal transition-colors focus:outline-none cursor-pointer"
-                        >
-                          <span className="text-sm font-light tracking-normal transition-transform group-hover:-translate-x-1">←</span>
-                          <span className="font-mono font-medium">{d.denkwerk.back}</span>
-                        </button>
-                        <span>/</span>
-                        <a href="#denkwerk" onClick={() => setSelectedArticle(null)} className="hover:text-charcoal transition-colors">
-                          {lang === "DE" ? "Einblicke" : "Insights"}
-                        </a>
-                        <span>/</span>
-                        <span className="text-charcoal font-semibold truncate max-w-[180px] sm:max-w-[280px]">
-                          {selectedArticle.title}
-                        </span>
-                      </div>
-                      <div className="border border-charcoal/20 px-3 py-1 font-mono font-semibold text-charcoal/70 bg-transparent rounded-sm uppercase tracking-wider">
-                        [ {selectedArticle.category} ]
-                      </div>
-                    </div>
-
-                    {/* Article Body Columns Style Layout */}
-                    <div className="space-y-8">
-                      {/* Publication Date and Title */}
-                      <div className="space-y-4">
-                        <div className="flex items-center space-x-4 font-mono text-xs text-charcoal/50">
-                          <span>{selectedArticle.date}</span>
-                          <span>•</span>
-                          <span>{selectedArticle.readingTime}</span>
-                          <span>•</span>
-                          <span className="italic">{lang === "DE" ? "Schriftenreihe Varda" : "Varda Publications"}</span>
-                        </div>
-                        
-                        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.1] max-w-3xl">
-                          {selectedArticle.title}
-                        </h1>
-                      </div>
-
-                      <div className="h-[1px] w-28 bg-charcoal/30" />
-
-                      {/* Asymmetric layout: Side Index Table + Content Pillar */}
-                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 pt-4">
-                        
-                        {/* Side Archival Meta-Index Column */}
-                        <div className="lg:col-span-4 h-full flex flex-col justify-between shrink-0 space-y-6 lg:border-r lg:border-charcoal/10 lg:pr-8 font-mono text-[10px] uppercase tracking-widest text-[#947444]/80">
-                          <div className="space-y-4">
-                            <div className="border-b border-charcoal/5 pb-2">
-                              <span className="text-charcoal/30 block mb-1">[ GRÜNDER / AUTOR ]</span>
-                              <span className="text-charcoal/80 font-semibold">Dr. Konstantin Filbinger</span>
-                            </div>
-                            <div className="border-b border-charcoal/5 pb-2">
-                              <span className="text-charcoal/30 block mb-1">[ RECHTSGEBIET ]</span>
-                              <span className="text-charcoal/80 font-semibold">{selectedArticle.category}</span>
-                            </div>
-                            <div className="border-b border-charcoal/5 pb-2">
-                              <span className="text-charcoal/30 block mb-1">[ HERAUSGEBER ]</span>
-                              <span className="text-charcoal/80 font-semibold">Varda Legal • München</span>
-                            </div>
-                            <div className="pb-2">
-                              <span className="text-charcoal/30 block mb-1">[ STATUS ]</span>
-                              <span className="text-charcoal/80 font-semibold">Veröffentlicht • Volltext</span>
-                            </div>
-                          </div>
-                          
-                          <div className="hidden lg:block pt-8 text-[9px] text-[#947444]/65 italic leading-relaxed prose prose-sm font-serif lowercase">
-                            "veritate et fide — dem recht gedient, dem fortschritt verpflichtet."
-                          </div>
-                        </div>
-
-                        {/* Core Content Reading Pillar */}
-                        <div className="lg:col-span-8 space-y-8">
-                          {/* Excerpt */}
-                          <div className="font-serif text-lg sm:text-xl text-charcoal/85 leading-relaxed font-light italic py-2 bg-transparent select-text">
-                            {selectedArticle.excerpt}
-                          </div>
-
-                          {/* Render Rich Body Sections */}
-                          <div className="prose prose-stone max-w-none text-charcoal/85 leading-relaxed font-sans text-sm sm:text-base space-y-6 select-text">
-                            {selectedArticle.content.split("\n\n").map((para, pIdx) => {
-                              const cleanPara = para.replace(/[„“"']/g, "").trim();
-
-                              const isTokenPullQuote = cleanPara.includes("Token-Recovery-Fälle sind keine Technologie-Probleme") || 
-                                                       cleanPara.includes("Token recovery cases are not technology problems");
-
-                              const isUnternehmensPullQuote = cleanPara.includes("Ein Unternehmenskauf beginnt mit Dokumenten") || 
-                                                              cleanPara.includes("A company sale begins with documents");
-
-                              const isVertraegePullQuote = cleanPara.includes("Gute Verträge entstehen nicht am Verhandlungstisch") ||
-                                                           cleanPara.includes("Good contracts are not created at the negotiating table");
-
-                              if (isTokenPullQuote || isUnternehmensPullQuote || isVertraegePullQuote) {
-                                return (
-                                  <div key={pIdx} className="py-20 sm:py-28 my-14 sm:my-20 text-center select-all bg-transparent w-full">
-                                    <div className="max-w-4xl mx-auto px-6">
-                                      <p className="font-serif text-2xl sm:text-3xl md:text-4xl text-charcoal/90 leading-[1.6] font-light tracking-tight italic">
-                                        {cleanPara}
-                                      </p>
-                                    </div>
-                                  </div>
-                                );
-                              }
-
-                              if (para.startsWith("### ")) {
-                                const isTokenFirstHeading = para.startsWith("### Wer beherrscht das Problem?") || 
-                                                            para.startsWith("### Who Controls the Problem?");
-                                                            
-                                const isMnaFirstHeading = para.startsWith("### Ein guter Datenraum entsteht Jahre vor dem Verkauf") ||
-                                                          para.startsWith("### A Good Data Room is Built Years Before the Sale");
-                                                          
-                                const isVertraegeFirstHeading = para.startsWith("### Zwei Funktionen eines Vertrags") ||
-                                                                para.startsWith("### Two Functions of a Contract");
-                                                                
-                                const isMnaInteractiveHeading = para.startsWith("### Gesunde Dynamik ist ein Asset") || 
-                                                                para.startsWith("### Healthy Momentum is an Asset");
-                                return (
-                                  <React.Fragment key={pIdx}>
-                                    {isTokenFirstHeading && (
-                                      <div className="py-12 sm:py-20 my-8 flex flex-col items-center w-full select-all bg-transparent">
-                                        <img 
-                                          src={lang === "DE" ? tokenRecoveryImage : tokenRecoveryImageEng}                                          alt="Varda Decision Architecture No. 01: Token Recovery" 
-                                          className="w-full max-w-4xl h-auto object-contain"
-                                          referrerPolicy="no-referrer"
-                                        />
-                                      </div>
-                                    )}
-                                    {isMnaFirstHeading && (
-                                      <div className="py-12 sm:py-20 my-8 flex flex-col items-center w-full select-all bg-transparent">
-                                        <img 
-                                          src={lang === "DE" ? unternehmensverkaufImage : unternehmensverkaufImageEng}                                          alt="Varda Decision Architecture No. 02: Der Unternehmensverkauf" 
-                                          className="w-full max-w-4xl h-auto object-contain"
-                                          referrerPolicy="no-referrer"
-                                        />
-                                      </div>
-                                    )}
-                                    {isVertraegeFirstHeading && (
-                                      <div className="py-12 sm:py-20 my-8 flex flex-col items-center w-full select-all bg-transparent">
-                                        <img 
-                                          src={lang === "DE" ? vertraegeImage : vertraegeImageEng}                                          alt="Varda Decision Architecture No. 03: Verträge" 
-                                          className="w-full max-w-4xl h-auto object-contain"
-                                          referrerPolicy="no-referrer"
-                                        />
-                                      </div>
-                                    )}
-                                    {isMnaInteractiveHeading && (
-                                      <div className="py-12 sm:py-24 my-10 flex flex-col items-center w-full select-all bg-transparent">
-                                        <div className="w-full max-w-4xl mx-auto">
-                                          <MnaDecisionArchitecture lang={lang} />
-                                        </div>
-                                      </div>
-                                    )}
-                                    <h3 className="font-serif text-lg sm:text-xl md:text-2xl font-medium text-charcoal pt-8 border-b border-charcoal/10 pb-2 mb-4 leading-normal">
-                                      {para.replace("### ", "")}
-                                    </h3>
-                                  </React.Fragment>
-                                );
-                              }
-                              if (para.startsWith("#### ")) {
-                                return (
-                                  <h4 key={pIdx} className="font-serif text-base font-semibold text-charcoal pt-6 italic">
-                                    {para.replace("#### ", "")}
-                                  </h4>
-                                );
-                              }
-                              if (para.includes("\n- ") || para.includes("\n* ") || para.startsWith("- ") || para.startsWith("* ")) {
-                                const lines = para.split("\n");
-                                return (
-                                  <div key={pIdx} className="space-y-3 font-sans text-sm sm:text-base text-charcoal/85 leading-relaxed font-light my-4">
-                                    {lines.map((line, lIdx) => {
-                                      if (line.trim().startsWith("- ") || line.trim().startsWith("* ")) {
-                                        return (
-                                          <div key={lIdx} className="flex items-start space-x-3 pl-4 sm:pl-6 leading-relaxed">
-                                            <span className="text-[#947444] text-[10px] mt-2 select-none">•</span>
-                                            <span className="flex-1 text-charcoal/80">{line.trim().replace(/^[\-\*]\s+/, "")}</span>
-                                          </div>
-                                        );
-                                      }
-                                      return (
-                                        <p key={lIdx} className="mb-2 text-charcoal/85 font-light">
-                                          {line}
-                                        </p>
-                                      );
-                                    })}
-                                  </div>
-                                );
-                              }
-                              if (para.match(/^\d+\.\s+/) || para.includes("\n1. ") || para.includes("\n2. ")) {
-                                const lines = para.split("\n");
-                                return (
-                                  <div key={pIdx} className="space-y-3 font-sans text-sm sm:text-base text-charcoal/85 leading-relaxed font-light my-4">
-                                    {lines.map((line, lIdx) => {
-                                      const match = line.trim().match(/^(\d+)\.\s+(.*)$/);
-                                      if (match) {
-                                        return (
-                                          <div key={lIdx} className="flex items-start space-x-3 pl-4 sm:pl-6 leading-relaxed">
-                                            <span className="font-mono text-xs text-[#947444] mt-0.5 select-none font-semibold">
-                                              {match[1].padStart(2, "0")} /
-                                            </span>
-                                            <span className="flex-1 text-charcoal/80">{match[2]}</span>
-                                          </div>
-                                        );
-                                      }
-                                      return (
-                                        <p key={lIdx} className="mb-2 text-charcoal/85 font-light">
-                                          {line}
-                                        </p>
-                                      );
-                                    })}
-                                  </div>
-                                );
-                              }
-                              return (
-                                <p key={pIdx} className="text-charcoal/80 leading-relaxed text-sm sm:text-base font-sans font-light">
-                                  {para}
-                                </p>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                      </div>
-
-                      {/* APPENDIX / FAQ MODULE (Beautiful, architectural separate editorial section) */}
-                      {selectedArticle.faq && selectedArticle.faq.length > 0 && (
-                        <div className="mt-16 pt-12 border-t border-charcoal/15 space-y-8 select-text">
-                          <div className="space-y-2">
-                            <span className="font-mono text-[9px] uppercase tracking-widest text-[#947444] font-semibold">
-                              {lang === "DE" ? "ANHANG / FAQ" : "APPENDIX / FAQ"}
-                            </span>
-                            <h3 className="font-serif text-xl md:text-2xl font-medium tracking-tight text-charcoal">
-                              {lang === "DE" ? "Häufige Fragen & Erläuterungen" : "Frequent Queries & Annotations"}
-                            </h3>
-                          </div>
-                          
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
-                            {selectedArticle.faq.map((item, idx) => (
-                              <div key={idx} className="space-y-3 border-l-2 border-[#947444]/10 pl-4">
-                                <h4 className="font-serif text-sm sm:text-base font-bold text-charcoal leading-snug">
-                                  {item.question}
-                                </h4>
-                                <p className="font-sans text-xs sm:text-sm text-charcoal/70 leading-relaxed font-light">
-                                  {item.answer}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Closure & Legal Stamp footer */}
-                  <div className="mt-12 pt-8 border-t border-charcoal/10 space-y-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs font-mono gap-4">
-                      <span className="text-charcoal/50">© 2026 VARDA LEGAL • VARDA LEGAL</span>
-                      <a 
-                        href="#letsgo" 
-                        onClick={() => setSelectedArticle(null)}
-                        className="inline-flex items-center space-x-1 text-[#947444] font-bold hover:text-charcoal uppercase tracking-widest transition-colors font-mono"
-                      >
-                        <span>{lang === "DE" ? "Kanzlei buchen" : "Consult with us"}</span>
-                        <span className="text-sm">→</span>
-                      </a>
-                    </div>
-                    <p className="text-[10px] text-charcoal/40 leading-relaxed font-mono">
-                      {lang === "DE" 
-                        ? "HINWEIS: Dieser Fachbeitrag dient lediglich der allgemeinen Information und wissenschaftlichen Orientierung. Er stellt zu keinem Zeitpunkt eine steuerliche oder rechtsverbindliche Beratung dar und begründet kein Mandatsverhältnis." 
-                        : "DISCLAIMER: This thought piece serves for general instructional and scientific orientation only. It constitutes no structural tax or legal binding advice and does not initiate a client-attorney relationship."}
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            )}
-
-            {isKompendiumOpen && (
-              <div 
-                className="fixed inset-0 z-50 overflow-y-auto bg-charcoal/40 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 md:p-10"
-                onClick={() => setIsKompendiumOpen(false)}
-              >
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98, y: 15 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.98, y: 15 }}
-                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                  className="w-full max-w-4xl bg-[#FAF8F5] border border-charcoal/15 p-6 sm:p-10 md:p-16 shadow-2xl flex flex-col justify-between rounded-[2px] max-h-[92vh] overflow-y-auto relative"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="space-y-10">
-                    {/* Editorial Top bar */}
-                    <div className="flex justify-between items-center pb-6 border-b border-charcoal/10 font-mono text-[10px] uppercase tracking-widest text-charcoal/40">
-                      <button
-                        onClick={() => setIsKompendiumOpen(false)}
-                        className="group inline-flex items-center space-x-2 text-charcoal/60 hover:text-charcoal transition-colors focus:outline-none cursor-pointer"
-                      >
-                        <span className="text-sm font-light tracking-normal transition-transform group-hover:-translate-x-1">←</span>
-                        <span className="font-mono font-medium">{lang === "DE" ? "ZURÜCK ZUM PORTAL" : "BACK TO PORTAL"}</span>
-                      </button>
-                      <div className="border border-[#947444]/30 px-3 py-1 font-mono font-semibold text-[#947444] bg-transparent rounded-sm uppercase tracking-wider">
-                        [ {lang === "DE" ? "WISSENSCHAFTLICHE BIBLIOTHEK" : "ACADEMIC PAPERS"} ]
-                      </div>
-                    </div>
-
-                    {/* Header */}
-                    <div className="space-y-4">
-                      <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.1] max-w-2xl">
-                        {lang === "DE" ? "Kanzlei-Kompendium" : "Firm Compendium"}
-                      </h1>
-                      <p className="font-serif text-base italic text-charcoal/60 font-light max-w-2xl leading-relaxed">
-                        {lang === "DE" 
-                          ? "Leitfäden, rechtssichere Ablaufmodelle und praxisnahe Abhandlungen für Gesellschafter und Geschäftsführer."
-                          : "Academic-level governance guidelines, secure structural templates, and research-focused legal briefs for board members and enterprise directors."}
-                      </p>
-                    </div>
-
-                    <div className="h-[1px] w-28 bg-[#947444]/30" />
-
-                    {/* Evergreens Grid of Academic Guidelines */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                      
-                      {/* Document 1 */}
-                      <div className="border border-charcoal/10 p-6 bg-white space-y-4">
-                        <span className="font-mono text-[10px] text-[#947444] tracking-widest uppercase font-semibold block">01 / CORPORATE LAW</span>
-                        <h3 className="font-serif text-lg font-medium text-charcoal">
-                          {lang === "DE" 
-                            ? "Der Gesellschafterbeschluss: Mustersicherer Ablauf" 
-                            : "The Shareholder Resolution: Risk-Free Protocols"}
-                        </h3>
-                        <p className="font-sans text-xs text-charcoal/70 leading-relaxed font-light">
-                          {lang === "DE"
-                            ? "Fehlersichere Beschlussfassungen unter Berücksichtigung von Anfechtungsfristen, Gesellschafterstimmverboten und BGH-Vorgaben."
-                            : "Meticulous documentation standards avoiding voided voting procedures, conflict of interest exclusions, and Supreme Court protocols."}
-                        </p>
-                        <div className="pt-2 font-mono text-[9px] text-[#947444] uppercase tracking-wider">
-                          [ {lang === "DE" ? "Im Kanzlei-Intranet verfügbar" : "Available in Intranet DB"} ]
-                        </div>
-                      </div>
-
-                      {/* Document 2 */}
-                      <div className="border border-charcoal/10 p-6 bg-white space-y-4">
-                        <span className="font-mono text-[10px] text-[#947444] tracking-widest uppercase font-semibold block">02 / CAPITAL METRICS</span>
-                        <h3 className="font-serif text-lg font-medium text-charcoal">
-                          {lang === "DE" 
-                            ? "Founder Vesting im deutschen Steuerrecht" 
-                            : "Founder Vesting in German Fiscal Law"}
-                        </h3>
-                        <p className="font-sans text-xs text-charcoal/70 leading-relaxed font-light">
-                          {lang === "DE"
-                            ? "Eine steuerrechtliche Untersuchung von Dynamic Vesting Modellen, Schenkungsteuer-Abmilderungen und Haltefristen."
-                            : "A fiscal analysis of exit-linked forfeiture provisions, dry-income tax risks, and capitalization timing structures."}
-                        </p>
-                        <div className="pt-2 font-mono text-[9px] text-[#947444] uppercase tracking-wider">
-                          [ {lang === "DE" ? "Im Kanzlei-Intranet verfügbar" : "Available in Intranet DB"} ]
-                        </div>
-                      </div>
-
-                      {/* Document 3 */}
-                      <div className="border border-charcoal/10 p-6 bg-white space-y-4">
-                        <span className="font-mono text-[10px] text-[#947444] tracking-widest uppercase font-semibold block">03 / IP RESTRUCTURING</span>
-                        <h3 className="font-serif text-lg font-medium text-charcoal">
-                          {lang === "DE" 
-                            ? "IP-Migrationen & Code-Transfers im SaaS-Sektor" 
-                            : "IP Migrations & Code Transfer Protocols"}
-                        </h3>
-                        <p className="font-sans text-xs text-charcoal/70 leading-relaxed font-light">
-                          {lang === "DE"
-                            ? "Strukturierungsregelungen zur sauberen Ausgliederung und Übertragung von proprietärem Programmcode bei Umstrukturierungen."
-                            : "Structural guidelines ensuring seamless intellectual property assignments and software copyright transfers during spin-offs."}
-                        </p>
-                        <div className="pt-2 font-mono text-[9px] text-[#947444] uppercase tracking-wider">
-                          [ {lang === "DE" ? "Im Kanzlei-Intranet verfügbar" : "Available in Intranet DB"} ]
-                        </div>
-                      </div>
-
-                      {/* Document 4 */}
-                      <div className="border border-charcoal/10 p-6 bg-white space-y-4">
-                        <span className="font-mono text-[10px] text-[#947444] tracking-widest uppercase font-semibold block">04 / GOVERNANCE COMPLIANCE</span>
-                        <h3 className="font-serif text-lg font-medium text-charcoal">
-                          {lang === "DE" 
-                            ? "Geschäftsführer-Enthaftung in Sondersituationen" 
-                            : "Director Liability Mitigation on Special Exits"}
-                        </h3>
-                        <p className="font-sans text-xs text-charcoal/70 leading-relaxed font-light">
-                          {lang === "DE"
-                            ? "Proaktive Haftungsausschlüsse und Business Judgment Rule Nachweise während risikoreicher Restrukturierungen."
-                            : "Officer protection policies and business judgment records to defend personal assets during emergency turnarounds."}
-                        </p>
-                        <div className="pt-2 font-mono text-[9px] text-[#947444] uppercase tracking-wider">
-                          [ {lang === "DE" ? "Im Kanzlei-Intranet verfügbar" : "Available in Intranet DB"} ]
-                        </div>
-                      </div>
-
-                    </div>
-                  </div>
-
-                  {/* Closure & Legal Stamp footer */}
-                  <div className="mt-12 pt-8 border-t border-charcoal/10 space-y-4">
-                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs font-mono gap-4">
-                      <span className="text-charcoal/50">© 2026 VARDA LEGAL • ARCHIVAL SERVICES ONLY</span>
-                      <a 
-                        href="#letsgo" 
-                        onClick={() => setIsKompendiumOpen(false)}
-                        className="inline-flex items-center space-x-1 text-[#947444] font-bold hover:text-charcoal uppercase tracking-widest transition-colors font-mono"
-                      >
-                        <span>{lang === "DE" ? "Bibliothek-Zugang anfordern" : "Request Archival Vault Access"}</span>
-                        <span className="text-sm">→</span>
-                      </a>
-                    </div>
-                    <p className="text-[10px] text-charcoal/40 leading-relaxed font-mono">
-                      {lang === "DE" 
-                        ? "HINWEIS: Das Kompendium dient der wissenschaftlichen Einordnung und Information für Bestandsmandanten. Eine Vervielfältigung oder Weitergabe erfordert die schriftliche Freigabe durch Dr. Konstantin Filbinger." 
-                        : "NOTICE: The library is optimized for scientific purposes and existing enterprise clients. Any duplication or redistribution requires prior written consent from Dr. Konstantin Filbinger."}
-                    </p>
-                  </div>
-                </motion.div>
-              </div>
-            )}
-          </AnimatePresence>
-        </section>
-
-        {/* SECTION 5: "VERGÜTUNG" (TRANSPARENT VALUE-BASED FLAT RATES & COST ESTIMATOR) */}
-        <section id="verguetung" className="py-16 md:py-24 border-b border-charcoal/10">
-          <div className="space-y-4 mb-8">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">04 / {d.verguetung.title}</span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.verguetung.subtitle}</h2>
-          </div>
-
-          <div className="max-w-3xl space-y-8">
-            <p className="font-sans text-base sm:text-lg text-charcoal/80 leading-relaxed">
-              {d.verguetung.intro}
-            </p>
-
-            <div>
-              <a
-                href={`mailto:${CONTACT_FORM_RECIPIENT}?subject=${
-                  encodeURIComponent(lang === "DE" ? "Moderne Rechtsberatung / Anfrage" : "Modern Legal Advisory / Inquiry")
-                }&body=${
-                  encodeURIComponent(
-                    lang === "DE" 
-                      ? "Sehr geehrter Herr Dr. Filbinger,\n\nich habe Ihre Webseite besucht und würde mich gerne zu einem gesellschaftsrechtlichen bzw. vertraglichen Projekt austauschen.\n\nMit freundlichen Grüßen" 
-                      : "Dear Dr. Filbinger,\n\nI visited your website and would like to discuss a corporate or contract law matter.\n\nBest regards"
-                  )
-                }`}
-                className="inline-flex justify-center items-center py-3.5 px-10 font-mono text-xs uppercase tracking-widest text-paper-light bg-charcoal hover:bg-charcoal/85 transition-all duration-300"
-              >
-                <span>{lang === "DE" ? "Klingt gut" : "Sounds good"}</span>
-              </a>
-            </div>
-          </div>
-
-          <p className="text-[11px] text-charcoal/50 text-right mt-16 font-mono">
-            * {d.verguetung.note}
-          </p>
-        </section>
-
-        {/* SECTION 6: "LET'S GO" (CONTACT & INTERACTIVE EMBEDDED CALENDAR SCHEDULER) */}
+        {/* SECTION 6: CONTACT */}
         <section id="letsgo" className="py-16 md:py-24">
           <div className="space-y-4 mb-12">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">05 / {d.letsgo.title}</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-brand-red">06 / {d.letsgo.title}</span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal">{d.letsgo.subtitle}</h2>
           </div>
 
@@ -4179,6 +2563,7 @@ export default function App() {
 
           </div>
         </section>
+
         
         {/* Relocated Noble Navigation Visual Showcase to the bottom of main */}
         <div className="mt-16 sm:mt-24 mb-16 border border-charcoal/15 bg-[#faf8f4] p-4 md:p-6 shadow-sm">
@@ -4241,14 +2626,10 @@ export default function App() {
                 {lang === "DE" ? "Navigation" : "Navigation"}
               </div>
               <ul className="space-y-2 font-sans text-xs">
-                <li><a href="#situations" className="hover:text-brand-red transition-all">{lang === "DE" ? "Wann Varda hilft" : "When Varda is useful"}</a></li>
-                <li><a href="#fokus" className="hover:text-brand-red transition-all">{lang === "DE" ? "Beratungsfelder" : "Areas of Expertise"}</a></li>
-                <li><a href="#beispiel-output" className="hover:text-brand-red transition-all">{lang === "DE" ? "Beispiel-Arbeitsergebnis" : "Example Work Product"}</a></li>
-                <li><a href="#produkte" className="hover:text-brand-red transition-all">{lang === "DE" ? "Produkte" : "Products"}</a></li>
-                <li><a href="#methodik" className="hover:text-brand-red transition-all">{lang === "DE" ? "Arbeitsweise" : "Methodology"}</a></li>
-                <li><a href="#wir" className="hover:text-brand-red transition-all">{lang === "DE" ? "Über Varda" : "About Varda"}</a></li>
-                <li><a href="#denkwerk" className="hover:text-brand-red transition-all">{lang === "DE" ? "Einblicke" : "Insights"}</a></li>
-                <li><a href="#verguetung" className="hover:text-brand-red transition-all">{lang === "DE" ? "Honorare" : "Fees"}</a></li>
+                <li><a href="#fokus" className="hover:text-brand-red transition-all">{lang === "DE" ? "Expertise" : "Expertise"}</a></li>
+                <li><a href="#methode" className="hover:text-brand-red transition-all">{lang === "DE" ? "Varda-Ansatz" : "Varda Approach"}</a></li>
+                <li><a href="#beispiel-output" className="hover:text-brand-red transition-all">{lang === "DE" ? "Was Sie bekommen" : "What You Get"}</a></li>
+                <li><a href="#wir" className="hover:text-brand-red transition-all">{lang === "DE" ? "Über Dr. Konstantin Filbinger" : "About Dr. Konstantin Filbinger"}</a></li>
                 <li><a href="#letsgo" className="hover:text-brand-red transition-all">{lang === "DE" ? "Kontakt" : "Contact"}</a></li>
                 <li><a href={lang === "DE" ? "#navigator" : "#en/navigator"} onClick={() => setCurrentView("navigator")} className="hover:text-brand-red transition-all font-semibold text-[#C0823E]">Navigator</a></li>
               </ul>
@@ -4296,62 +2677,6 @@ export default function App() {
           </div>
         </div>
       </footer>
-
-      {/* Lightbox Modal for Executive Clarity Image */}
-      <AnimatePresence>
-        {isImageModalOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10 bg-charcoal/90 backdrop-blur-md cursor-pointer"
-            onClick={() => setIsImageModalOpen(false)}
-          >
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", duration: 0.4 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl max-h-[90vh] overflow-hidden bg-white border border-charcoal/15 shadow-2xl flex flex-col p-2 sm:p-4 rounded-none cursor-default"
-            >
-              {/* Image Frame with Close Button */}
-              <div className="absolute top-4 right-4 z-10">
-                <button 
-                  onClick={() => setIsImageModalOpen(false)}
-                  className="p-1.5 bg-charcoal text-white hover:bg-brand-red rounded-full transition-colors flex items-center justify-center cursor-pointer shadow-md border-none"
-                  aria-label="Close lightbox"
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              <div className="flex-1 overflow-auto flex items-center justify-center bg-stone-50 border border-charcoal/5">
-                <img 
-                  src={execFigmaImage}
-                  alt={lang === "DE" 
-                    ? "Zweiseitiges fiktives Executive-Clarity-Beispiel mit strukturierter rechtlicher Analyse und Empfehlung zur Gestaltung einer deutschen GmbH und einer Gesellschaftervereinbarung."
-                    : "Two-page fictional Executive Clarity example showing Varda’s structured legal analysis and recommendation for a German GmbH and shareholders’ agreement."}
-                  referrerPolicy="no-referrer"
-                  className="max-w-full max-h-[82vh] object-contain block mx-auto"
-                />
-              </div>
-
-              {/* Caption or label at the bottom of the lightbox */}
-              <div className="pt-3 px-2 flex justify-between items-center text-xs font-sans text-charcoal/60">
-                <span className="font-serif italic font-medium">
-                  {lang === "DE" 
-                    ? "Varda Legal — Executive Clarity Beispiel" 
-                    : "Varda Legal — Executive Clarity Example"}
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-wider">
-                  {lang === "DE" ? "Klicken Sie außerhalb zum Schließen" : "Click outside to close"}
-                </span>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Elegant, high-fashion legal notices modal */}
       <AnimatePresence>
