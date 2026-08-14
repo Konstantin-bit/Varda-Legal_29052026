@@ -143,8 +143,8 @@ export const content: Record<Language, ContentData> = {
     },
     hero: {
       badge: "CORPORATE · COMMERCIAL · M&A · TECHNOLOGIE",
-      title: "Rechtsberatung für klare Entscheidungen.",
-      subtitle: "Varda berät Gründer, Technologieunternehmen und inhabergeführte Unternehmen, wenn Verträge, Gesellschaftsstrukturen oder Transaktionen eine klare wirtschaftliche Entscheidung erfordern – nicht noch ein langes juristisches Memo.",
+      title: "Rechtsberatung, die Sie über die Ziellinie bringt.",
+      subtitle: "Klarheit. Sicherheit. Ruhe.",
       directSentence: "Sie arbeiten direkt mit Dr. Konstantin Filbinger. Er bewertet die Rechtslage im wirtschaftlichen Kontext und empfiehlt einen umsetzbaren nächsten Schritt.",
       cta: "Anliegen besprechen",
       secCta: "So arbeitet Varda",
@@ -708,8 +708,8 @@ Token-Recovery-Probleme aufgrund Überweisungen an eine Wallet, deren Schlüssel
     },
     hero: {
       badge: "CORPORATE · COMMERCIAL · M&A · TECHNOLOGY",
-      title: "Legal advice for decisions.",
-      subtitle: "Varda advises founders, technology companies and owner-managed businesses when contracts, corporate structures or transactions require a clear commercial decision—not another long legal memo.",
+      title: "Legal advice that gets you across the line.",
+      subtitle: "Clarity. Confidence. Calm.",
       directSentence: "You work directly with Dr Konstantin Filbinger, who assesses the legal position in its commercial context and recommends a workable next step.",
       cta: "Discuss your matter",
       secCta: "How Varda works",

@@ -1722,8 +1722,8 @@ export default function App() {
                     {d.hero.title}
                   </h1>
 
-                  {/* Supporting Copy */}
-                  <p className="font-sans text-base sm:text-lg text-charcoal/80 leading-relaxed max-w-[540px]">
+                  {/* Emotional Promise / Supporting Copy */}
+                  <p className="font-serif text-xl sm:text-2xl md:text-3xl text-charcoal/85 font-normal tracking-wide">
                     {d.hero.subtitle}
                   </p>
 
@@ -1815,8 +1815,8 @@ export default function App() {
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
               {lang === "DE"
-                ? "Wirtschaftsrecht für Entscheidungen, die ein Unternehmen prägen."
-                : "Business law for the decisions that shape a company."}
+                ? "Wo wir Mehrwert schaffen"
+                : "Where we add value"}
             </h2>
             <p className="font-sans text-charcoal/80 text-base sm:text-lg leading-relaxed max-w-3xl pt-2">
               {lang === "DE"
@@ -2077,8 +2077,8 @@ export default function App() {
             </h2>
             <p className="font-sans text-charcoal/80 text-base sm:text-lg leading-relaxed max-w-3xl pt-2">
               {lang === "DE"
-                ? "Jedes Mandat ist anders. Ziel ist nicht, möglichst viel Recht zu analysieren. Ziel ist eine bessere unternehmerische Entscheidung. Deshalb beginnt Varda mit dem wirtschaftlichen Kontext und entwickelt darauf aufbauend die rechtliche Empfehlung."
-                : "Every mandate is different. The objective is not to maximise legal analysis. The objective is to help management make a better decision. Varda therefore starts with the commercial context before developing the legal recommendation."}
+                ? "Wir glauben, dass gute Rechtsberatung damit beginnt, das wirtschaftliche Ziel zu verstehen – und Ihnen dann dabei zu helfen, es zu erreichen."
+                : "We believe that good legal advice starts with understanding the commercial objective before helping you to get there."}
             </p>
           </div>
 
@@ -2088,7 +2088,7 @@ export default function App() {
               {
                 num: "01",
                 icon: <Target className="w-5 h-5 text-[#C0823E]" strokeWidth={1.5} />,
-                title: lang === "DE" ? "Die Entscheidung verstehen" : "Understand the decision",
+                title: lang === "DE" ? "Das Ziel verstehen" : "Understand the objective",
                 text: lang === "DE"
                   ? "Bevor rechtliche Fragen analysiert werden, identifiziert Varda das wirtschaftliche Ziel, die relevanten Beteiligten und die eigentliche Managemententscheidung."
                   : "Before analysing legal rules, Varda identifies the commercial objective, the relevant stakeholders and the decision management actually needs to make."
@@ -2149,8 +2149,8 @@ export default function App() {
           <div className="max-w-4xl py-2 my-2">
             <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-normal text-charcoal leading-[1.25]">
               {lang === "DE"
-                ? "Gute Rechtsberatung endet nicht mit der Risikoanalyse. Sie endet mit einer Empfehlung."
-                : "Good legal advice does not end with identifying the risk. It ends with a recommendation."}
+                ? "Gute Rechtsberatung bedeutet: eine klare Empfehlung und eine To-do-Liste."
+                : "Good legal advice means a clear recommendation and a to-do list."}
             </p>
           </div>
 
@@ -2310,8 +2310,8 @@ export default function App() {
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-charcoal leading-[1.12]">
               {lang === "DE"
-                ? "Recht sollte Menschen helfen, voranzukommen."
-                : "Law should help people move forward."}
+                ? "Recht ist keine Raketenwissenschaft. Tun wir nicht so, als wäre es eine."
+                : "Legal is not rocket science. Let's not pretend it is."}
             </h2>
           </div>
 
@@ -2339,36 +2339,36 @@ export default function App() {
             {/* Right Column: Editorial Text & Philosophy (lg:col-span-7) */}
             <div className="lg:col-span-7 space-y-10">
               
-              {/* Opening Block: Philosophy First */}
+              {/* Opening Block: Positioning First */}
               <div className="space-y-4 text-charcoal/85 font-sans text-base sm:text-lg leading-relaxed">
-                <p className="font-serif text-xl sm:text-2xl text-charcoal font-medium leading-snug">
-                  {lang === "DE"
-                    ? "Varda entstand aus einer einfachen Beobachtung."
-                    : "Varda was founded on a simple observation."}
-                </p>
                 <p>
                   {lang === "DE"
-                    ? "Unternehmen scheitern selten daran, dass rechtliche Informationen fehlen. Schwierige Entscheidungen entstehen vielmehr dort, wo rechtliche, wirtschaftliche und operative Fragen gleichzeitig beantwortet werden müssen."
-                    : "Businesses rarely struggle because legal information is unavailable. They struggle because important decisions involve legal, commercial and operational questions at the same time."}
+                    ? "Sie haben ein Ziel. Ein rechtliches Thema macht den Weg komplizierter. Wir reduzieren die Komplexität, helfen Ihnen, eine fundierte Entscheidung zu treffen, und bringen Sie weiter – ohne Zögern, endlose „Es kommt darauf an“-Vorbehalte oder juristisches Chichi."
+                    : "You have a goal. A legal issue adds complexity. We remove that complexity, help you make a sound decision and keep you moving — without hesitation, endless \"it depends\" caveats or legalese for its own sake."}
                 </p>
                 <p className="font-medium text-charcoal">
                   {lang === "DE"
-                    ? "Deshalb verbindet Varda juristische Präzision mit wirtschaftlichem Verständnis und konkreten Handlungsempfehlungen."
-                    : "That is why Varda combines legal precision with commercial thinking and practical recommendations."}
+                    ? "Rechtsberatung gehört für uns in ihren wirtschaftlichen, operativen und strategischen Kontext. Sonst bleiben nur Worte ohne Mehrwert."
+                    : "We believe legal advice should be embedded in its commercial, operational and strategic context. Otherwise, it is just words with no added value."}
                 </p>
               </div>
 
               <div className="w-full h-[1px] bg-charcoal/10" />
 
               {/* Second Block: Introducing Konstantin */}
-              <div className="space-y-3 font-sans text-sm sm:text-base text-charcoal/85 leading-relaxed">
+              <div className="space-y-4 font-sans text-sm sm:text-base text-charcoal/85 leading-relaxed">
                 <span className="font-mono text-[10px] uppercase tracking-widest text-[#C0823E] font-bold block">
                   [ {lang === "DE" ? "DIE KANZLEI" : "THE PRACTICE"} ]
                 </span>
                 <p>
                   {lang === "DE"
-                    ? "Konstantin Filbinger hat Varda gegründet, um die Art von Kanzlei aufzubauen, mit der er selbst als Unternehmer arbeiten möchte: wirtschaftlich denkend, direkt, neugierig und darauf fokussiert, bessere Entscheidungen zu ermöglichen statt lediglich Risiken zu analysieren."
-                    : "Konstantin Filbinger founded Varda to build the kind of legal practice he would want to work with himself: commercially minded, direct, intellectually curious and focused on helping clients make better decisions rather than simply analysing legal risks."}
+                    ? "Ich habe in den Corporate/M&A-Teams mehrerer führender internationaler und deutscher Wirtschaftskanzleien gearbeitet. Über Branchen, Unternehmensgrößen und ganz unterschiedliche Mandate hinweg habe ich dabei vor allem eines über gute Rechtsberatung gelernt:"
+                    : "I have worked in the Corporate/M&A teams of several leading international and German law firms. Across industries, company sizes and types of matters, I have learned one thing about good legal advice:"}
+                </p>
+                <p>
+                  {lang === "DE"
+                    ? "Sie haben ein Ziel. Ein rechtliches Thema macht den Weg komplizierter. Gute Rechtsberatung sollte diese Komplexität reduzieren, Ihnen die Klarheit für eine fundierte und sichere Entscheidung geben und dafür sorgen, dass Sie ohne unnötige Reibung zügig weiterkommen. Ohne Zögern, endlose „Es kommt darauf an“-Vorbehalte oder juristisches Chichi."
+                    : "You have a goal. A legal issue adds complexity. Good legal advice should remove that complexity, give you the clarity to make a sound decision with confidence and keep you moving — quickly and without unnecessary friction. No hesitation, endless “it depends” caveats or legalese for its own sake."}
                 </p>
               </div>
 
